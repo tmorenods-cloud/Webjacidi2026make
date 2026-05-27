@@ -33,14 +33,14 @@ jobs:
           # Create and switch to production branch based on the current cleaned state
           git checkout -B production
           
-          # Stage all changes (includes the clean App.tsx and the scripts/workflows)
+          # Stage all changes
           git add -A
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
             echo "No changes to sync to production branch."
           else
-            git commit -m "chore: sync figma make updates with clean image assets [skip ci]"
+            git commit -m "chore: sync figma make updates with clean image assets to production [skip ci]"
             # Force push the production branch to origin
             git push origin production --force
           fi
