@@ -318,7 +318,7 @@ function HeroSection() {
   return (
     <div className="w-full" data-name="Hero Section">
       <p
-        className="font-medium text-[#20201f] px-20 pb-6"
+        className="font-medium text-[#20201f] px-[80px] pt-[0px] pb-[24px]"
         style={{
           fontSize: "clamp(64px, 8vw, 120px)",
           letterSpacing: "-6px",
