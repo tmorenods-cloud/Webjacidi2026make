@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes revealFromRight {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
+}
