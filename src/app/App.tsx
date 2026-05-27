@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import imgClientLogo from "@/imports/Home-1/b7b5eced762fc65fe3bd76a4742c9db6ad95a62d.png";
-import imgClientLogo1 from "@/imports/Home-1/c0277f15dd06af820ab8d7faefbd135cf318a958.png";
-import imgClientLogo2 from "@/imports/Home-1/0a2e79bcd47a4aacb95357549ff5939bc54d20c9.png";
-import imgClientLogo3 from "@/imports/Home-1/ca17513dda698dffd51ce63384294861c38ef6f9.png";
-import imgClientLogo4 from "@/imports/Home-1/49323ca07b7b9e5a4dd41cc31534a5a142a1f7bd.png";
-import imgClientLogo5 from "@/imports/Home-1/b327c2ebc988cb10d48418f8c40002212dd2ae59.png";
-import imgClientLogo6 from "@/imports/Home-1/9424d751efc36ee0a920f89ac42d391784837c2a.png";
-import imgClientLogo7 from "@/imports/Home-1/4cdad886271045d8c1cdc9da83383af6b1080c60.png";
-import imgClientLogo8 from "@/imports/Home-1/4c2426829019e5977540fd18b894ac50ee3c374e.png";
-import imgColumn from "@/imports/Home-1/46b4059ae7c44eb9d6289c0001726e236e172cae.png";
-import imgColumn1 from "@/imports/Home-1/9249e5057a24c153b07287f7f65477c6e06a63c5.png";
-import imgImage from "@/imports/Home-1/70ba5425a7dc220227b68ba509e823370c72311e.png";
-import imgImage1 from "@/imports/Home-1/a56b2ff5ab4dfbbad342e0ca02ad65a24d06e42d.png";
-
+const imgClientLogo = "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo1 = "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo2 = "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo3 = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo4 = "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo5 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo6 = "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo7 = "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=600&auto=format&fit=crop";
+const imgClientLogo8 = "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=600&auto=format&fit=crop";
+const imgColumn = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop";
+const imgColumn1 = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop";
+const imgImage = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop";
+const imgImage1 = "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop";
 const HERO_IMG =
   "https://images.unsplash.com/photo-1742540531234-146d41a8833b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMGZhc2hpb24lMjBtb2RlbCUyMGRyYW1hdGljJTIwcG9ydHJhaXQlMjBlZGl0b3JpYWx8ZW58MXx8fHwxNzc5ODEyMjA3fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
