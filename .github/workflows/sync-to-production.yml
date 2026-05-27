@@ -3,7 +3,7 @@ name: Sync Figma Make to Production
 on:
   push:
     branches:
-      - main
+      - staging
 
 permissions:
   contents: write

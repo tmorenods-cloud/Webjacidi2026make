@@ -11,22 +11,34 @@ Este archivo contiene toda la información de arquitectura, flujos de trabajo e 
 
 ---
 
-## ⚙️ Arquitectura de Ramas y Despliegue en Vercel
-Manejamos un flujo automatizado de dos ramas principales:
+## ⚙️ Arquitectura de Ramas y Estrategia de Sincronización
+Manejamos tres ramas en el repositorio para evitar que Figma Make sobrescriba nuestros scripts y archivos personalizados:
 
 ```mermaid
 graph TD
-    A[Figma Make] -- Realiza push --> B(Rama 'main' en GitHub)
-    B -- Activa --> C[GitHub Action]
-    C -- Ejecuta script de limpieza --> D[clean-imports.cjs]
-    D -- Sube código limpio --> E(Rama 'production' en GitHub)
-    E -- Despliega automáticamente --> F[Vercel Live Production]
+    A[Figma Make] -- Sobrescribe y sube --> B(Rama 'main' en GitHub)
+    B -- Pull & Merge local --> C(Rama local 'staging')
+    Note over C: Resolvemos conflictos locales y mantenemos script, workflow y custom assets
+    C -- Realiza Push --> D(Rama remota 'staging' en GitHub)
+    D -- Dispara Action --> E[GitHub Action]
+    E -- Limpia imports rotos --> F[clean-imports.cjs]
+    F -- Force-push automático --> G(Rama remota 'production' en GitHub)
+    G -- Despliega en vivo --> H[Vercel Live Production]
 ```
 
-* **Rama `main`**: Contiene el código fuente en crudo directamente de Figma Make (con los imports rotos).
-* **Rama `production`**: Contiene la versión de producción estable y limpia generada automáticamente por la GitHub Action.
-* **Vercel**: Está conectado directamente a la rama **`production`** para el despliegue del sitio en vivo.
-* **Staging local**: Para realizar pruebas de desarrollo locales de manera segura antes de subir cambios permanentes.
+### Roles de cada Rama:
+* **Rama `main`**: Contiene únicamente el código fuente en crudo directamente exportado por el bot de Figma Make. **Nunca** debes modificar o crear archivos directamente en `main` porque el bot los borrará en el siguiente export.
+* **Rama `staging`**: Es nuestra rama de desarrollo e integración. Aquí vive el script de limpieza (`scripts/clean-imports.cjs`), el workflow `.github` y las imágenes/videos personalizados.
+* **Rama `production`**: Contiene el código 100% limpio y compilable, generado de forma automatizada por la GitHub Action a partir de `staging`.
+* **Vercel**: Está conectado directamente a la rama **`production`** para servir el sitio web en vivo.
+
+### Flujo de Sincronización ante actualizaciones de Figma:
+1. Asegurarse de estar en la rama de integración: `git checkout staging`.
+2. Traer las novedades de Figma Make: `git pull origin main`.
+3. Resolver los conflictos reteniendo siempre nuestros assets personalizados (como `video-hero-prueba.mp4` y el Isotipo en el Footer) y preservando la carpeta `scripts/` y `.github/`.
+4. Ejecutar el script localmente para validar: `node scripts/clean-imports.cjs`.
+5. Subir los cambios a GitHub: `git push origin staging`.
+6. Esto activará la GitHub Action que actualizará la rama `production` y disparará el despliegue automático en Vercel.
 
 ---
 
