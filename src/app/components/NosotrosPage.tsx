@@ -44,25 +44,25 @@ const values = [
 
 function NosotrosIntroSection() {
   return (
-    <div className="flex flex-col gap-[65px] items-start pt-[44px] pb-[80px] px-20 w-full">
-      <div className="flex flex-col gap-[52px] items-start w-full">
+    <div className="seccion-intro-nosotros flex flex-col gap-[65px] items-start pt-[44px] pb-[80px] px-20 w-full">
+      <div className="encabezado-intro-nosotros flex flex-col gap-[52px] items-start w-full">
         <p
-          className="font-medium text-[#20201f]"
+          className="titulo-intro-nosotros font-medium text-[#20201f]"
           style={{ fontSize: "clamp(48px, 4.5vw, 72px)", letterSpacing: "-4.32px", lineHeight: "0.9" }}
         >
           Nuestra Esencia
         </p>
-        <div className="relative w-full h-[565px]">
-          <div className="absolute bg-[#909090] inset-0" />
+        <div className="contenedor-imagen-intro-nosotros relative w-full h-[565px]">
+          <div className="fondo-imagen-intro absolute bg-[#909090] inset-0" />
           <img
             alt="Nuestra Esencia"
-            className="absolute max-w-none object-cover size-full"
+            className="imagen-intro-nosotros absolute max-w-none object-cover size-full"
             src={imgIntroductionImage}
           />
         </div>
       </div>
       <p
-        className="font-normal text-[#20201f]"
+        className="descripcion-intro-nosotros font-normal text-[#20201f]"
         style={{ fontSize: "clamp(22px, 2.5vw, 40px)", letterSpacing: "-1.2px", lineHeight: "1.15", maxWidth: 960 }}
       >
         No somos solo una consultora digital; somos agentes de cambio. En Jacidi, creemos que el mundo puede ser mejor a través de Outstanding Ideas que transforman marcas en sus mejores versiones.
@@ -75,19 +75,19 @@ function NosotrosIntroSection() {
 
 function NosotrosValuesSection() {
   return (
-    <div className="pt-10 pb-20 px-20 w-full">
-      <div className="flex flex-col lg:flex-row gap-[80px] items-start py-8 w-full">
-        {values.map((v) => (
-          <div key={v.title} className="flex-1 min-w-px relative">
-            <div className="absolute border-t border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
-            <div className="flex flex-col gap-[160px] items-start pb-6 pt-8 px-6 w-full">
-              <div className="overflow-clip relative shrink-0 size-[44px]">
+    <div className="seccion-valores-nosotros pt-10 pb-20 px-20 w-full">
+      <div className="contenedor-valores flex flex-col lg:flex-row gap-[80px] items-start py-8 w-full">
+        {values.map((v, index) => (
+          <div key={v.title} className={`tarjeta-valor tarjeta-valor-${index + 1} flex-1 min-w-px relative`}>
+            <div className="borde-superior-valor absolute border-t border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+            <div className="contenido-valor flex flex-col gap-[160px] items-start pb-6 pt-8 px-6 w-full">
+              <div className="contenedor-icono-valor overflow-clip relative shrink-0 size-[44px]">
                 <div
-                  className="absolute"
+                  className="posicion-icono-valor absolute"
                   style={{ top: v.icon.top, right: v.icon.right, bottom: v.icon.bottom, left: v.icon.left }}
                 >
                   <svg
-                    className="absolute block inset-0 size-full"
+                    className="icono-valor-svg absolute block inset-0 size-full"
                     fill="none"
                     preserveAspectRatio="none"
                     viewBox={v.icon.viewBox}
@@ -96,9 +96,9 @@ function NosotrosValuesSection() {
                   </svg>
                 </div>
               </div>
-              <div className="flex flex-col gap-8 items-start w-full">
-                <p className="font-semibold text-[#20201f] text-[32px] tracking-[-1.92px]">{v.title}</p>
-                <p className="font-normal text-[#909090] text-[22px] tracking-[-0.66px] leading-[1.5]">{v.description}</p>
+              <div className="texto-valor flex flex-col gap-8 items-start w-full">
+                <p className="titulo-valor font-semibold text-[#20201f] text-[32px] tracking-[-1.92px]">{v.title}</p>
+                <p className="descripcion-valor font-normal text-[#909090] text-[22px] tracking-[-0.66px] leading-[1.5]">{v.description}</p>
               </div>
             </div>
           </div>
@@ -112,22 +112,22 @@ function NosotrosValuesSection() {
 
 function NosotrosAboutSection() {
   return (
-    <div className="flex flex-col lg:flex-row gap-[100px] items-start p-20 w-full">
+    <div className="seccion-about-nosotros flex flex-col lg:flex-row gap-[100px] items-start p-20 w-full">
       {/* Left — text */}
-      <div className="flex-1 min-w-px flex flex-col justify-center pr-0 lg:pr-[88px] py-10">
-        <div className="flex flex-col gap-[94px] items-start">
+      <div className="columna-texto-nosotros flex-1 min-w-px flex flex-col justify-center pr-0 lg:pr-[88px] py-10">
+        <div className="contenido-texto-nosotros flex flex-col gap-[94px] items-start">
           <p
-            className="font-medium text-[#20201f]"
+            className="titulo-about-nosotros font-medium text-[#20201f]"
             style={{ fontSize: "clamp(36px, 3.2vw, 52px)", letterSpacing: "-2.6px", lineHeight: "1" }}
           >
             Jacidi nació para
           </p>
-          <div className="flex flex-col gap-[63px] items-start w-full">
-            <p className="font-normal text-[#20201f] text-[22px] tracking-[-0.66px] leading-[1.5]">
+          <div className="descripcion-about-nosotros flex flex-col gap-[63px] items-start w-full">
+            <p className="texto-about-nosotros font-normal text-[#20201f] text-[22px] tracking-[-0.66px] leading-[1.5]">
               Con años de trayectoria impulsando marcas competitivas, en Jacidi no solo pensamos, ¡ejecutamos! Entendemos que el objetivo de cada marca es alcanzar la máxima rentabilidad, por lo que integramos nuestra experiencia técnica con una visión comercial para apoyar cualquier objetivo que te plantees.
             </p>
             <p
-              className="font-semibold text-[#20201f] underline decoration-solid cursor-pointer"
+              className="cta-lets-talk-nosotros font-semibold text-[#20201f] underline decoration-solid cursor-pointer"
               style={{ fontSize: 32, letterSpacing: "-1.92px" }}
             >
               Let's talk
@@ -136,9 +136,9 @@ function NosotrosAboutSection() {
         </div>
       </div>
       {/* Right — image */}
-      <div className="flex-1 min-w-px relative" style={{ height: 745 }}>
-        <img alt="" className="absolute max-w-none object-cover size-full" src={imgImage} />
-        <img alt="" className="absolute max-w-none object-cover size-full" src={imgImage1} />
+      <div className="columna-imagen-nosotros flex-1 min-w-px relative" style={{ height: 745 }}>
+        <img alt="" className="imagen-about-nosotros-base absolute max-w-none object-cover size-full" src={imgImage} />
+        <img alt="" className="imagen-about-nosotros-overlay absolute max-w-none object-cover size-full" src={imgImage1} />
       </div>
     </div>
   );

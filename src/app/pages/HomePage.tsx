@@ -20,11 +20,11 @@ const HERO_IMG =
 
 function LogoCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-[rgba(32,32,31,0.04)] h-[160px] relative rounded-[16px] shrink-0 w-[288px] flex-none">
-      <div className="flex flex-col items-center justify-center overflow-clip relative rounded-[inherit] size-full">
+    <div className="tarjeta-logo-cliente bg-[rgba(32,32,31,0.04)] h-[160px] relative rounded-[16px] shrink-0 w-[288px] flex-none">
+      <div className="contenido-tarjeta-logo flex flex-col items-center justify-center overflow-clip relative rounded-[inherit] size-full">
         {children}
       </div>
-      <div className="absolute border border-[rgba(32,32,31,0.12)] border-solid inset-0 pointer-events-none rounded-[16px]" />
+      <div className="borde-tarjeta-logo absolute border border-[rgba(32,32,31,0.12)] border-solid inset-0 pointer-events-none rounded-[16px]" />
     </div>
   );
 }
@@ -32,7 +32,7 @@ function LogoCard({ children }: { children: React.ReactNode }) {
 function LogoText({ name }: { name: string }) {
   return (
     <span
-      className="font-semibold text-[#20201f] tracking-tight select-none"
+      className="texto-nombre-cliente font-semibold text-[#20201f] tracking-tight select-none"
       style={{ fontSize: 18, opacity: 0.7, fontFamily: "Inter, sans-serif", letterSpacing: "-0.5px" }}
     >
       {name}
@@ -45,7 +45,7 @@ const row2Logos = ["Hesperia", "Mas Oliu", "Grand Hyatt", "Odoo", "iDempiere", "
 
 function LogoRibbonRow1() {
   return (
-    <div className="flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
+    <div className="fila-logos-1 flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
       {row1Logos.map((name) => (
         <LogoCard key={name}><LogoText name={name} /></LogoCard>
       ))}
@@ -55,7 +55,7 @@ function LogoRibbonRow1() {
 
 function LogoRibbonRow2() {
   return (
-    <div className="flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
+    <div className="fila-logos-2 flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
       {row2Logos.map((name) => (
         <LogoCard key={name}><LogoText name={name} /></LogoCard>
       ))}
@@ -74,11 +74,12 @@ interface MarqueeProps {
 function Marquee({ direction, duration = 40, children }: MarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const animName = direction === "left" ? "marqueeLeft" : "marqueeRight";
+  const directionClass = direction === "left" ? "marquesina-izq" : "marquesina-der";
   return (
-    <div className="overflow-hidden w-full relative">
+    <div className={`contenedor-marquesina ${directionClass} overflow-hidden w-full relative`}>
       <div
         ref={trackRef}
-        className="flex w-max"
+        className="track-marquesina flex w-max"
         style={{ animation: `${animName} ${duration}s linear infinite` }}
       >
         {children}
@@ -92,10 +93,10 @@ function Marquee({ direction, duration = 40, children }: MarqueeProps) {
 
 function MockupCard({ src }: { src: string }) {
   return (
-    <div className="h-[267px] relative rounded-[25px] shrink-0 w-[400px] flex-none has-hover-preview">
-      <div className="absolute inset-0 pointer-events-none rounded-[25px]">
-        <div className="absolute bg-[#909090] inset-0 rounded-[25px]" />
-        <img alt="" className="absolute max-w-none object-cover rounded-[25px] size-full" src={src} />
+    <div className="tarjeta-mockup h-[267px] relative rounded-[25px] shrink-0 w-[400px] flex-none has-hover-preview">
+      <div className="contenedor-imagen-mockup absolute inset-0 pointer-events-none rounded-[25px]">
+        <div className="fondo-mockup absolute bg-[#909090] inset-0 rounded-[25px]" />
+        <img alt="" className="imagen-mockup absolute max-w-none object-cover rounded-[25px] size-full" src={src} />
       </div>
     </div>
   );
@@ -103,7 +104,7 @@ function MockupCard({ src }: { src: string }) {
 
 function MockupRibbonContent() {
   return (
-    <div className="flex gap-[40px] items-center flex-none px-5">
+    <div className="contenido-marquesina-mockups-1 flex gap-[40px] items-center flex-none px-5">
       <MockupCard src={imgClientLogo} />
       <MockupCard src={imgClientLogo1} />
       <MockupCard src={imgClientLogo2} />
@@ -116,7 +117,7 @@ function MockupRibbonContent() {
 
 function MockupRibbonContent2() {
   return (
-    <div className="flex gap-[40px] items-center flex-none px-5">
+    <div className="contenido-marquesina-mockups-2 flex gap-[40px] items-center flex-none px-5">
       <MockupCard src={imgClientLogo5} />
       <MockupCard src={imgClientLogo6} />
       <MockupCard src={imgClientLogo7} />
@@ -131,18 +132,18 @@ function MockupRibbonContent2() {
 
 function HeroSection() {
   return (
-    <div className="w-full">
+    <div className="seccion-hero w-full">
       <p
-        className="font-medium text-[#20201f] px-[80px] pt-[0px] pb-[24px]"
+        className="titulo-hero font-medium text-[#20201f] px-[80px] pt-[0px] pb-[24px]"
         style={{ fontSize: "clamp(64px, 8vw, 120px)", letterSpacing: "-6px", lineHeight: "0.83" }}
       >
         Hacemos<br />grande tu marca
       </p>
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+      <div className="contenedor-imagen-hero relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
         <img
           alt="Hero"
           src={HERO_IMG}
-          className="absolute inset-0 w-full h-full object-cover object-top mx-[0px] mt-[-10px] mb-[0px]"
+          className="imagen-hero absolute inset-0 w-full h-full object-cover object-top mx-[0px] mt-[-10px] mb-[0px]"
         />
       </div>
     </div>
@@ -153,22 +154,22 @@ function HeroSection() {
 
 function IntroAndDetailsSection() {
   return (
-    <div className="flex flex-col gap-[160px] items-center py-20 w-full">
-      <div className="w-full px-20">
+    <div className="seccion-intro-detalles flex flex-col gap-[160px] items-center py-20 w-full">
+      <div className="contenedor-texto-intro w-full px-20">
         <p
-          className="font-normal text-[#20201f]"
+          className="texto-intro font-normal text-[#20201f]"
           style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-2.08px", lineHeight: "1.05", maxWidth: 882 }}
         >
           Innovación y creatividad es nuestro ADN. Diseñamos soluciones que impulsan tu proyecto
         </p>
       </div>
-      <div className="h-[267px] overflow-hidden w-full">
+      <div className="marquesina-mockups-superior h-[267px] overflow-hidden w-full">
         <Marquee direction="left" duration={35}>
           <MockupRibbonContent />
         </Marquee>
       </div>
-      <div className="flex flex-col gap-[52px] items-center w-full">
-        <div className="flex flex-col gap-[16px] items-center w-full overflow-hidden">
+      <div className="contenedor-estadisticas flex flex-col gap-[52px] items-center w-full">
+        <div className="lista-estadisticas flex flex-col gap-[16px] items-center w-full overflow-hidden">
           {[
             "+10 Años de Know-How (España & Latam)",
             "+90 Proyectos Ejecutados",
@@ -176,9 +177,9 @@ function IntroAndDetailsSection() {
             "52% ROI Promedio (Elevamos la rentabilidad y el Love Brand)",
             "1M$ invertidos en Paid Media",
           ].map((text) => (
-            <div key={text} className="flex flex-col items-center w-full">
+            <div key={text} className="item-estadistica flex flex-col items-center w-full">
               <p
-                className="font-semibold text-[#909090] text-center whitespace-nowrap transition-colors duration-300 hover:text-[#20201f] cursor-default"
+                className="texto-estadistica font-semibold text-[#909090] text-center whitespace-nowrap transition-colors duration-300 hover:text-[#20201f] cursor-default"
                 style={{ fontSize: "clamp(24px, 3vw, 44px)", letterSpacing: "-2.2px", lineHeight: "1.05" }}
               >
                 {text}
@@ -187,13 +188,13 @@ function IntroAndDetailsSection() {
           ))}
         </div>
         <button
-          className="font-semibold text-[#20201f] text-center underline decoration-solid underline-offset-4"
+          className="boton-lets-talk font-semibold text-[#20201f] text-center underline decoration-solid underline-offset-4"
           style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-2.2px", lineHeight: "0.9" }}
         >
           {"Let's talk"}
         </button>
       </div>
-      <div className="h-[267px] overflow-hidden w-full">
+      <div className="marquesina-mockups-inferior h-[267px] overflow-hidden w-full">
         <Marquee direction="right" duration={35}>
           <MockupRibbonContent2 />
         </Marquee>
@@ -206,31 +207,31 @@ function IntroAndDetailsSection() {
 
 function SectionAbout() {
   return (
-    <div className="relative w-full">
-      <div className="flex flex-col gap-20 items-start px-20 py-10 w-full">
+    <div className="seccion-enfoque relative w-full">
+      <div className="contenedor-enfoque flex flex-col gap-20 items-start px-20 py-10 w-full">
         <p
-          className="font-medium text-[#20201f]"
+          className="titulo-enfoque font-medium text-[#20201f]"
           style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "0.9", maxWidth: 578 }}
         >
           Nuestro enfoque creativo
         </p>
-        <div className="flex flex-wrap gap-px h-auto lg:h-[508px] items-start w-full">
+        <div className="grid-enfoque flex flex-wrap gap-px h-auto lg:h-[508px] items-start w-full">
           {[
             { text: "Innovamos el mercado con estrategias" },
             { text: "Construimos una relación duradera entre marcas y consumidores" },
             { text: "Maximizamos el retorno de inversión a través de campañas efectivas" },
             { text: "Inspiramos confianza y credibilidad en cada proyecto" },
           ].map(({ text }, i) => (
-            <div key={i} className="flex-1 min-w-[220px] h-full relative border-r border-[rgba(32,32,31,0.2)] last:border-r-0">
-              <div className="flex flex-col px-5 py-3 h-full">
-                {i > 0 && <div style={{ flex: i }} />}
+            <div key={i} className={`columna-enfoque columna-enfoque-${i + 1} flex-1 min-w-[220px] h-full relative border-r border-[rgba(32,32,31,0.2)] last:border-r-0`}>
+              <div className="contenido-columna-enfoque flex flex-col px-5 py-3 h-full">
+                {i > 0 && <div className="espaciador-superior" style={{ flex: i }} />}
                 <p
-                  className="font-normal text-[#20201f]"
+                  className="texto-enfoque font-normal text-[#20201f]"
                   style={{ fontSize: "clamp(20px, 2.2vw, 32px)", letterSpacing: "-1.28px", lineHeight: "1.05" }}
                 >
                   {text}
                 </p>
-                {i < 3 && <div style={{ flex: 3 - i }} />}
+                {i < 3 && <div className="espaciador-inferior" style={{ flex: 3 - i }} />}
               </div>
             </div>
           ))}
@@ -271,35 +272,35 @@ const services = [
 
 function SectionServices() {
   return (
-    <div className="bg-white relative w-full">
-      <div className="flex flex-col items-start pb-[120px] pt-20 px-20 w-full">
-        <div className="bg-[#20201f] relative rounded-[16px] w-full">
-          <div className="flex flex-col gap-[88px] items-start p-20 w-full">
+    <div className="seccion-servicios bg-white relative w-full">
+      <div className="contenedor-servicios flex flex-col items-start pb-[120px] pt-20 px-20 w-full">
+        <div className="tarjeta-servicios bg-[#20201f] relative rounded-[16px] w-full">
+          <div className="contenido-servicios flex flex-col gap-[88px] items-start p-20 w-full">
             <p
-              className="font-medium text-white"
+              className="titulo-servicios font-medium text-white"
               style={{ fontSize: "clamp(40px, 5vw, 68px)", letterSpacing: "-4.08px", lineHeight: "0.9", maxWidth: 480 }}
             >
               Lo que hacemos por ti
             </p>
-            <div className="flex flex-col gap-16 items-start w-full">
+            <div className="lista-servicios flex flex-col gap-16 items-start w-full">
               {services.map((s) => (
-                <div key={s.index} className="flex flex-col gap-6 items-start w-full">
-                  <div className="flex items-start pt-4 w-full relative">
-                    <div className="absolute border-t border-[rgba(255,255,255,0.2)] inset-0 pointer-events-none" />
-                    <span className="font-normal text-[#f26b2d] text-[24px] tracking-[-0.48px]">{s.index}</span>
+                <div key={s.index} className={`item-servicio item-servicio-${s.index} flex flex-col gap-6 items-start w-full`}>
+                  <div className="separador-servicio flex items-start pt-4 w-full relative">
+                    <div className="linea-separador absolute border-t border-[rgba(255,255,255,0.2)] inset-0 pointer-events-none" />
+                    <span className="numero-servicio font-normal text-[#f26b2d] text-[24px] tracking-[-0.48px]">{s.index}</span>
                   </div>
-                  <div className="flex items-start justify-between w-full gap-8">
+                  <div className="detalles-servicio flex items-start justify-between w-full gap-8">
                     <p
-                      className="font-medium text-white w-1/2"
+                      className="nombre-servicio font-medium text-white w-1/2"
                       style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-4.08px" }}
                     >
                       {s.name}
                     </p>
-                    <div className="flex flex-col gap-8 items-start pt-[10px] w-1/2">
-                      <p className="font-medium text-white text-[28px] tracking-[-1.68px] leading-normal max-w-[410px]">{s.subtitle}</p>
-                      <ul className="list-disc font-normal text-[#909090] text-[22px] tracking-[-0.88px]">
+                    <div className="descripcion-servicio flex flex-col gap-8 items-start pt-[10px] w-1/2">
+                      <p className="subtitulo-servicio font-medium text-white text-[28px] tracking-[-1.68px] leading-normal max-w-[410px]">{s.subtitle}</p>
+                      <ul className="lista-items-servicio list-disc font-normal text-[#909090] text-[22px] tracking-[-0.88px]">
                         {s.items.map((item) => (
-                          <li key={item} className="ms-[33px] mb-1 leading-[1.65]">{item}</li>
+                          <li key={item} className="item-lista-servicio ms-[33px] mb-1 leading-[1.65]">{item}</li>
                         ))}
                       </ul>
                     </div>
@@ -318,30 +319,30 @@ function SectionServices() {
 
 function SectionClientsLogos() {
   return (
-    <div className="flex flex-col gap-[52px] items-start overflow-hidden py-20 w-full">
-      <div className="px-20 w-full">
+    <div className="seccion-clientes-logos flex flex-col gap-[52px] items-start overflow-hidden py-20 w-full">
+      <div className="contenedor-titulo-clientes px-20 w-full">
         <p
-          className="font-medium text-[#20201f]"
+          className="titulo-clientes font-medium text-[#20201f]"
           style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "1.1" }}
         >
           Nuestros Clientes
         </p>
       </div>
-      <div className="flex flex-col gap-[6px] items-start w-full relative">
+      <div className="contenedor-marquesinas-logos flex flex-col gap-[6px] items-start w-full relative">
         <div
-          className="absolute left-0 top-0 h-full w-40 z-10 pointer-events-none"
+          className="fade-izquierdo absolute left-0 top-0 h-full w-40 z-10 pointer-events-none"
           style={{ backgroundImage: "linear-gradient(90deg, white 0%, white 50%, rgba(255,255,255,0) 100%)" }}
         />
         <div
-          className="absolute right-0 top-0 h-full w-40 z-10 pointer-events-none"
+          className="fade-derecho absolute right-0 top-0 h-full w-40 z-10 pointer-events-none"
           style={{ backgroundImage: "linear-gradient(270deg, white 0%, white 50%, rgba(255,255,255,0) 100%)" }}
         />
-        <div className="w-full overflow-hidden">
+        <div className="marquesina-logos-row1 w-full overflow-hidden">
           <Marquee direction="left" duration={45}>
             <LogoRibbonRow1 />
           </Marquee>
         </div>
-        <div className="w-full overflow-hidden">
+        <div className="marquesina-logos-row2 w-full overflow-hidden">
           <Marquee direction="right" duration={45}>
             <LogoRibbonRow2 />
           </Marquee>
@@ -398,34 +399,34 @@ function SectionProyects() {
   };
 
   return (
-    <div className="flex flex-col items-start w-full">
-      <div className="flex flex-col gap-20 items-start px-20 py-[120px] w-full">
-        <div className="flex flex-col gap-6 items-start max-w-[864px]">
+    <div className="seccion-proyectos flex flex-col items-start w-full">
+      <div className="contenedor-proyectos flex flex-col gap-20 items-start px-20 py-[120px] w-full">
+        <div className="encabezado-proyectos flex flex-col gap-6 items-start max-w-[864px]">
           <p
-            className="font-medium text-[#20201f]"
+            className="titulo-proyectos font-medium text-[#20201f]"
             style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "0.9" }}
           >
             Esto es lo<br />que hacemos
           </p>
           <p
-            className="font-normal text-[#20201f]"
+            className="subtitulo-proyectos font-normal text-[#20201f]"
             style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-2.4px", lineHeight: "1.1", maxWidth: 614 }}
           >
             Conoce nuestra experiencia a través de nuestros clientes
           </p>
         </div>
-        <div className="flex gap-5 items-start justify-end pb-10 w-full">
-          <div className="flex flex-col items-end flex-1 max-w-[1043px]">
+        <div className="contenido-proyectos flex gap-5 items-start justify-end pb-10 w-full">
+          <div className="lista-proyectos flex flex-col items-end flex-1 max-w-[1043px]">
             {clientList.map((client, i) => (
               <div
                 key={client.name}
-                className="flex items-end justify-end w-full"
+                className={`item-proyecto item-proyecto-${i + 1} flex items-end justify-end w-full`}
                 onMouseEnter={() => handleClientEnter(i)}
                 onMouseLeave={handleClientLeave}
                 style={{ cursor: "pointer" }}
               >
                 <p
-                  className="font-medium text-right transition-colors duration-300 whitespace-nowrap"
+                  className="nombre-proyecto font-medium text-right transition-colors duration-300 whitespace-nowrap"
                   style={{
                     fontSize: "clamp(32px, 4.5vw, 64px)",
                     letterSpacing: "-2.56px",
@@ -436,40 +437,40 @@ function SectionProyects() {
                 >
                   {client.name}
                 </p>
-                <div className="flex items-center justify-center ml-2">
+                <div className="indicador-proyecto flex items-center justify-center ml-2">
                   <div
-                    className="bg-[#f26b2d] h-[3px] transition-all duration-300"
+                    className="linea-indicador bg-[#f26b2d] h-[3px] transition-all duration-300"
                     style={{ width: activeClient === i ? 32 : 0 }}
                   />
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-[10px] h-[751px] items-start justify-end relative shrink-0 w-[600px] overflow-hidden">
+          <div className="preview-proyecto flex flex-col gap-[10px] h-[751px] items-start justify-end relative shrink-0 w-[600px] overflow-hidden">
             {displayedClient !== null ? (
               <>
-                <div className="flex-1 min-h-0 relative w-full overflow-hidden">
+                <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden">
                   <img
                     key={displayedClient}
                     alt={clientList[displayedClient].name}
-                    className="absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview"
+                    className="imagen-preview-proyecto absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview"
                     src={clientList[displayedClient].preview}
                     style={{ animation: revealing ? "revealFromRight 0.5s cubic-bezier(0.76,0,0.24,1) forwards" : "none" }}
                   />
                 </div>
                 <div
-                  className="absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px]"
+                  className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px]"
                   style={{ bottom: 40 }}
                 >
-                  <ul className="font-medium text-white text-[20px] tracking-[-0.6px] list-disc whitespace-nowrap">
+                  <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.6px] list-disc whitespace-nowrap">
                     {(clientBullets[displayedClient] ?? []).map((b, i) => (
-                      <li key={i} className="ms-[30px] leading-[1.3]">{b}</li>
+                      <li key={i} className="logro-proyecto ms-[30px] leading-[1.3]">{b}</li>
                     ))}
                   </ul>
                 </div>
               </>
             ) : (
-              <div className="flex-1 w-full relative">
+              <div className="imagen-placeholder-proyecto flex-1 w-full relative">
                 <img
                   alt=""
                   className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
@@ -481,13 +482,13 @@ function SectionProyects() {
           </div>
         </div>
         <div
-          className="flex items-start justify-between overflow-hidden px-10 py-16 relative w-full"
+          className="cta-ver-proyectos flex items-start justify-between overflow-hidden px-10 py-16 relative w-full"
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
           style={{ cursor: "pointer", borderRadius: 8 }}
         >
           <div
-            className="absolute inset-0"
+            className="fondo-hover-cta absolute inset-0"
             style={{
               backgroundColor: "#20201f",
               transform: ctaHovered ? "translateY(0)" : "translateY(101%)",
@@ -495,7 +496,7 @@ function SectionProyects() {
             }}
           />
           <p
-            className="font-normal relative z-10"
+            className="texto-cta-proyectos font-normal relative z-10"
             style={{
               fontSize: "clamp(40px, 6vw, 90px)",
               letterSpacing: "-4.5px",
@@ -507,7 +508,7 @@ function SectionProyects() {
           >
             Ver todos los proyectos
           </p>
-          <div className="overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center">
+          <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center">
             <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="white"/>
             </svg>
@@ -522,27 +523,27 @@ function SectionProyects() {
 
 function SectionAboutImage() {
   return (
-    <div className="relative w-full">
-      <div className="flex flex-col lg:flex-row items-start pb-[120px] pt-20 px-20 w-full" style={{ gap: "4.167em" }}>
-        <div className="w-full lg:w-1/2 shrink-0">
-          <div className="relative w-full" style={{ aspectRatio: "1/1" }}>
-            <img alt="" className="absolute max-w-none object-cover size-full has-hover-preview" src={imgImage} />
-            <img alt="" className="absolute max-w-none object-cover size-full opacity-60 has-hover-preview" src={imgImage1} />
+    <div className="seccion-about-imagen relative w-full">
+      <div className="contenedor-about-imagen flex flex-col lg:flex-row items-start pb-[120px] pt-20 px-20 w-full" style={{ gap: "4.167em" }}>
+        <div className="columna-imagen-about w-full lg:w-1/2 shrink-0">
+          <div className="contenedor-imagenes-superpuestas relative w-full" style={{ aspectRatio: "1/1" }}>
+            <img alt="" className="imagen-about-base absolute max-w-none object-cover size-full has-hover-preview" src={imgImage} />
+            <img alt="" className="imagen-about-overlay absolute max-w-none object-cover size-full opacity-60 has-hover-preview" src={imgImage1} />
           </div>
         </div>
-        <div className="flex flex-col gap-[160px] items-start justify-center w-full lg:w-1/2 py-16" style={{ maxWidth: 720 }}>
+        <div className="columna-texto-about flex flex-col gap-[160px] items-start justify-center w-full lg:w-1/2 py-16" style={{ maxWidth: 720 }}>
           <p
-            className="font-medium text-[#20201f]"
+            className="titulo-about-imagen font-medium text-[#20201f]"
             style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-2.6px", lineHeight: "1", maxWidth: 640 }}
           >
             Te ofrecemos soluciones reales para resultados comerciales reales
           </p>
-          <div className="flex flex-col gap-[63px] items-start w-full">
-            <p className="font-normal text-[#20201f] text-[22px] tracking-[-0.44px] leading-[1.35]">
+          <div className="descripcion-about flex flex-col gap-[63px] items-start w-full">
+            <p className="texto-descripcion-about font-normal text-[#20201f] text-[22px] tracking-[-0.44px] leading-[1.35]">
               Con años de trayectoria impulsando marcas competitivas, en Jacidi no solo pensamos, ¡ejecutamos! Entendemos que el objetivo de cada marca es alcanzar la máxima rentabilidad, por lo que integramos nuestra experiencia técnica con una visión comercial para apoyar cualquier objetivo que te plantees.
             </p>
             <p
-              className="font-medium text-[#20201f] whitespace-nowrap"
+              className="llamada-accion-about font-medium text-[#20201f] whitespace-nowrap"
               style={{ fontSize: "clamp(24px, 2.8vw, 40px)", letterSpacing: "-2.4px" }}
             >
               ¡Haz grande tu marca hoy!

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, ScrollRestoration } from "react-router";
+import { SectionContact } from "./global/SectionContact";
+import { Footer } from "./global/Footer";
 
 // ─── Static Header ─────────────────────────────────────────────────────────────
 
 function StaticHeader({ visible }: { visible: boolean }) {
   return (
     <div
-      className="bg-white relative shrink-0 w-full"
+      className="header-estatico bg-white relative shrink-0 w-full"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(-20px)",
@@ -14,10 +16,10 @@ function StaticHeader({ visible }: { visible: boolean }) {
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      <div className="flex flex-row items-center size-full">
-        <div className="flex items-center justify-between pb-8 pt-7 px-20 w-full">
-          <Link to="/" className="shrink-0">
-            <svg width="185" height="52" viewBox="0 0 185 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className="contenedor-header-estatico flex flex-row items-center size-full">
+        <div className="contenido-header-estatico flex items-center justify-between pb-8 pt-7 px-20 w-full">
+          <Link to="/" className="logo-header-estatico shrink-0">
+            <svg className="svg-logo-jacidi-grande" width="185" height="52" viewBox="0 0 185 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M103.178 12.0797V34.3707H97.2862V31.5292C96.5291 32.5974 95.4588 33.4474 94.0745 34.079C92.6901 34.7107 91.1768 35.0265 89.5353 35.0265C87.4909 35.0265 85.676 34.5443 84.0906 33.5816C82.5052 32.6189 81.2694 31.259 80.3842 29.5018C79.499 27.7456 79.0559 25.7012 79.0559 23.3706C79.0559 20.9907 79.515 18.8909 80.4322 17.0693C81.3495 15.2478 82.6493 13.8395 84.3317 12.8447C86.014 11.8489 87.925 11.3514 90.0665 11.3514C91.7088 11.3514 93.1732 11.6306 94.4615 12.1889C95.7488 12.7471 96.7951 13.5613 97.6002 14.6296L98.0833 12.0797H103.178ZM95.3662 27.6812C96.4525 26.5396 96.9961 25.0222 96.9961 23.1281C96.9961 21.2341 96.4605 19.7167 95.3903 18.5751C94.3191 17.4335 92.9072 16.8636 91.1528 16.8636C89.3663 16.8636 87.9491 17.4424 86.9028 18.6001C85.8566 19.7579 85.3334 21.2672 85.3334 23.129C85.3334 24.9909 85.8681 26.5002 86.9393 27.6579C88.0096 28.8156 89.3983 29.3945 91.1047 29.3945C92.8592 29.3927 94.28 28.8228 95.3662 27.6812Z" fill="#20201F"/>
               <path d="M109.153 16.9727C110.144 15.1843 111.536 13.8002 113.33 12.8205C115.125 11.8417 117.19 11.3514 119.524 11.3514C122.663 11.3514 125.255 12.1808 127.299 13.8404C129.344 15.5001 130.494 17.7216 130.752 20.5058H124.475C124.184 19.3078 123.593 18.3935 122.7 17.7618C121.806 17.1302 120.716 16.8153 119.427 16.8153C117.785 16.8153 116.461 17.3941 115.455 18.5518C114.449 19.7096 113.946 21.2681 113.946 23.2265C113.946 25.1528 114.441 26.6952 115.431 27.852C116.421 29.0098 117.753 29.5886 119.427 29.5886C120.747 29.5886 121.862 29.2486 122.772 28.5687C123.681 27.8887 124.249 27.0066 124.475 25.9222H130.752C130.462 28.642 129.287 30.8394 127.226 32.5151C125.166 34.1909 122.598 35.0283 119.523 35.0283C117.189 35.0283 115.125 34.5389 113.33 33.5592C111.534 32.5804 110.142 31.1964 109.153 29.407C108.162 27.6185 107.668 25.542 107.668 23.1782C107.669 20.8297 108.164 18.7612 109.153 16.9727Z" fill="#20201F"/>
               <path d="M135.34 12.0796H141.473V34.3706H135.34V12.0796Z" fill="#20201F"/>
@@ -30,13 +32,13 @@ function StaticHeader({ visible }: { visible: boolean }) {
               <path d="M34.9302 29.7989L34.1607 29.1592C32.8982 28.1178 31.5851 27.173 30.3769 26.0967C30.3324 26.0574 30.2871 26.018 30.2426 25.9786C28.7453 27.326 27.3191 28.7611 25.9695 30.266C24.6109 31.7869 23.3378 33.3785 22.1483 35.0444L22.127 35.0203C20.9313 36.628 18.0719 40.4725 17.8254 40.8035C16.0345 43.1834 12.7383 43.3838 10.5755 41.3162C8.48832 39.2763 8.80327 35.617 11.2072 33.9681L15.5132 30.9056C14.2578 29.815 10.8451 27.352 10.4794 27.0818C7.27303 29.3042 4.73836 30.9441 3.59513 34.8664C1.46526 42.0516 7.34154 49.3665 14.7525 48.7572C21.0727 48.2374 22.9864 43.7318 26.4392 39.3148C28.965 35.7432 31.7292 32.661 34.981 29.8419L34.9302 29.7989Z" fill="#20201F"/>
             </svg>
           </Link>
-          <div className="flex gap-6 items-center">
-            <Link to="/" className="font-medium text-[#20201f] text-[18px] tracking-[-0.54px]">Inicio</Link>
-            <span className="font-medium text-[#20201f] text-[18px] tracking-[-0.54px] cursor-pointer">Servicios</span>
-            <Link to="/nosotros" className="font-medium text-[#20201f] text-[18px] tracking-[-0.54px]">Nosotros</Link>
-            <span className="font-medium text-[#20201f] text-[18px] tracking-[-0.54px] cursor-pointer">Proyectos</span>
-            <button className="bg-[#20201f] flex items-center justify-center px-4 py-[10px] rounded-[29px]">
-              <span className="font-medium text-white text-[18px] tracking-[-0.54px]">Contacto</span>
+          <div className="nav-header-estatico flex gap-6 items-center">
+            <Link to="/" className="nav-link-inicio font-medium text-[#20201f] text-[18px] tracking-[-0.54px]">Inicio</Link>
+            <span className="nav-link-servicios font-medium text-[#20201f] text-[18px] tracking-[-0.54px] cursor-pointer">Servicios</span>
+            <Link to="/nosotros" className="nav-link-nosotros font-medium text-[#20201f] text-[18px] tracking-[-0.54px]">Nosotros</Link>
+            <Link to="/proyectos" className="nav-link-proyectos font-medium text-[#20201f] text-[18px] tracking-[-0.54px]">Proyectos</Link>
+            <button className="boton-contacto-header bg-[#20201f] flex items-center justify-center px-4 py-[10px] rounded-[29px]">
+              <span className="texto-boton-contacto font-medium text-white text-[18px] tracking-[-0.54px]">Contacto</span>
             </button>
           </div>
         </div>
@@ -50,7 +52,7 @@ function StaticHeader({ visible }: { visible: boolean }) {
 function StickyHeaderPill({ visible }: { visible: boolean }) {
   return (
     <div
-      className="fixed top-6 left-1/2 z-50 flex items-center justify-between pl-[18px] pr-3 py-[10px] rounded-[64px]"
+      className="header-sticky-pill fixed top-6 left-1/2 z-50 flex items-center justify-between pl-[18px] pr-3 py-[10px] rounded-[64px]"
       style={{
         width: 524,
         backdropFilter: "blur(22px)",
@@ -62,152 +64,24 @@ function StickyHeaderPill({ visible }: { visible: boolean }) {
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      <Link to="/">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Link to="/" className="logo-sticky-pill">
+        <svg className="svg-logo-jacidi-pequeno" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M33.5312 22.3923L29.5719 19.4141C27.8965 18.2103 26.3115 16.8732 24.8564 15.4272C24.1728 14.747 23.5076 14.0357 22.8715 13.2991C22.661 13.5818 22.5205 13.7709 22.4941 13.8061C21.7326 14.8293 20.9183 15.8201 20.0637 16.775C20.0393 16.8055 20.0235 16.8247 20.0195 16.8294C21.0371 17.9641 22.1358 19.0518 23.2681 20.0717C24.1642 20.87 25.1389 21.5701 26.0746 22.3432L26.6454 22.8177C28.1242 23.9425 29.6669 25.0672 30.8138 25.9485C32.5915 27.208 32.7776 29.8909 31.2447 31.384C30.2463 32.388 28.7939 32.7012 27.455 32.2009C26.8024 31.9573 26.2244 31.4968 25.7836 30.8697L23.6343 27.8139L20.7857 31.528C22.407 33.9023 23.6225 35.7531 26.4817 36.5972C31.7878 38.1673 37.1539 33.8493 36.7263 28.2744C36.56 25.9385 35.3953 23.7951 33.5312 22.3923Z" fill="#20201F"/>
           <path d="M19.9995 23.1633C18.9694 22.0147 17.8667 20.9184 16.7199 19.8885C15.7551 19.0391 13.5577 17.3177 13.3499 17.1552C11.8823 16.0397 10.3547 14.9255 9.21707 14.0515C7.43936 12.792 7.25327 10.1091 8.78617 8.61604C10.294 7.04133 13.0226 7.27558 14.248 9.13032L16.4916 12.0627C16.4916 12.0627 19.0394 8.89209 19.1548 8.59613L19.2459 8.47204C17.6246 6.0977 16.4091 4.24693 13.5498 3.40284C8.24375 1.83278 2.87762 6.15078 3.30522 11.7256C3.47151 14.0608 4.6362 16.2049 6.50035 17.6071L10.4596 20.5853C12.135 21.789 13.7201 23.1262 15.1751 24.5722C15.8554 25.249 16.5173 25.9571 17.1501 26.6897C17.3633 26.4037 17.5058 26.2119 17.5328 26.1761C18.3062 25.1362 19.1317 24.1309 19.9995 23.1633Z" fill="#20201F"/>
           <path d="M28.3457 3.1038C23.658 3.48935 22.2386 6.83121 19.6776 10.1074C17.8042 12.7564 15.7434 15.0505 13.3315 17.1415L13.3494 17.1554C13.5572 17.318 15.7546 19.0393 16.7194 19.8887C16.7649 19.9286 16.8084 19.9677 16.848 20.0035C17.9738 18.9902 19.0481 17.9086 20.0636 16.7752C20.9182 15.8209 21.7324 14.8295 22.4939 13.8062C22.5203 13.7711 22.6609 13.5819 22.8714 13.2993C23.7556 12.1108 25.8837 9.24934 26.0672 9.00315C27.3955 7.23799 29.8404 7.08935 31.4445 8.62291C32.9926 10.1359 32.759 12.85 30.976 14.073L27.7822 16.3445C27.7822 16.3445 31.2881 19.0155 31.3924 19.0911L31.5158 19.1807C33.894 17.5323 35.774 16.316 36.6219 13.4068C38.201 8.07744 33.8432 2.65189 28.3457 3.1038Z" fill="#20201F"/>
           <path d="M26.6462 22.8177L26.0754 22.3432C25.1391 21.5708 24.1651 20.87 23.269 20.0717C23.236 20.0425 23.2023 20.0133 23.1693 19.9841C22.0588 20.9835 21.001 22.0479 19.9999 23.1641C18.9923 24.2922 18.048 25.4727 17.1658 26.7083L17.1499 26.6904C16.263 27.8829 14.1422 30.7344 13.9594 30.9799C12.6311 32.745 10.1862 32.8937 8.58207 31.3601C7.03399 29.8471 7.26759 27.133 9.05058 25.91L12.2444 23.6385C11.3133 22.8296 8.78201 21.0027 8.5108 20.8023C6.1326 22.4507 4.25261 23.6671 3.40466 26.5763C1.82491 31.9056 6.18341 37.3311 11.6802 36.8792C16.368 36.4937 17.7874 33.1518 20.3483 29.8757C22.2217 27.2266 24.272 24.9405 26.6838 22.8495L26.6462 22.8177Z" fill="#20201F"/>
         </svg>
       </Link>
-      <div className="flex gap-5 items-center">
-        <div className="flex gap-[11px] items-center font-medium text-[#20201f] text-[14px] tracking-[-0.42px]">
-          <Link to="/" className="cursor-pointer">Inicio</Link>
-          <span className="cursor-pointer">Servicios</span>
-          <Link to="/nosotros" className="cursor-pointer">Nosotros</Link>
-          <span className="cursor-pointer">Proyectos</span>
+      <div className="nav-sticky-container flex gap-5 items-center">
+        <div className="nav-sticky-links flex gap-[11px] items-center font-medium text-[#20201f] text-[14px] tracking-[-0.42px]">
+          <Link to="/" className="nav-link-sticky-inicio cursor-pointer">Inicio</Link>
+          <span className="nav-link-sticky-servicios cursor-pointer">Servicios</span>
+          <Link to="/nosotros" className="nav-link-sticky-nosotros cursor-pointer">Nosotros</Link>
+          <Link to="/proyectos" className="nav-link-sticky-proyectos cursor-pointer">Proyectos</Link>
         </div>
-        <button className="bg-[#20201f] flex items-center justify-center px-4 py-2 rounded-[29px]">
-          <span className="font-medium text-white text-[14px] tracking-[-0.42px]">Contacto</span>
+        <button className="boton-sticky-contacto bg-[#20201f] flex items-center justify-center px-4 py-2 rounded-[29px]">
+          <span className="texto-boton-sticky font-medium text-white text-[14px] tracking-[-0.42px]">Contacto</span>
         </button>
-      </div>
-    </div>
-  );
-}
-
-// ─── Section Contact ───────────────────────────────────────────────────────────
-
-function SectionContact() {
-  return (
-    <div className="relative w-full" data-name="Section - Contact">
-      <div className="flex flex-col gap-8 items-start p-20 w-full">
-        <div className="flex items-center justify-start w-full">
-          <p
-            className="font-medium text-[#20201f]"
-            style={{ fontSize: "clamp(56px, 8vw, 120px)", letterSpacing: "-6px", lineHeight: "0.9", maxWidth: 691 }}
-          >
-            {"Let's Talk"}
-          </p>
-        </div>
-        <div className="flex items-start justify-between w-full gap-20 flex-wrap">
-          <div className="flex flex-col gap-20 items-start justify-center max-w-[614px]">
-            <p
-              className="font-normal text-[#20201f] leading-[1.1] mx-[0px] mt-[-16px] mb-[0px]"
-              style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-2.4px" }}
-            >
-              Tu idea merece algo mejor.<br />¡Contáctanos!
-            </p>
-            <p
-              className="font-semibold underline decoration-solid transition-colors duration-300 cursor-pointer"
-              style={{ fontSize: "clamp(40px, 5vw, 80px)", letterSpacing: "-4.8px", lineHeight: "1", color: "#909090" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#D55D26")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#909090")}
-            >
-              info@jacidi.com
-            </p>
-          </div>
-          <div className="flex flex-col gap-10 items-end max-w-[710px] flex-1 min-w-[280px]">
-            <div className="flex flex-col gap-4 items-start w-full">
-              <div className="flex gap-4 items-start w-full flex-wrap">
-                {["Nombre y apellido", "Correo electrónico"].map((label) => (
-                  <div key={label} className="flex-1 min-w-[200px] relative">
-                    <div className="absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
-                    <div className="flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                      <p className="font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-4 items-start w-full flex-wrap">
-                {["Número de teléfono", "Ciudad"].map((label) => (
-                  <div key={label} className="flex-1 min-w-[200px] relative">
-                    <div className="absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
-                    <div className="flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                      <p className="font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {["Servicio requerido", "CV (Vacantes)"].map((label) => (
-                <div key={label} className="relative w-full">
-                  <div className="absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
-                  <div className="flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                    <p className="font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button className="bg-[#20201f] flex items-center justify-center pl-[14px] pr-2 py-4 rounded-[6px] w-[195px]">
-              <p className="font-normal text-white text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">Enviar</p>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Footer ────────────────────────────────────────────────────────────────────
-
-function Footer() {
-  return (
-    <div className="relative w-full" data-name="Footer">
-      <div className="flex flex-col items-start p-20 w-full">
-        <div className="bg-[#20201f] relative rounded-[16px] w-full">
-          <div className="flex flex-col items-end px-16 py-11 gap-[112px] w-full">
-            <div className="flex gap-3 items-start justify-end w-full">
-              <div className="flex flex-col flex-1 items-start min-w-0">
-                <p
-                  className="font-medium text-white"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-2.6px", lineHeight: "0.9", maxWidth: 393 }}
-                >
-                  Hacemos grande tu marca
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center min-w-0 overflow-hidden">
-                <svg width="156" height="52" viewBox="0 0 156 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M52.4012 11.8725V42.6435H44.6428V38.721C43.6458 40.1956 42.2364 41.3689 40.4133 42.2409C38.5903 43.1128 36.5974 43.5488 34.4358 43.5488C31.7435 43.5488 29.3534 42.8831 27.2656 41.5542C25.1778 40.2253 23.5504 38.348 22.3847 35.9224C21.219 33.498 20.6355 30.676 20.6355 27.4587C20.6355 24.1735 21.24 21.2749 22.448 18.7603C23.6559 16.2458 25.3676 14.3018 27.5831 12.9285C29.7986 11.5539 32.3152 10.8672 35.1353 10.8672C37.298 10.8672 39.2265 11.2525 40.923 12.0232C42.6183 12.7938 43.9961 13.9177 45.0564 15.3924L45.6926 11.8725H52.4012ZM42.1145 33.4091C43.545 31.8332 44.2609 29.7386 44.2609 27.124C44.2609 24.5094 43.5556 22.4148 42.1461 20.8389C40.7355 19.263 38.8762 18.4763 36.5658 18.4763C34.2132 18.4763 32.3469 19.2753 30.9691 20.8735C29.5912 22.4716 28.9023 24.5551 28.9023 27.1252C28.9023 29.6953 29.6065 31.7789 31.0171 33.377C32.4265 34.9751 34.2554 35.7742 36.5025 35.7742C38.8129 35.7717 40.684 34.985 42.1145 33.4091Z" fill="white"/>
-                  <path d="M60.271 18.6269C61.575 16.1581 63.4086 14.2475 65.7717 12.8951C68.1348 11.544 70.8541 10.8672 73.9284 10.8672C78.0618 10.8672 81.4747 12.0121 84.1671 14.3031C86.8594 16.5941 88.3743 19.6607 88.7141 23.5041H80.4472C80.0653 21.8504 79.2862 20.5882 78.1099 19.7162C76.9336 18.8443 75.4972 18.4096 73.8007 18.4096C71.6379 18.4096 69.8946 19.2086 68.5695 20.8068C67.2444 22.4049 66.5825 24.5564 66.5825 27.2598C66.5825 29.9189 67.2339 32.0481 68.5379 33.645C69.8419 35.2431 71.5958 36.0422 73.8007 36.0422C75.5382 36.0422 77.0074 35.5729 78.2048 34.6343C79.4022 33.6956 80.1496 32.4779 80.4472 30.981H88.7141C88.3321 34.7355 86.7844 37.7688 84.071 40.082C81.3576 42.3952 77.9763 43.5512 73.9272 43.5512C70.853 43.5512 68.1348 42.8757 65.7705 41.5233C63.4062 40.1722 61.5727 38.2616 60.2699 35.7915C58.9659 33.3226 58.3145 30.4561 58.3145 27.1932C58.3156 23.9512 58.9682 21.0958 60.271 18.6269Z" fill="white"/>
-                  <path d="M94.7559 11.8721H102.833V42.6431H94.7559V11.8721Z" fill="white"/>
-                  <path d="M140.577 0V42.6446H133.867L133.359 38.5221C132.362 40.0424 130.952 41.2602 129.129 42.1753C127.306 43.0917 125.303 43.5499 123.119 43.5499C120.341 43.5499 117.867 42.8744 115.695 41.522C113.521 40.1709 111.831 38.2491 110.623 35.7568C109.415 33.2658 108.81 30.4104 108.81 27.1931C108.81 23.998 109.415 21.1537 110.623 18.6627C111.831 16.1716 113.521 14.2499 115.695 12.8975C117.867 11.5464 120.342 10.8696 123.119 10.8696C125.154 10.8696 126.988 11.1993 128.62 11.8588C130.252 12.5184 131.566 13.4632 132.563 14.6908V0H140.577ZM130.29 33.409C131.721 31.8331 132.437 29.7385 132.437 27.1239C132.437 24.5093 131.732 22.4147 130.322 20.8388C128.912 19.2629 127.052 18.4762 124.742 18.4762C122.389 18.4762 120.523 19.2752 119.145 20.8734C117.767 22.4715 117.078 24.555 117.078 27.1252C117.078 29.6953 117.782 31.7788 119.193 33.3769C120.602 34.9751 122.431 35.7741 124.679 35.7741C126.989 35.7717 128.86 34.9849 130.29 33.409Z" fill="white"/>
-                  <path d="M147.923 11.8721H156V42.6431H147.923V11.8721Z" fill="white"/>
-                  <path d="M0 51.9997V44.1696H3.25003C4.97463 44.1696 6.23411 42.7011 6.23411 40.394V11.8721H14.6568V41.4438C14.6568 47.3856 9.88131 51.9997 4.31151 51.9997C2.52013 51.9997 0 51.9997 0 51.9997Z" fill="white"/>
-                </svg>
-              </div>
-              <div className="flex flex-col flex-1 items-end min-w-0">
-                <div className="flex flex-col gap-[18px] items-start">
-                  <div className="flex gap-[6px] items-center">
-                    <div className="relative shrink-0 size-[28px] flex items-center justify-center">
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                        <rect x="1" y="4" width="20" height="14" rx="2" stroke="#909090" strokeWidth="1.5"/>
-                        <path d="M1 7l10 7 10-7" stroke="#909090" strokeWidth="1.5" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <p className="font-semibold text-[#909090] text-[24px] tracking-[-0.96px] whitespace-nowrap">info@jacidi.com</p>
-                  </div>
-                  <div className="flex gap-[18px] items-start font-normal text-white text-[16px] tracking-[-0.64px] whitespace-nowrap">
-                    <span>Instagram</span>
-                    <span>LinkedIn</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center justify-between w-full font-normal text-white text-[16px] tracking-[-0.64px] whitespace-nowrap">
-              <span>Jacidi C.A, 2026</span>
-              <span>Política de cookies</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -225,11 +99,13 @@ export function Root() {
   }, []);
 
   return (
-    <div className="bg-white flex flex-col gap-[60px] items-start relative w-full min-h-screen overflow-x-hidden">
+    <div className="root-layout bg-white flex flex-col gap-[60px] items-start relative w-full min-h-screen overflow-x-hidden">
       <ScrollRestoration />
       <StickyHeaderPill visible={scrolled} />
       <StaticHeader visible={!scrolled} />
-      <Outlet />
+      <div className="page-content w-full">
+        <Outlet />
+      </div>
       <SectionContact />
       <Footer />
     </div>
