@@ -1,14 +1,31 @@
 const fs = require('fs');
 const path = require('path');
 
-const filePath = path.resolve(__dirname, '../src/app/App.tsx');
+const srcDir = path.resolve(__dirname, '../src/app');
 
-if (!fs.existsSync(filePath)) {
-  console.error(`Error: File not found at ${filePath}`);
+// Recursive function to get all .tsx and .ts files
+function getFiles(dir) {
+  let results = [];
+  if (!fs.existsSync(dir)) return results;
+  const list = fs.readdirSync(dir);
+  list.forEach((file) => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    if (stat && stat.isDirectory()) {
+      results = results.concat(getFiles(filePath));
+    } else if (filePath.endsWith('.tsx') || filePath.endsWith('.ts')) {
+      results.push(filePath);
+    }
+  });
+  return results;
+}
+
+if (!fs.existsSync(srcDir)) {
+  console.error(`Error: Directory not found at ${srcDir}`);
   process.exit(1);
 }
 
-let content = fs.readFileSync(filePath, 'utf8');
+const files = getFiles(srcDir);
 
 const imageReplacements = [
   {
@@ -75,30 +92,48 @@ const imageReplacements = [
     variable: 'imgImage1',
     file: 'a56b2ff5ab4dfbbad342e0ca02ad65a24d06e42d.png',
     url: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgImage1',
+    file: 'b015235e5475370934f59180c5fbb8ccd83e8811.png',
+    url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgIntroductionImage',
+    file: '9249e5057a24c153b07287f7f65477c6e06a63c5.png',
+    url: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop'
   }
 ];
 
-let modifiedCount = 0;
+let totalModifiedCount = 0;
 
-for (const replacement of imageReplacements) {
-  // Matches: import <variable> from "@/imports/Home-1/<file>";
-  // with flexible whitespace, single or double quotes, and optional trailing semicolon.
-  const importPattern = new RegExp(
-    `import\\s+${replacement.variable}\\s+from\\s+['"]@/imports/Home-1/${replacement.file}['"];?\\s*`,
-    'g'
-  );
+for (const file of files) {
+  let content = fs.readFileSync(file, 'utf8');
+  let fileModifiedCount = 0;
 
-  const replacementText = `const ${replacement.variable} = "${replacement.url}";\n`;
+  for (const replacement of imageReplacements) {
+    // Matches: import <variable> from "@/imports/<any-folder>/<file>";
+    // with flexible whitespace, single/double quotes and optional semicolon.
+    const importPattern = new RegExp(
+      `import\\s+${replacement.variable}\\s+from\\s+['"]@/imports/[^'"]+/${replacement.file}['"];?\\s*`,
+      'g'
+    );
 
-  if (importPattern.test(content)) {
-    content = content.replace(importPattern, replacementText);
-    modifiedCount++;
+    const replacementText = `const ${replacement.variable} = "${replacement.url}";\n`;
+
+    if (importPattern.test(content)) {
+      content = content.replace(importPattern, replacementText);
+      fileModifiedCount++;
+      totalModifiedCount++;
+    }
+  }
+
+  if (fileModifiedCount > 0) {
+    fs.writeFileSync(file, content, 'utf8');
+    console.log(`Successfully replaced ${fileModifiedCount} broken imports with premium Unsplash URLs in ${path.relative(path.resolve(__dirname, '..'), file)}.`);
   }
 }
 
-if (modifiedCount > 0) {
-  fs.writeFileSync(filePath, content, 'utf8');
-  console.log(`Successfully replaced ${modifiedCount} broken imports with premium Unsplash URLs.`);
-} else {
-  console.log('No broken imports found. The file is already clean or contains no matching patterns.');
+if (totalModifiedCount === 0) {
+  console.log('No broken imports found. All files are already clean or contain no matching patterns.');
 }

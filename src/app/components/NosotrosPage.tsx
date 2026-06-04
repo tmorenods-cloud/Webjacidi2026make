@@ -1,7 +1,6 @@
-import imgImage from "@/imports/Nosotros/70ba5425a7dc220227b68ba509e823370c72311e.png";
-import imgImage1 from "@/imports/Nosotros/b015235e5475370934f59180c5fbb8ccd83e8811.png";
-import imgIntroductionImage from "@/imports/Nosotros/9249e5057a24c153b07287f7f65477c6e06a63c5.png";
-
+const imgImage = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop";
+const imgImage1 = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop";
+const imgIntroductionImage = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop";
 // ── Icon data from svg-tit1qnmguo.ts ──────────────────────────────────────────
 
 const icons = {
