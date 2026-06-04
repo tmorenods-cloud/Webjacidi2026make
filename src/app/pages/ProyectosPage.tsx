@@ -125,7 +125,7 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-2">
           {/* Tags Container con overflow hidden */}
-          <div className="contenedor-tags-hidden relative h-8 overflow-hidden">
+          <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
               className="tags-texto-visible font-semibold text-[#909090] text-[18px] tracking-[-0.36px] whitespace-nowrap transition-transform duration-500"
               style={{
@@ -196,7 +196,7 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
-          <div className="contenedor-tags-hidden relative h-8 overflow-hidden">
+          <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
               className="tags-texto-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
               style={{
@@ -267,7 +267,7 @@ function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Tags y Icono Container */}
         <div className="contenedor-tags-icono-small flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
-          <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden">
+          <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden flex items-end">
             <p
               className="tags-texto-small-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
               style={{
