@@ -21,41 +21,46 @@ interface ArrowIconProps {
 }
 
 function ArrowIcon({ isHovered, size = 32 }: ArrowIconProps) {
+  const arrowPath = "M21.3379 12.5444L9.88235 24L8 22.1177L19.4556 10.6621H9.35874V8H24V22.6413H21.3379V12.5444Z";
+
   return (
     <div className="contenedor-flecha-proyecto relative shrink-0" style={{ width: size, height: size }}>
       <svg
         className="svg-flecha-proyecto absolute block inset-0 size-full"
-        fill="none"
-        preserveAspectRatio="none"
+        width={size}
+        height={size}
         viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
+        <defs>
+          <clipPath id="clip-arrow">
+            <rect width="32" height="32" fill="white" />
+          </clipPath>
+        </defs>
         <g clipPath="url(#clip-arrow)">
-          {/* Path visible por defecto - se mueve diagonal arriba-derecha al hover */}
+          {/* Arrow Path 1 - Estado inicial: x=8, y=8 | Hover: x=36, y=-21 */}
           <path
-            className="path-flecha-visible transition-transform duration-500"
+            className="arrow-path-1 transition-transform duration-500"
             style={{
-              transform: isHovered ? "translate(8px, -8px)" : "translate(0, 0)",
+              transform: isHovered ? "translate(36px, -21px)" : "translate(8px, 8px)",
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
             }}
-            d="M21.3384 12.5523L9.86298 24.0277L7.97737 22.1421L19.4528 10.6667H9.33846V8H24.0051V22.6667H21.3384V12.5523Z"
+            d={arrowPath}
             fill="#20201F"
           />
-          {/* Path oculto por defecto - se mueve al centro al hover */}
+
+          {/* Arrow Path 2 - Estado inicial: x=-20, y=36 | Hover: x=8, y=8 */}
           <path
-            className="path-flecha-oculta transition-transform duration-500"
+            className="arrow-path-2 transition-transform duration-500"
             style={{
-              transform: isHovered ? "translate(0, 0)" : "translate(-8px, 8px)",
+              transform: isHovered ? "translate(8px, 8px)" : "translate(-20px, 36px)",
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
             }}
-            d="M21.3384 12.5523L9.86298 24.0277L7.97737 22.1421L19.4528 10.6667H9.33846V8H24.0051V22.6667H21.3384V12.5523Z"
+            d={arrowPath}
             fill="#20201F"
           />
         </g>
-        <defs>
-          <clipPath id="clip-arrow">
-            <rect fill="white" height="32" width="32" />
-          </clipPath>
-        </defs>
       </svg>
     </div>
   );
@@ -97,10 +102,10 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Imagen con zoom - Sin border-radius */}
         <img
           alt={title}
-          className="imagen-proyecto absolute inset-0 w-full h-full object-cover transition-transform duration-500"
+          className="imagen-proyecto absolute inset-0 w-full h-full object-cover transition-transform duration-300"
           src={image}
           style={{
-            transform: isHovered ? "scale(1.12)" : "scale(1)",
+            transform: isHovered ? "scale(1.08)" : "scale(1)",
             transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
           }}
         />
@@ -113,24 +118,18 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
       </div>
 
       {/* Info Container */}
-      <div className="info-proyecto flex items-end justify-between w-full">
+      <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
         <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
-        <div className="contenedor-tags-flecha flex items-center gap-2">
-          {/* Tags Container con sistema de dos posiciones */}
-          <div className="contenedor-tags relative h-8">
+        <div className="contenedor-tags-icono flex items-center gap-2">
+          {/* Tags Container con overflow hidden */}
+          <div className="contenedor-tags-hidden relative h-8 overflow-hidden">
             <p
-              className="tags-texto-hidden absolute left-0 top-[3px] font-semibold text-[#909090] text-[18px] tracking-[-0.36px] whitespace-nowrap"
-              style={{ opacity: 0 }}
-            >
-              {tags}
-            </p>
-            <p
-              className="tags-texto-visible absolute left-0 font-semibold text-[#909090] text-[18px] tracking-[-0.36px] whitespace-nowrap transition-all duration-500"
+              className="tags-texto-visible font-semibold text-[#909090] text-[18px] tracking-[-0.36px] whitespace-nowrap transition-transform duration-500"
               style={{
-                top: isHovered ? "3px" : "39px",
+                transform: isHovered ? "translateY(0%)" : "translateY(100%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -138,7 +137,7 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
             </p>
           </div>
 
-          {/* Flecha */}
+          {/* Icono Flecha */}
           <ArrowIcon isHovered={isHovered} size={32} />
         </div>
       </div>
@@ -174,10 +173,10 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
         {/* Imagen con zoom - Sin border-radius */}
         <img
           alt={title}
-          className="imagen-proyecto absolute inset-0 w-full h-full object-cover transition-transform duration-500"
+          className="imagen-proyecto absolute inset-0 w-full h-full object-cover transition-transform duration-300"
           src={image}
           style={{
-            transform: isHovered ? "scale(1.12)" : "scale(1)",
+            transform: isHovered ? "scale(1.08)" : "scale(1)",
             transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
           }}
         />
@@ -190,24 +189,18 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
       </div>
 
       {/* Info Container */}
-      <div className="info-proyecto flex items-end justify-between w-full">
+      <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
         <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
-        <div className="contenedor-tags-flecha flex items-center gap-1">
-          {/* Tags Container con sistema de dos posiciones */}
-          <div className="contenedor-tags relative h-8">
+        <div className="contenedor-tags-icono flex items-center gap-1">
+          {/* Tags Container con overflow hidden */}
+          <div className="contenedor-tags-hidden relative h-8 overflow-hidden">
             <p
-              className="tags-texto-hidden absolute left-0 top-[8px] font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap"
-              style={{ opacity: 0 }}
-            >
-              {tags}
-            </p>
-            <p
-              className="tags-texto-visible absolute left-0 font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-all duration-500"
+              className="tags-texto-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
               style={{
-                top: isHovered ? "8px" : "44px",
+                transform: isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -215,7 +208,7 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
             </p>
           </div>
 
-          {/* Flecha */}
+          {/* Icono Flecha */}
           <ArrowIcon isHovered={isHovered} size={32} />
         </div>
       </div>
@@ -251,10 +244,10 @@ function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Imagen con zoom - Sin border-radius */}
         <img
           alt={title}
-          className="imagen-proyecto-small absolute inset-0 w-full h-full object-cover transition-transform duration-500"
+          className="imagen-proyecto-small absolute inset-0 w-full h-full object-cover transition-transform duration-300"
           src={image}
           style={{
-            transform: isHovered ? "scale(1.12)" : "scale(1)",
+            transform: isHovered ? "scale(1.08)" : "scale(1)",
             transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
           }}
         />
@@ -267,24 +260,18 @@ function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardPro
       </div>
 
       {/* Info Container */}
-      <div className="info-proyecto-small flex items-end justify-between w-full">
+      <div className="info-proyecto-small flex items-center justify-between w-full">
         {/* Título */}
         <p className="titulo-proyecto-small font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
 
-        {/* Tags y Flecha Container */}
-        <div className="contenedor-tags-flecha-small flex items-center gap-1">
-          {/* Tags Container con sistema de dos posiciones */}
-          <div className="contenedor-tags-small relative h-8">
+        {/* Tags y Icono Container */}
+        <div className="contenedor-tags-icono-small flex items-center gap-1">
+          {/* Tags Container con overflow hidden */}
+          <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden">
             <p
-              className="tags-texto-small-hidden absolute left-0 top-[8px] font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap"
-              style={{ opacity: 0 }}
-            >
-              {tags}
-            </p>
-            <p
-              className="tags-texto-small-visible absolute left-0 font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-all duration-500"
+              className="tags-texto-small-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
               style={{
-                top: isHovered ? "8px" : "44px",
+                transform: isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -292,7 +279,7 @@ function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardPro
             </p>
           </div>
 
-          {/* Flecha */}
+          {/* Icono Flecha */}
           <ArrowIcon isHovered={isHovered} size={32} />
         </div>
       </div>

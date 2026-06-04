@@ -258,25 +258,26 @@ Este documento contiene todas las clases nemotécnicas asignadas a los component
 - `tarjeta-proyecto-normal` - Modificador para tarjeta normal
 - `contenedor-imagen-proyecto` - Contenedor de imagen con overflow
 - `fondo-gradiente-proyecto` - Fondo con gradiente
-- `contenedor-zoom-imagen` - Contenedor para efecto zoom
 - `imagen-proyecto` - Imagen con efecto zoom al hover
 - `badge-año` - Badge del año del proyecto
-- `info-proyecto` - Contenedor de información del proyecto
+- `info-proyecto` - Contenedor de información del proyecto (título a izq, tags+icono a der)
 - `titulo-proyecto` - Título del proyecto
-- `contenedor-tags-flecha` - Contenedor de tags y flecha
-- `contenedor-tags` - Contenedor con overflow para tags
-- `tags-texto` - Texto de tags con animación slide-up
+- `contenedor-tags-icono` - Contenedor de tags e icono juntos (lado derecho)
+- `contenedor-tags-hidden` - Contenedor con overflow hidden para tags
+- `tags-texto-hidden` - Tags ocultos (opacity 0, posición reference)
+- `tags-texto-visible` - Tags visibles con animación slide-up
 
 ### Tarjeta de Proyecto Pequeña
 - `tarjeta-proyecto-small` - Tarjeta pequeña de proyecto
 - `contenedor-imagen-proyecto-small` - Contenedor de imagen pequeño
 - `imagen-proyecto-small` - Imagen pequeña
 - `badge-año-small` - Badge año para tarjeta pequeña
-- `info-proyecto-small` - Info para tarjeta pequeña
+- `info-proyecto-small` - Info para tarjeta pequeña (título a izq, tags+icono a der)
 - `titulo-proyecto-small` - Título de proyecto pequeño
-- `contenedor-tags-flecha-small` - Contenedor tags/flecha pequeño
-- `contenedor-tags-small` - Contenedor tags pequeño
-- `tags-texto-small` - Texto tags pequeño
+- `contenedor-tags-icono-small` - Contenedor tags+icono pequeño (lado derecho)
+- `contenedor-tags-hidden-small` - Contenedor overflow para tags pequeños
+- `tags-texto-small-hidden` - Tags ocultos pequeños
+- `tags-texto-small-visible` - Tags visibles pequeños
 
 ### Componente Flecha
 - `contenedor-flecha-proyecto` - Contenedor de la flecha SVG
