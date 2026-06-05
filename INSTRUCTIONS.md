@@ -34,8 +34,8 @@ graph TD
 
 ### Flujo de Sincronización ante actualizaciones de Figma:
 1. Asegurarse de estar en la rama de integración: `git checkout staging`.
-2. Traer las novedades de Figma Make: `git pull origin main`.
-3. Resolver los conflictos reteniendo siempre nuestros assets personalizados (como `video-hero-prueba.mp4` y el Isotipo en el Footer) y preservando la carpeta `scripts/` y `.github/`.
+2. Traer las novedades de Figma Make: `git pull origin main` (o `git pull --no-rebase origin main`).
+3. Resolver los conflictos reteniendo siempre nuestros assets personalizados (como `video-hero-prueba.mp4` y el Isotipo en el Footer) y preservando los archivos de configuración y scripts (`.gitignore`, `scripts/`, `.github/`, `INSTRUCTIONS.md` y `pre-lunch-todo.md`).
 4. Ejecutar el script localmente para validar: `node scripts/clean-imports.cjs`.
 5. Subir los cambios a GitHub: `git push origin staging`.
 6. Esto activará la GitHub Action que actualizará la rama `production` y disparará el despliegue automático en Vercel.
@@ -46,8 +46,8 @@ graph TD
 El script en `scripts/clean-imports.cjs` está escrito en CommonJS. Debe ejecutarse automáticamente en cada build/push de integración continua para mantener la compilación funcional.
 
 ### Funcionalidad del Script:
-1. Lee `src/app/App.tsx`.
-2. Busca mediante expresiones regulares flexibles las importaciones rotas de `@/imports/Home-1/*.png` que superan los 50MB y no existen localmente.
+1. Escanea de forma recursiva todos los archivos `.tsx` y `.ts` dentro de `src/app/`.
+2. Busca mediante expresiones regulares flexibles las importaciones rotas de `@/imports/.../*.png` que superan los 50MB y no existen localmente.
 3. Las reemplaza en caliente por **URLs de imágenes premium y estables de Unsplash** que se adaptan a la paleta de colores minimalista de Jacidi (`#20201f`, `#909090`, `#f26b2d`).
 
 ---
