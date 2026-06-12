@@ -19,7 +19,7 @@ const HERO_IMG =
 
 function LogoCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="tarjeta-logo-cliente bg-[rgba(32,32,31,0.04)] h-[160px] relative rounded-[16px] shrink-0 w-[288px] flex-none">
+    <div className="tarjeta-logo-cliente bg-[rgba(32,32,31,0.04)] relative rounded-[16px] shrink-0 flex-none" style={{ width: "clamp(202px, 25vw, 288px)", height: "clamp(112px, 14vw, 160px)" }}>
       <div className="contenido-tarjeta-logo flex flex-col items-center justify-center overflow-clip relative rounded-[inherit] size-full">
         {children}
       </div>
@@ -32,7 +32,7 @@ function LogoText({ name }: { name: string }) {
   return (
     <span
       className="texto-nombre-cliente font-semibold text-[#20201f] tracking-tight select-none"
-      style={{ fontSize: 18, opacity: 0.7, fontFamily: "Inter, sans-serif", letterSpacing: "-0.5px" }}
+      style={{ fontSize: 18, opacity: 0.7, fontFamily: "Inter, sans-serif", letterSpacing: "-0.0125em" }}
     >
       {name}
     </span>
@@ -92,7 +92,7 @@ function Marquee({ direction, duration = 40, children }: MarqueeProps) {
 
 function MockupCard({ src }: { src: string }) {
   return (
-    <div className="tarjeta-mockup h-[267px] relative rounded-[25px] shrink-0 w-[400px] flex-none has-hover-preview">
+    <div className="tarjeta-mockup relative rounded-[25px] shrink-0 flex-none has-hover-preview" style={{ width: "clamp(240px, 33vw, 400px)", height: "clamp(160px, 22vw, 267px)" }}>
       <div className="contenedor-imagen-mockup absolute inset-0 pointer-events-none rounded-[25px]">
         <div className="fondo-mockup absolute bg-[#909090] inset-0 rounded-[25px]" />
         <img alt="" className="imagen-mockup absolute max-w-none object-cover rounded-[25px] size-full" src={src} />
@@ -103,7 +103,7 @@ function MockupCard({ src }: { src: string }) {
 
 function MockupRibbonContent() {
   return (
-    <div className="contenido-marquesina-mockups-1 flex gap-[40px] items-center flex-none px-5">
+    <div className="contenido-marquesina-mockups-1 flex items-center flex-none px-5" style={{ gap: "clamp(12px, 3vw, 40px)" }}>
       <MockupCard src={imgClientLogo} />
       <MockupCard src={imgClientLogo1} />
       <MockupCard src={imgClientLogo2} />
@@ -116,7 +116,7 @@ function MockupRibbonContent() {
 
 function MockupRibbonContent2() {
   return (
-    <div className="contenido-marquesina-mockups-2 flex gap-[40px] items-center flex-none px-5">
+    <div className="contenido-marquesina-mockups-2 flex items-center flex-none px-5" style={{ gap: "clamp(12px, 3vw, 40px)" }}>
       <MockupCard src={imgClientLogo5} />
       <MockupCard src={imgClientLogo6} />
       <MockupCard src={imgClientLogo7} />
@@ -133,12 +133,12 @@ function HeroSection() {
   return (
     <div className="seccion-hero w-full">
       <p
-        className="titulo-hero font-medium text-[#20201f] px-[80px] pt-[0px] pb-[24px]"
-        style={{ fontSize: "clamp(64px, 8vw, 120px)", letterSpacing: "-6px", lineHeight: "0.83" }}
+        className="titulo-hero font-medium text-[#20201f] pt-[0px] pb-[24px]"
+        style={{ fontSize: "clamp(48px, 7vw, 120px)", letterSpacing: "-0.04em", lineHeight: "0.83", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}
       >
         Hacemos<br />grande tu marca
       </p>
-      <div className="contenedor-imagen-hero relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+      <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9]">
         <img
           alt="Hero"
           src={HERO_IMG}
@@ -153,11 +153,11 @@ function HeroSection() {
 
 function IntroAndDetailsSection() {
   return (
-    <div className="seccion-intro-detalles flex flex-col gap-[160px] items-center py-20 w-full">
-      <div className="contenedor-texto-intro w-full px-20">
+    <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)" }} style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+      <div className="contenedor-texto-intro w-full py-[0px]" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <p
           className="texto-intro font-normal text-[#20201f]"
-          style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-2.08px", lineHeight: "1.05", maxWidth: 882 }}
+          style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-0.0125em", lineHeight: "1.05", maxWidth: 882 }}
         >
           Innovación y creatividad es nuestro ADN. Diseñamos soluciones que impulsan tu proyecto
         </p>
@@ -167,7 +167,7 @@ function IntroAndDetailsSection() {
           <MockupRibbonContent />
         </Marquee>
       </div>
-      <div className="contenedor-estadisticas flex flex-col gap-[52px] items-center w-full">
+      <div className="contenedor-estadisticas flex flex-col gap-[52px] items-center w-full" style={{ paddingTop: "clamp(32px, 4vw, 52px)", paddingBottom: "clamp(32px, 4vw, 52px)", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <div className="lista-estadisticas flex flex-col gap-[16px] items-center w-full overflow-hidden">
           {[
             "+10 Años de Know-How (España & Latam)",
@@ -178,8 +178,8 @@ function IntroAndDetailsSection() {
           ].map((text) => (
             <div key={text} className="item-estadistica flex flex-col items-center w-full">
               <p
-                className="texto-estadistica font-semibold text-[#909090] text-center whitespace-nowrap transition-colors duration-300 hover:text-[#20201f] cursor-default"
-                style={{ fontSize: "clamp(24px, 3vw, 44px)", letterSpacing: "-2.2px", lineHeight: "1.05" }}
+                className="texto-estadistica font-semibold text-[#909090] text-center transition-colors duration-300 hover:text-[#20201f] cursor-default"
+                style={{ fontSize: "clamp(24px, 3vw, 44px)", letterSpacing: "-0.0125em", lineHeight: "1.05", maxWidth: "calc(100% - 0px)", overflowWrap: "break-word", wordBreak: "break-word" }}
               >
                 {text}
               </p>
@@ -188,7 +188,7 @@ function IntroAndDetailsSection() {
         </div>
         <button
           className="boton-lets-talk font-semibold text-[#20201f] text-center underline decoration-solid underline-offset-4"
-          style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-2.2px", lineHeight: "0.9" }}
+          style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.0125em", lineHeight: "0.9" }}
         >
           {"Let's talk"}
         </button>
@@ -207,10 +207,10 @@ function IntroAndDetailsSection() {
 function SectionAbout() {
   return (
     <div className="seccion-enfoque relative w-full">
-      <div className="contenedor-enfoque flex flex-col gap-20 items-start px-20 py-10 w-full">
+      <div className="contenedor-enfoque flex flex-col gap-20 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(24px, 3vw, 40px)", paddingBottom: "clamp(24px, 3vw, 40px)" }}>
         <p
           className="titulo-enfoque font-medium text-[#20201f]"
-          style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "0.9", maxWidth: 578 }}
+          style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 578 }}
         >
           Nuestro enfoque creativo
         </p>
@@ -226,7 +226,7 @@ function SectionAbout() {
                 {i > 0 && <div className="espaciador-superior" style={{ flex: i }} />}
                 <p
                   className="texto-enfoque font-normal text-[#20201f]"
-                  style={{ fontSize: "clamp(20px, 2.2vw, 32px)", letterSpacing: "-1.28px", lineHeight: "1.05" }}
+                  style={{ fontSize: "clamp(20px, 2.2vw, 32px)", letterSpacing: "-0.0125em", lineHeight: "1.05" }}
                 >
                   {text}
                 </p>
@@ -272,34 +272,44 @@ const services = [
 function SectionServices() {
   return (
     <div className="seccion-servicios bg-white relative w-full">
-      <div className="contenedor-servicios flex flex-col items-start pb-[120px] pt-20 px-20 w-full">
-        <div className="tarjeta-servicios bg-[#20201f] relative rounded-[16px] w-full">
-          <div className="contenido-servicios flex flex-col gap-[88px] items-start p-20 w-full">
+      <div className="contenedor-servicios flex flex-col items-start w-full px-0 md:px-[clamp(16px,4.5vw,80px)]" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
+        <div className="tarjeta-servicios bg-[#20201f] relative rounded-none md:rounded-[16px] w-full">
+          <div className="contenido-servicios flex flex-col gap-[88px] items-start w-full pt-[64px] pb-[64px] md:pt-[clamp(24px,4.5vw,80px)] md:pb-[clamp(24px,4.5vw,80px)]" style={{ paddingLeft: "clamp(24px, 4.5vw, 80px)", paddingRight: "clamp(24px, 4.5vw, 80px)" }}>
             <p
               className="titulo-servicios font-medium text-white"
-              style={{ fontSize: "clamp(40px, 5vw, 68px)", letterSpacing: "-4.08px", lineHeight: "0.9", maxWidth: 480 }}
+              style={{ fontSize: "clamp(40px, 5vw, 68px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 480 }}
             >
               Lo que hacemos por ti
             </p>
             <div className="lista-servicios flex flex-col gap-16 items-start w-full">
               {services.map((s) => (
                 <div key={s.index} className={`item-servicio item-servicio-${s.index} flex flex-col gap-6 items-start w-full`}>
+                  {/* Separador + encabezado: en mobile índice y título van en fila */}
                   <div className="separador-servicio flex items-start pt-4 w-full relative">
                     <div className="linea-separador absolute border-t border-[rgba(255,255,255,0.2)] inset-0 pointer-events-none" />
-                    <span className="numero-servicio font-normal text-[#f26b2d] text-[24px] tracking-[-0.48px]">{s.index}</span>
+                    <div className="encabezado-servicio flex flex-row items-baseline gap-3 w-full md:contents">
+                      <span className="numero-servicio font-normal text-[#f26b2d] tracking-[-0.0125em] text-[19px] md:text-[24px]">{s.index}</span>
+                      <p
+                        className="nombre-servicio-mobile font-medium text-white md:hidden"
+                        style={{ fontSize: "clamp(28px, 5vw, 68px)", letterSpacing: "-0.03em" }}
+                      >
+                        {s.name}
+                      </p>
+                    </div>
                   </div>
-                  <div className="detalles-servicio flex items-start justify-between w-full gap-8">
+                  {/* Contenido: en mobile columna, en desktop fila */}
+                  <div className="detalles-servicio flex flex-col md:flex-row items-start justify-between w-full gap-8">
                     <p
-                      className="nombre-servicio font-medium text-white w-1/2"
-                      style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-4.08px" }}
+                      className="nombre-servicio font-medium text-white hidden md:block md:w-1/2"
+                      style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em" }}
                     >
                       {s.name}
                     </p>
-                    <div className="descripcion-servicio flex flex-col gap-8 items-start pt-[10px] w-1/2">
-                      <p className="subtitulo-servicio font-medium text-white text-[28px] tracking-[-1.68px] leading-normal max-w-[410px]">{s.subtitle}</p>
-                      <ul className="lista-items-servicio list-disc font-normal text-[#909090] text-[22px] tracking-[-0.88px]">
+                    <div className="descripcion-servicio flex flex-col gap-8 items-start pt-[10px] w-full md:w-1/2">
+                      <p className="subtitulo-servicio font-medium text-white tracking-[-0.03em] max-w-[410px]" style={{ fontSize: "clamp(20px, 3.1vw, 28px)", lineHeight: "1.1" }}>{s.subtitle}</p>
+                      <ul className="lista-items-servicio list-disc font-normal text-[#909090] text-[22px] tracking-[-0.0125em]">
                         {s.items.map((item) => (
-                          <li key={item} className="item-lista-servicio ms-[33px] mb-1 leading-[1.65]">{item}</li>
+                          <li key={item} className="item-lista-servicio ms-[33px] mb-1 leading-[1.65]" style={{ fontSize: "clamp(18px, 2.4vw, 22px)" }}>{item}</li>
                         ))}
                       </ul>
                     </div>
@@ -318,11 +328,11 @@ function SectionServices() {
 
 function SectionClientsLogos() {
   return (
-    <div className="seccion-clientes-logos flex flex-col gap-[52px] items-start overflow-hidden py-20 w-full">
-      <div className="contenedor-titulo-clientes px-20 w-full">
+    <div className="seccion-clientes-logos flex flex-col gap-[52px] items-start overflow-hidden w-full" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+      <div className="contenedor-titulo-clientes w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <p
           className="titulo-clientes font-medium text-[#20201f]"
-          style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "1.1" }}
+          style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-0.03em", lineHeight: "1.1" }}
         >
           Nuestros Clientes
         </p>
@@ -399,17 +409,17 @@ function SectionProyects() {
 
   return (
     <div className="seccion-proyectos flex flex-col items-start w-full">
-      <div className="contenedor-proyectos flex flex-col gap-20 items-start px-20 py-[120px] w-full">
+      <div className="contenedor-proyectos flex flex-col gap-20 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="encabezado-proyectos flex flex-col gap-6 items-start max-w-[864px]">
           <p
             className="titulo-proyectos font-medium text-[#20201f]"
-            style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "0.9" }}
+            style={{ fontSize: "clamp(40px, 5vw, 72px)", letterSpacing: "-0.03em", lineHeight: "0.9" }}
           >
             Esto es lo<br />que hacemos
           </p>
           <p
             className="subtitulo-proyectos font-normal text-[#20201f]"
-            style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-2.4px", lineHeight: "1.1", maxWidth: 614 }}
+            style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-0.0125em", lineHeight: "1.1", maxWidth: 614 }}
           >
             Conoce nuestra experiencia a través de nuestros clientes
           </p>
@@ -428,7 +438,7 @@ function SectionProyects() {
                   className="nombre-proyecto font-medium text-right transition-colors duration-300 whitespace-nowrap"
                   style={{
                     fontSize: "clamp(32px, 4.5vw, 64px)",
-                    letterSpacing: "-2.56px",
+                    letterSpacing: "-0.03em",
                     lineHeight: "1.1",
                     color: activeClient === i ? "rgb(32,32,31)" : "rgba(32,32,31,0.2)",
                     transition: "color 0.3s ease",
@@ -461,7 +471,7 @@ function SectionProyects() {
                   className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px]"
                   style={{ bottom: 40 }}
                 >
-                  <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.6px] list-disc whitespace-nowrap">
+                  <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.0125em] list-disc whitespace-nowrap">
                     {(clientBullets[displayedClient] ?? []).map((b, i) => (
                       <li key={i} className="logro-proyecto ms-[30px] leading-[1.3]">{b}</li>
                     ))}
@@ -481,10 +491,10 @@ function SectionProyects() {
           </div>
         </div>
         <div
-          className="cta-ver-proyectos flex items-start justify-between overflow-hidden px-10 py-16 relative w-full"
+          className="cta-ver-proyectos flex items-start justify-between overflow-hidden relative w-full"
+          style={{ cursor: "pointer", borderRadius: 8, paddingLeft: "clamp(16px, 4.5vw, 40px)", paddingRight: "clamp(16px, 4.5vw, 40px)", paddingTop: "clamp(32px, 5vw, 64px)", paddingBottom: "clamp(32px, 5vw, 64px)" }}
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
-          style={{ cursor: "pointer", borderRadius: 8 }}
         >
           <div
             className="fondo-hover-cta absolute inset-0"
@@ -498,7 +508,7 @@ function SectionProyects() {
             className="texto-cta-proyectos font-normal relative z-10"
             style={{
               fontSize: "clamp(40px, 6vw, 90px)",
-              letterSpacing: "-4.5px",
+              letterSpacing: "-0.03em",
               lineHeight: "0.9",
               maxWidth: 698,
               color: ctaHovered ? "white" : "#20201f",
@@ -523,7 +533,7 @@ function SectionProyects() {
 function SectionAboutImage() {
   return (
     <div className="seccion-about-imagen relative w-full">
-      <div className="contenedor-about-imagen flex flex-col lg:flex-row items-start pb-[120px] pt-20 px-20 w-full" style={{ gap: "4.167em" }}>
+      <div className="contenedor-about-imagen flex flex-col lg:flex-row items-start w-full" style={{ gap: "4.167em", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="columna-imagen-about w-full lg:w-1/2 shrink-0">
           <div className="contenedor-imagenes-superpuestas relative w-full" style={{ aspectRatio: "1/1" }}>
             <img alt="" className="imagen-about-base absolute max-w-none object-cover size-full has-hover-preview" src={imgImage} />
@@ -533,17 +543,17 @@ function SectionAboutImage() {
         <div className="columna-texto-about flex flex-col gap-[160px] items-start justify-center w-full lg:w-1/2 py-16" style={{ maxWidth: 720 }}>
           <p
             className="titulo-about-imagen font-medium text-[#20201f]"
-            style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-2.6px", lineHeight: "1", maxWidth: 640 }}
+            style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-0.03em", lineHeight: "1", maxWidth: 640 }}
           >
             Te ofrecemos soluciones reales para resultados comerciales reales
           </p>
           <div className="descripcion-about flex flex-col gap-[63px] items-start w-full">
-            <p className="texto-descripcion-about font-normal text-[#20201f] text-[22px] tracking-[-0.44px] leading-[1.35]">
+            <p className="texto-descripcion-about font-normal text-[#20201f] text-[22px] tracking-[-0.0125em] leading-[1.35]">
               Con años de trayectoria impulsando marcas competitivas, en Jacidi no solo pensamos, ¡ejecutamos! Entendemos que el objetivo de cada marca es alcanzar la máxima rentabilidad, por lo que integramos nuestra experiencia técnica con una visión comercial para apoyar cualquier objetivo que te plantees.
             </p>
             <p
               className="llamada-accion-about font-medium text-[#20201f] whitespace-nowrap"
-              style={{ fontSize: "clamp(24px, 2.8vw, 40px)", letterSpacing: "-2.4px" }}
+              style={{ fontSize: "clamp(24px, 2.8vw, 40px)", letterSpacing: "-0.03em" }}
             >
               ¡Haz grande tu marca hoy!
             </p>

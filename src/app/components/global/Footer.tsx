@@ -3,14 +3,14 @@
 export function Footer() {
   return (
     <div className="seccion-footer relative w-full" data-name="Footer">
-      <div className="contenedor-footer flex flex-col items-start p-20 w-full">
-        <div className="footer-inner bg-[#20201f] relative rounded-[16px] w-full">
-          <div className="contenido-footer flex flex-col items-end px-16 py-11 gap-[112px] w-full">
-            <div className="footer-top flex gap-3 items-start justify-end w-full">
+      <div className="contenedor-footer flex flex-col items-start w-full p-0 md:p-20">
+        <div className="footer-inner bg-[#20201f] relative rounded-none md:rounded-[16px] w-full">
+          <div className="contenido-footer flex flex-col items-end gap-[112px] w-full" style={{ padding: "clamp(24px, 4.5vw, 44px) clamp(16px, 4.5vw, 64px)" }}>
+            <div className="footer-top flex flex-col md:flex-row gap-8 md:gap-3 items-start justify-end w-full">
               <div className="columna-slogan flex flex-col flex-1 items-start min-w-0">
                 <p
                   className="texto-slogan font-medium text-white"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-2.6px", lineHeight: "0.9", maxWidth: 393 }}
+                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 393 }}
                 >
                   Hacemos grande tu marca
                 </p>
@@ -34,16 +34,16 @@ export function Footer() {
                         <path d="M1 7l10 7 10-7" stroke="#909090" strokeWidth="1.5" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="texto-email-footer font-semibold text-[#909090] text-[24px] tracking-[-0.96px] whitespace-nowrap">info@jacidi.com</p>
+                    <p className="texto-email-footer font-semibold text-[#909090] text-[24px] tracking-[-0.03em] whitespace-nowrap">info@jacidi.com</p>
                   </div>
-                  <div className="redes-sociales flex gap-[18px] items-start font-normal text-white text-[16px] tracking-[-0.64px] whitespace-nowrap">
+                  <div className="redes-sociales flex gap-[18px] items-start font-normal text-white text-[16px] tracking-[-0.0125em] whitespace-nowrap">
                     <span className="link-instagram">Instagram</span>
                     <span className="link-linkedin">LinkedIn</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="footer-bottom flex items-center justify-between w-full font-normal text-white text-[16px] tracking-[-0.64px] whitespace-nowrap">
+            <div className="footer-bottom flex items-center justify-between w-full font-normal text-white text-[16px] tracking-[-0.0125em] whitespace-nowrap">
               <span className="copyright-footer">Jacidi C.A, 2026</span>
               <span className="politica-cookies">Política de cookies</span>
             </div>
