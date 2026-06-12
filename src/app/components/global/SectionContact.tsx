@@ -3,11 +3,11 @@
 export function SectionContact() {
   return (
     <div className="seccion-contacto relative w-full" data-name="Section - Contact">
-      <div className="contenedor-contacto flex flex-col gap-8 items-start p-20 w-full">
+      <div className="contenedor-contacto flex flex-col gap-8 items-start w-full" style={{ padding: "clamp(40px, 6vw, 80px) clamp(16px, 4.5vw, 80px)" }}>
         <div className="encabezado-contacto flex items-center justify-start w-full">
           <p
             className="titulo-lets-talk font-medium text-[#20201f]"
-            style={{ fontSize: "clamp(56px, 8vw, 120px)", letterSpacing: "-6px", lineHeight: "0.9", maxWidth: 691 }}
+            style={{ fontSize: "clamp(40px, 8vw, 120px)", letterSpacing: "-0.04em", lineHeight: "0.9", maxWidth: 691 }}
           >
             {"Let's Talk"}
           </p>
@@ -16,13 +16,13 @@ export function SectionContact() {
           <div className="info-contacto flex flex-col gap-20 items-start justify-center max-w-[614px]">
             <p
               className="descripcion-contacto font-normal text-[#20201f] leading-[1.1] mx-[0px] mt-[-16px] mb-[0px]"
-              style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-2.4px" }}
+              style={{ fontSize: "clamp(18px, 3vw, 40px)", letterSpacing: "-0.0125em" }}
             >
               Tu idea merece algo mejor.<br />¡Contáctanos!
             </p>
             <p
               className="email-contacto font-semibold underline decoration-solid transition-colors duration-300 cursor-pointer"
-              style={{ fontSize: "clamp(40px, 5vw, 80px)", letterSpacing: "-4.8px", lineHeight: "1", color: "#909090" }}
+              style={{ fontSize: "clamp(28px, 5vw, 80px)", letterSpacing: "-0.04em", lineHeight: "1", color: "#909090" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#D55D26")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "#909090")}
             >
@@ -36,7 +36,7 @@ export function SectionContact() {
                   <div key={label} className="campo-input flex-1 min-w-[200px] relative">
                     <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
                     <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                      <p className="label-campo font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
+                      <p className="label-campo font-normal text-[#404040] tracking-[-0.0125em] leading-[0.9] whitespace-nowrap" style={{ fontSize: "clamp(15px, 2vw, 20px)" }}>{label}</p>
                     </div>
                   </div>
                 ))}
@@ -46,7 +46,7 @@ export function SectionContact() {
                   <div key={label} className="campo-input flex-1 min-w-[200px] relative">
                     <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
                     <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                      <p className="label-campo font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
+                      <p className="label-campo font-normal text-[#404040] tracking-[-0.0125em] leading-[0.9] whitespace-nowrap" style={{ fontSize: "clamp(15px, 2vw, 20px)" }}>{label}</p>
                     </div>
                   </div>
                 ))}
@@ -55,13 +55,13 @@ export function SectionContact() {
                 <div key={label} className="campo-input relative w-full">
                   <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
                   <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
-                    <p className="label-campo font-normal text-[#404040] text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">{label}</p>
+                    <p className="label-campo font-normal text-[#404040] tracking-[-0.0125em] leading-[0.9] whitespace-nowrap" style={{ fontSize: "clamp(15px, 2vw, 20px)" }}>{label}</p>
                   </div>
                 </div>
               ))}
             </div>
             <button className="boton-enviar bg-[#20201f] flex items-center justify-center pl-[14px] pr-2 py-4 rounded-[6px] w-[195px]">
-              <p className="texto-boton-enviar font-normal text-white text-[20px] tracking-[-1px] leading-[0.9] whitespace-nowrap">Enviar</p>
+              <p className="texto-boton-enviar font-normal text-white tracking-[-0.0125em] leading-[0.9] whitespace-nowrap" style={{ fontSize: "clamp(15px, 2vw, 20px)" }}>Enviar</p>
             </button>
           </div>
         </div>

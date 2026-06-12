@@ -1,4 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return isMobile;
+}
 
 // Imágenes de Unsplash para proyectos
 const UNSPLASH_IMAGES = {
@@ -78,6 +89,7 @@ interface ProjectCardProps {
 
 function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div
@@ -113,23 +125,24 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Badge año */}
         <div className="badge-año absolute top-5 left-5 backdrop-blur-[12px] bg-[rgba(32,32,31,0.7)] px-3 py-2 rounded-[6px] z-10">
           <div className="absolute border border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none rounded-[6px]" />
-          <p className="font-medium text-white text-[18px] tracking-[-0.36px] relative whitespace-nowrap">{year}</p>
+          <p className="font-medium text-white text-[18px] tracking-[-0.0125em] relative whitespace-nowrap">{year}</p>
         </div>
       </div>
 
       {/* Info Container */}
       <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-2">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-[#909090] text-[18px] tracking-[-0.36px] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-[#909090] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
-                transform: isHovered ? "translateY(0%)" : "translateY(100%)",
+                fontSize: isMobile ? "14px" : "18px",
+                transform: isMobile || isHovered ? "translateY(0%)" : "translateY(100%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -149,6 +162,7 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
 
 function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div
@@ -184,23 +198,23 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
         {/* Badge año */}
         <div className="badge-año absolute top-5 left-5 backdrop-blur-[12px] bg-[rgba(32,32,31,0.7)] px-3 py-2 rounded-[6px] z-10">
           <div className="absolute border border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none rounded-[6px]" />
-          <p className="font-medium text-white text-[18px] tracking-[-0.36px] relative whitespace-nowrap">{year}</p>
+          <p className="font-medium text-white text-[18px] tracking-[-0.0125em] relative whitespace-nowrap">{year}</p>
         </div>
       </div>
 
       {/* Info Container */}
       <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-[#777] text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
-                transform: isHovered ? "translateY(0%)" : "translateY(120%)",
+                transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -220,6 +234,7 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
 
 function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div
@@ -255,23 +270,23 @@ function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardPro
         {/* Badge año */}
         <div className="badge-año-small absolute top-5 left-5 backdrop-blur-[12px] bg-[rgba(32,32,31,0.7)] px-3 py-2 rounded-[6px] z-10">
           <div className="absolute border border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none rounded-[6px]" />
-          <p className="font-medium text-white text-[18px] tracking-[-0.36px] relative whitespace-nowrap">{year}</p>
+          <p className="font-medium text-white text-[18px] tracking-[-0.0125em] relative whitespace-nowrap">{year}</p>
         </div>
       </div>
 
       {/* Info Container */}
       <div className="info-proyecto-small flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto-small font-medium text-[#20201f] text-[24px] tracking-[-0.48px] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto-small font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Icono Container */}
         <div className="contenedor-tags-icono-small flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-small-visible font-semibold text-[#777] text-[14px] tracking-[-0.28px] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-small-visible font-semibold text-[#777] text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
-                transform: isHovered ? "translateY(0%)" : "translateY(120%)",
+                transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
               }}
             >
@@ -293,26 +308,20 @@ export function ProyectosPage() {
   return (
     <div className="pagina-proyectos w-full">
       {/* Título */}
-      <div className="encabezado-proyectos px-20 pt-[60px] pb-[80px]">
+      <div className="encabezado-proyectos w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(32px, 5vw, 60px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
         <h1
           className="titulo-pagina-proyectos font-medium text-[#20201f]"
-          style={{ fontSize: "clamp(48px, 5vw, 72px)", letterSpacing: "-3.6px", lineHeight: "0.83", maxWidth: 459 }}
+          style={{ fontSize: "clamp(48px, 5vw, 72px)", letterSpacing: "-0.04em", lineHeight: "0.83", maxWidth: 459 }}
         >
           Nuestros casos de éxito
         </h1>
       </div>
 
       {/* Grid de Proyectos */}
-      <div className="contenedor-grid-proyectos px-20 pb-20">
-        {/* Fila 1: 7 columnas (3 + 2 + 2) */}
-        <div
-          className="fila-proyectos-1 grid gap-3 mb-[110px]"
-          style={{
-            gridTemplateColumns: "repeat(7, 1fr)",
-          }}
-        >
-          {/* Proyecto Grande */}
-          <div className="col-span-3">
+      <div className="contenedor-grid-proyectos w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+        {/* Fila 1: mobile 1col · md 5col · lg 7col */}
+        <div className="fila-proyectos-1 grid grid-cols-1 md:grid-cols-5 lg:grid-cols-7 gap-3 mb-[clamp(48px,8vw,110px)]">
+          <div className="col-span-1 md:col-span-3">
             <ProjectCardLarge
               title="navicu.com"
               tags="Marketing 360, UX/UI, Brand"
@@ -320,9 +329,7 @@ export function ProyectosPage() {
               image={UNSPLASH_IMAGES.project1}
             />
           </div>
-
-          {/* Proyecto Normal 1 */}
-          <div className="col-span-2">
+          <div className="col-span-1 md:col-span-2">
             <ProjectCardNormal
               title="Grand Hyatt"
               tags="Marketing 360, UX/UI, Brand"
@@ -330,9 +337,7 @@ export function ProyectosPage() {
               image={UNSPLASH_IMAGES.project2}
             />
           </div>
-
-          {/* Proyecto Normal 2 */}
-          <div className="col-span-2">
+          <div className="col-span-1 md:col-span-2">
             <ProjectCardNormal
               title="Morrocoy"
               tags="Marketing 360, UX/UI, Brand"
@@ -343,8 +348,8 @@ export function ProyectosPage() {
           </div>
         </div>
 
-        {/* Fila 2: 3 columnas iguales */}
-        <div className="fila-proyectos-2 grid grid-cols-3 gap-3 mb-[110px]">
+        {/* Fila 2: mobile 1col · md 2col · lg 3col */}
+        <div className="fila-proyectos-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-[clamp(48px,8vw,110px)]">
           <ProjectCardSmall
             title="Heyba"
             tags="Branding, Web design"
@@ -365,8 +370,8 @@ export function ProyectosPage() {
           />
         </div>
 
-        {/* Fila 3: 3 columnas iguales */}
-        <div className="fila-proyectos-3 grid grid-cols-3 gap-3">
+        {/* Fila 3: mobile 1col · md 2col · lg 3col */}
+        <div className="fila-proyectos-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           <ProjectCardSmall
             title="Mas Oliu"
             tags="Web Design, Development"
@@ -388,36 +393,6 @@ export function ProyectosPage() {
         </div>
       </div>
 
-      {/* Responsive: Mobile/Tablet - 1 columna */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .fila-proyectos-1,
-          .fila-proyectos-2,
-          .fila-proyectos-3 {
-            grid-template-columns: 1fr !important;
-          }
-          .col-span-3,
-          .col-span-2 {
-            grid-column: span 1 !important;
-          }
-        }
-
-        @media (min-width: 1025px) and (max-width: 1440px) {
-          .fila-proyectos-1 {
-            grid-template-columns: repeat(5, 1fr) !important;
-          }
-          .col-span-3 {
-            grid-column: span 3 !important;
-          }
-          .col-span-2 {
-            grid-column: span 2 !important;
-          }
-          .fila-proyectos-2,
-          .fila-proyectos-3 {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
