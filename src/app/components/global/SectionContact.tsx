@@ -234,7 +234,7 @@ export function SectionContact() {
   });
 
   return (
-    <div className="seccion-contacto relative w-full" data-name="Section - Contact">
+    <div id="contacto" className="seccion-contacto relative w-full" data-name="Section - Contact">
       <div
         className="contenedor-contacto flex flex-col gap-8 items-start w-full"
         style={{ padding: "clamp(40px, 6vw, 80px) clamp(16px, 4.5vw, 80px)" }}

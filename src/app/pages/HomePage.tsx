@@ -272,7 +272,7 @@ const services = [
 
 function SectionServices() {
   return (
-    <div className="seccion-servicios bg-white relative w-full">
+    <div id="servicios" className="seccion-servicios bg-white relative w-full">
       <div className="contenedor-servicios flex flex-col items-start w-full px-0 md:px-[clamp(16px,4.5vw,80px)]" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="tarjeta-servicios bg-[#20201f] relative rounded-none md:rounded-[16px] w-full">
           <div className="contenido-servicios flex flex-col gap-[88px] items-start w-full pt-[64px] pb-[64px] md:pt-[clamp(24px,4.5vw,80px)] md:pb-[clamp(24px,4.5vw,80px)]" style={{ paddingLeft: "clamp(24px, 4.5vw, 80px)", paddingRight: "clamp(24px, 4.5vw, 80px)" }}>
