@@ -192,6 +192,10 @@ function IntroAndDetailsSection() {
         </div>
         <a
           href="#contacto"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+          }}
           className="boton-lets-talk font-semibold text-[#20201f] text-center underline decoration-solid underline-offset-4"
           style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.0125em", lineHeight: "0.9" }}
         >
