@@ -190,12 +190,13 @@ function IntroAndDetailsSection() {
             </div>
           ))}
         </div>
-        <button
+        <a
+          href="#contacto"
           className="boton-lets-talk font-semibold text-[#20201f] text-center underline decoration-solid underline-offset-4"
           style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.0125em", lineHeight: "0.9" }}
         >
           {"Let's talk"}
-        </button>
+        </a>
       </div>
       <div className="marquesina-mockups-inferior h-[267px] overflow-hidden w-full">
         <Marquee direction="right" duration={35}>
