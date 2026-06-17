@@ -277,7 +277,7 @@ function SectionServices() {
   return (
     <div id="servicios" className="seccion-servicios bg-white relative w-full">
       <div className="contenedor-servicios flex flex-col items-start w-full px-0 md:px-[clamp(16px,4.5vw,80px)]" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
-        <div className="tarjeta-servicios bg-[#20201f] relative rounded-none md:rounded-[16px] w-full">
+        <div className="tarjeta-servicios bg-[#20201f] relative rounded-none md:rounded-[12px] w-full">
           <div className="contenido-servicios flex flex-col gap-[88px] items-start w-full pt-[64px] pb-[64px] md:pt-[clamp(24px,4.5vw,80px)] md:pb-[clamp(24px,4.5vw,80px)]" style={{ paddingLeft: "clamp(24px, 4.5vw, 80px)", paddingRight: "clamp(24px, 4.5vw, 80px)" }}>
             <p
               className="titulo-servicios font-medium text-white"
@@ -513,7 +513,7 @@ function SectionProyects() {
           </p>
           <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center">
             <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="white"/>
+              <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="white" />
             </svg>
           </div>
         </div>
