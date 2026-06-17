@@ -40,6 +40,15 @@ graph TD
 5. Subir los cambios a GitHub: `git push origin staging`.
 6. Esto activará la GitHub Action que actualizará la rama `production` y disparará el despliegue automático en Vercel.
 
+> [!TIP]
+> **Sincronización Manual de Emergencia**: Si el GitHub Action tarda en ejecutarse o falla por problemas de permisos en el repositorio, puedes sincronizar y desplegar `production` ejecutando localmente:
+> ```bash
+> git checkout production
+> git merge staging --ff-only
+> git push origin production
+> git checkout staging
+> ```
+
 ---
 
 ## 🛠️ Script de Limpieza (`scripts/clean-imports.cjs`)
@@ -49,6 +58,7 @@ El script en `scripts/clean-imports.cjs` está escrito en CommonJS. Debe ejecuta
 1. Escanea de forma recursiva todos los archivos `.tsx` y `.ts` dentro de `src/app/`.
 2. Busca mediante expresiones regulares flexibles las importaciones rotas de `@/imports/.../*.png` que superan los 50MB y no existen localmente.
 3. Las reemplaza en caliente por **URLs de imágenes premium y estables de Unsplash** que se adaptan a la paleta de colores minimalista de Jacidi (`#20201f`, `#909090`, `#f26b2d`).
+4. **Mantenimiento ante nuevos assets**: Si Figma Make añade nuevas imágenes que causan errores por superar los 50MB (como al agregar nuevas páginas o secciones), se deben registrar sus correspondientes variables, nombres de archivo PNG exportados y URLs de reemplazo de Unsplash dentro del array `imageReplacements` en `scripts/clean-imports.cjs`.
 
 ---
 
