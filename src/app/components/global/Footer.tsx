@@ -26,12 +26,7 @@ export function Footer() {
               <div className="columna-info flex flex-col flex-1 items-end min-w-0">
                 <div className="info-contacto-footer flex flex-col gap-[18px] items-start">
                   <div className="email-footer flex gap-[6px] items-center">
-                    <div className="icono-email relative shrink-0 size-[28px] flex items-center justify-center">
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                        <rect x="1" y="4" width="20" height="14" rx="2" stroke="#909090" strokeWidth="1.5" />
-                        <path d="M1 7l10 7 10-7" stroke="#909090" strokeWidth="1.5" strokeLinejoin="round" />
-                      </svg>
-                    </div>
+
                     <p className="texto-email-footer font-semibold text-[#909090] text-[24px] tracking-[-0.03em] whitespace-nowrap">info@jacidi.com</p>
                   </div>
                   <div className="redes-sociales flex gap-[18px] items-start font-normal text-white text-[16px] tracking-[-0.0125em] whitespace-nowrap">

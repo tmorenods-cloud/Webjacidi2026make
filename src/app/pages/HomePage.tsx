@@ -478,8 +478,8 @@ function SectionProyects() {
               ))}
             </div>
             <div
-              className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px] transition-opacity duration-500 ease-in-out"
-              style={{ bottom: 40, opacity: activeClient !== null ? 1 : 0 }}
+              className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.55)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px] transition-opacity duration-500 ease-in-out"
+              style={{ bottom: 17, opacity: activeClient !== null ? 1 : 0 }}
             >
               <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.0125em] list-disc whitespace-nowrap">
                 {(clientBullets[activeClient] ?? []).map((b, i) => (
@@ -514,7 +514,9 @@ function SectionProyects() {
               transition: "color 0.5s ease 200ms",
             }}
           >
-            Ver todos los proyectos
+            Ver todos
+            <br />
+            los proyectos
           </p>
           <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center">
             <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
