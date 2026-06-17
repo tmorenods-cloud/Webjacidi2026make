@@ -149,7 +149,7 @@ function HeroSection() {
           className="imagen-hero absolute inset-0 w-full h-full object-cover object-top mx-[0px] mb-[0px]"
         />
       </div>
-    </div>
+    </div >
   );
 }
 
