@@ -10,7 +10,7 @@ export function Footer() {
               <div className="columna-slogan flex flex-col flex-1 items-start min-w-0">
                 <p
                   className="texto-slogan font-medium text-white"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 393 }}
+                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 450 }}
                 >
                   Hacemos grande tu marca
                 </p>
