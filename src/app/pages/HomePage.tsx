@@ -135,18 +135,18 @@ function HeroSection() {
     <div className="seccion-hero w-full">
       <p
         className="titulo-hero font-medium text-[#20201f] pt-[0px] pb-[24px]"
-        style={{ fontSize: "clamp(48px, 7vw, 120px)", letterSpacing: "-0.04em", lineHeight: "0.83", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}
+        style={{ fontSize: "clamp(48px, 7vw, 120px)", letterSpacing: "-0.04em", lineHeight: "0.83", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", zIndex: 2, position: "relative" }}
       >
         Hacemos<br />grande tu marca
       </p>
-      <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9]">
+      <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9] mt-[-14px]">
         <video
           src={videoHero}
           autoPlay
           loop
           muted
           playsInline
-          className="imagen-hero absolute inset-0 w-full h-full object-cover object-top mx-[0px] mt-[-10px] mb-[0px]"
+          className="imagen-hero absolute inset-0 w-full h-full object-cover object-top mx-[0px] mb-[0px]"
         />
       </div>
     </div>
