@@ -1,16 +1,15 @@
 // ─── Case Study Data ───────────────────────────────────────────────────────────
 
-import imgNavicuHero from "@/imports/CaseStudy/9249e5057a24c153b07287f7f65477c6e06a63c5.png";
-import imgNavicuImg1 from "@/imports/CaseStudy/66b381c88d7442b6d6fca575946066896a67f6db.png";
-import imgNavicuImg2 from "@/imports/CaseStudy/9e7b46c63fdba6029bb6b0c5dcbad267af6872c3.png";
-import imgNavicuImg3 from "@/imports/CaseStudy/5f13ab3a3ff74801724cf7df07cb6e319f7d172b.png";
-import imgNavicuImg4 from "@/imports/CaseStudy/d20450c1482411a33f137fb6cfa8f3d5f8b9d22b.png";
-import imgNavicuImg5 from "@/imports/CaseStudy/46b4059ae7c44eb9d6289c0001726e236e172cae.png";
-import imgNavicuImg6 from "@/imports/CaseStudy/6cf4fcea852e1ca1101ec3481dbf18e1adc99b16.png";
-import imgNavicuThumb1 from "@/imports/CaseStudy/695b352afdca68e345698611f5c1cf7c0ca8ca6a.png";
-import imgNavicuThumb2 from "@/imports/CaseStudy/a5c29d5aa98abcf3f657c27901d2abbe55dec97c.png";
-import imgNavicuThumb3 from "@/imports/CaseStudy/5865a5dbc3a18e7ea9e2a2fe6916a3068f547ead.png";
-
+const imgNavicuHero = "https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1200&auto=format&fit=crop";
+const imgNavicuImg1 = "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800&auto=format&fit=crop";
+const imgNavicuImg2 = "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop";
+const imgNavicuImg3 = "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop";
+const imgNavicuImg4 = "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop";
+const imgNavicuImg5 = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop";
+const imgNavicuImg6 = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1200&auto=format&fit=crop";
+const imgNavicuThumb1 = "https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600&auto=format&fit=crop";
+const imgNavicuThumb2 = "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=600&auto=format&fit=crop";
+const imgNavicuThumb3 = "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=600&auto=format&fit=crop";
 export interface RelatedProject {
   slug: string;
   title: string;

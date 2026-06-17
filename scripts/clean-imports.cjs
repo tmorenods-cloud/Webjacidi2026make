@@ -102,6 +102,56 @@ const imageReplacements = [
     variable: 'imgIntroductionImage',
     file: '9249e5057a24c153b07287f7f65477c6e06a63c5.png',
     url: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuHero',
+    file: '9249e5057a24c153b07287f7f65477c6e06a63c5.png',
+    url: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg1',
+    file: '66b381c88d7442b6d6fca575946066896a67f6db.png',
+    url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg2',
+    file: '9e7b46c63fdba6029bb6b0c5dcbad267af6872c3.png',
+    url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg3',
+    file: '5f13ab3a3ff74801724cf7df07cb6e319f7d172b.png',
+    url: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg4',
+    file: 'd20450c1482411a33f137fb6cfa8f3d5f8b9d22b.png',
+    url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg5',
+    file: '46b4059ae7c44eb9d6289c0001726e236e172cae.png',
+    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuImg6',
+    file: '6cf4fcea852e1ca1101ec3481dbf18e1adc99b16.png',
+    url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuThumb1',
+    file: '695b352afdca68e345698611f5c1cf7c0ca8ca6a.png',
+    url: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuThumb2',
+    file: 'a5c29d5aa98abcf3f657c27901d2abbe55dec97c.png',
+    url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=600&auto=format&fit=crop'
+  },
+  {
+    variable: 'imgNavicuThumb3',
+    file: '5865a5dbc3a18e7ea9e2a2fe6916a3068f547ead.png',
+    url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=600&auto=format&fit=crop'
   }
 ];
 
