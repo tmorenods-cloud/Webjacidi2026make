@@ -14,7 +14,7 @@ const imgColumn1 = "https://images.unsplash.com/photo-1460925895917-afdab827c52f
 const imgImage = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop";
 const imgImage1 = "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop";
 const HERO_IMG =
-  "https://images.unsplash.com/photo-1742540531234-146d41a8833b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMGZhc2hpb24lMjBtb2RlbCUyMGRyYW1hdGljJTIwcG9ydHJhaXQlMjBlZGl0b3JpYWx8ZW58MXx8fHwxNzc5ODEyMjA3fDA&ixlib=rb-4.1.0&q=80&w=1080";
+  "https://images.unsplash.com/photo-1561070791-36c11767b26a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxkaWdpdGFsJTIwYWdlbmN5JTIwd29ya3NwYWNlJTIwYnJhbmRpbmclMjBkZXNpZ24lMjBib2xkfGVufDF8fHx8MTc4MTI5NTE5Mnww&ixlib=rb-4.1.0&q=80&w=1080";
 
 // ─── Client Logo Cards ─────────────────────────────────────────────────────────
 
@@ -275,7 +275,7 @@ const services = [
 
 function SectionServices() {
   return (
-    <div className="seccion-servicios bg-white relative w-full">
+    <div id="servicios" className="seccion-servicios bg-white relative w-full">
       <div className="contenedor-servicios flex flex-col items-start w-full px-0 md:px-[clamp(16px,4.5vw,80px)]" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="tarjeta-servicios bg-[#20201f] relative rounded-none md:rounded-[16px] w-full">
           <div className="contenido-servicios flex flex-col gap-[88px] items-start w-full pt-[64px] pb-[64px] md:pt-[clamp(24px,4.5vw,80px)] md:pb-[clamp(24px,4.5vw,80px)]" style={{ paddingLeft: "clamp(24px, 4.5vw, 80px)", paddingRight: "clamp(24px, 4.5vw, 80px)" }}>

@@ -4,6 +4,7 @@ import { HomePage } from "./pages/HomePage";
 import { NosotrosPage } from "./components/NosotrosPage";
 import { ProyectosPage } from "./pages/ProyectosPage";
 import { DesignSystemPage } from "./pages/DesignSystemPage";
+import { CaseStudyPage } from "./pages/CaseStudyPage";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: "nosotros", Component: NosotrosPage },
       { path: "proyectos", Component: ProyectosPage },
+      { path: "proyectos/:slug", Component: CaseStudyPage },
       { path: "design-system", Component: DesignSystemPage },
     ],
   },

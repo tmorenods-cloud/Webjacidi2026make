@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
@@ -85,17 +86,20 @@ interface ProjectCardProps {
   year: string;
   image: string;
   gradient?: string;
+  slug?: string;
 }
 
-function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardProps) {
+function ProjectCardLarge({ title, tags, year, image, gradient, slug }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   return (
     <div
       className="tarjeta-proyecto tarjeta-proyecto-grande flex flex-col gap-2 w-full cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => slug && navigate(`/proyectos/${slug}`)}
     >
       {/* Imagen Container - Sin border-radius */}
       <div className="contenedor-imagen-proyecto relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -160,15 +164,17 @@ function ProjectCardLarge({ title, tags, year, image, gradient }: ProjectCardPro
 
 // ─── Project Card Component (First Row - Normal) ───────────────────────────────
 
-function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardProps) {
+function ProjectCardNormal({ title, tags, year, image, gradient, slug }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   return (
     <div
       className="tarjeta-proyecto tarjeta-proyecto-normal flex flex-col gap-2 w-full cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => slug && navigate(`/proyectos/${slug}`)}
     >
       {/* Imagen Container - Sin border-radius */}
       <div className="contenedor-imagen-proyecto relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -232,15 +238,17 @@ function ProjectCardNormal({ title, tags, year, image, gradient }: ProjectCardPr
 
 // ─── Small Project Card (Rows 2 & 3) ──────────────────────────────────────────
 
-function ProjectCardSmall({ title, tags, year, image, gradient }: ProjectCardProps) {
+function ProjectCardSmall({ title, tags, year, image, gradient, slug }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   return (
     <div
       className="tarjeta-proyecto-small flex flex-col gap-3 w-full cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => slug && navigate(`/proyectos/${slug}`)}
     >
       {/* Imagen Container - Sin border-radius */}
       <div className="contenedor-imagen-proyecto-small relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -323,7 +331,7 @@ export function ProyectosPage() {
         <div className="fila-proyectos-1 grid grid-cols-1 md:grid-cols-5 lg:grid-cols-7 gap-3 mb-[clamp(48px,8vw,110px)]">
           <div className="col-span-1 md:col-span-3">
             <ProjectCardLarge
-              title="navicu.com"
+              title="navicu.com" slug="navicu"
               tags="Marketing 360, UX/UI, Brand"
               year="2025"
               image={UNSPLASH_IMAGES.project1}
@@ -331,7 +339,7 @@ export function ProyectosPage() {
           </div>
           <div className="col-span-1 md:col-span-2">
             <ProjectCardNormal
-              title="Grand Hyatt"
+              title="Grand Hyatt" slug="grand-hyatt"
               tags="Marketing 360, UX/UI, Brand"
               year="2025"
               image={UNSPLASH_IMAGES.project2}
@@ -339,7 +347,7 @@ export function ProyectosPage() {
           </div>
           <div className="col-span-1 md:col-span-2">
             <ProjectCardNormal
-              title="Morrocoy"
+              title="Morrocoy" slug="morrocoy"
               tags="Marketing 360, UX/UI, Brand"
               year="2025"
               image={UNSPLASH_IMAGES.project3}
@@ -351,19 +359,19 @@ export function ProyectosPage() {
         {/* Fila 2: mobile 1col · md 2col · lg 3col */}
         <div className="fila-proyectos-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-[clamp(48px,8vw,110px)]">
           <ProjectCardSmall
-            title="Heyba"
+            title="Heyba" slug="heyba"
             tags="Branding, Web design"
             year="2025"
             image={UNSPLASH_IMAGES.project4}
           />
           <ProjectCardSmall
-            title="Castro Suite"
+            title="Castro Suite" slug="castro-suite"
             tags="Marketing Digital, SEO"
             year="2025"
             image={UNSPLASH_IMAGES.project5}
           />
           <ProjectCardSmall
-            title="Barok"
+            title="Barok" slug="barok"
             tags="Brand Identity, Motion"
             year="2025"
             image={UNSPLASH_IMAGES.project6}
@@ -373,19 +381,19 @@ export function ProyectosPage() {
         {/* Fila 3: mobile 1col · md 2col · lg 3col */}
         <div className="fila-proyectos-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           <ProjectCardSmall
-            title="Mas Oliu"
+            title="Mas Oliu" slug="mas-oliu"
             tags="Web Design, Development"
             year="2025"
             image={UNSPLASH_IMAGES.project7}
           />
           <ProjectCardSmall
-            title="eRoom Suite"
+            title="eRoom Suite" slug="eroom-suite"
             tags="UX/UI, App Design"
             year="2025"
             image={UNSPLASH_IMAGES.project8}
           />
           <ProjectCardSmall
-            title="Metropolitan"
+            title="Metropolitan" slug="metropolitan"
             tags="Branding, Photography"
             year="2025"
             image={UNSPLASH_IMAGES.project9}
