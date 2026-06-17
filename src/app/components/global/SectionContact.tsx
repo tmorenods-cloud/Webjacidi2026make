@@ -68,8 +68,8 @@ function CampoCV() {
           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? null)}
         />
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 13V4M10 4L7 7M10 4L13 7" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3 14v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="#909090" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M10 13V4M10 4L7 7M10 4L13 7" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M3 14v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
         <p className="font-normal text-[#909090] tracking-[-0.0125em] truncate" style={{ fontSize: "clamp(14px, 1.8vw, 18px)" }}>
           {fileName ?? "Adjuntar archivo (.pdf, .doc, .png…)"}
@@ -80,8 +80,8 @@ function CampoCV() {
       {fileName && (
         <div className="preview-archivo flex items-center gap-2 px-3 py-2 bg-[rgba(32,32,31,0.04)] rounded-[6px]">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="1" width="10" height="13" rx="1" stroke="#20201f" strokeWidth="1.2"/>
-            <path d="M5 5h5M5 8h5M5 11h3" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round"/>
+            <rect x="2" y="1" width="10" height="13" rx="1" stroke="#20201f" strokeWidth="1.2" />
+            <path d="M5 5h5M5 8h5M5 11h3" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
           <p className="font-normal text-[#20201f] tracking-[-0.0125em] truncate text-[13px]">{fileName}</p>
           <button
@@ -112,8 +112,8 @@ function CampoCV() {
       {linkValue && (
         <div className="preview-link flex items-center gap-2 px-3 py-2 bg-[rgba(32,32,31,0.04)] rounded-[6px]">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M6 8a3 3 0 004.243 0l1.414-1.414a3 3 0 00-4.243-4.243L6.586 3.76" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round"/>
-            <path d="M8 6a3 3 0 00-4.243 0L2.343 7.414a3 3 0 004.243 4.243L7.414 10.24" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round"/>
+            <path d="M6 8a3 3 0 004.243 0l1.414-1.414a3 3 0 00-4.243-4.243L6.586 3.76" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M8 6a3 3 0 00-4.243 0L2.343 7.414a3 3 0 004.243 4.243L7.414 10.24" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
           <a href={linkValue} target="_blank" rel="noopener noreferrer" className="text-[#20201f] text-[13px] underline truncate tracking-[-0.0125em]">
             {linkValue}
@@ -154,7 +154,7 @@ function SelectServicio() {
           ))}
         </select>
         <svg className="shrink-0 ml-2 mt-1 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M4 6l4 4 4-4" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 6l4 4 4-4" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     </div>
@@ -202,14 +202,14 @@ function BotonEnviar() {
   return (
     <button
       className="boton-enviar-cta group flex items-center gap-3 font-semibold text-[#20201f] underline decoration-solid underline-offset-4 transition-colors duration-300 hover:text-[#D55D26]"
-      style={{ fontSize: "clamp(15px, 2vw, 20px)", letterSpacing: "-0.0125em" }}
+      style={{ fontSize: "clamp(15px, 2.2vw, 24px)", letterSpacing: "-0.0125em" }}
     >
       Enviar mensaje
       <svg
         className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
         width="18" height="18" viewBox="0 0 18 18" fill="none"
       >
-        <path d="M4 14L14 4M14 4H7M14 4v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M4 14L14 4M14 4H7M14 4v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
   );

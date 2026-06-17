@@ -104,7 +104,7 @@ function MockupCard({ src }: { src: string }) {
 
 function MockupRibbonContent() {
   return (
-    <div className="contenido-marquesina-mockups-1 flex items-center flex-none px-5" style={{ gap: "clamp(12px, 3vw, 40px)" }}>
+    <div className="contenido-marquesina-mockups-1 flex items-center flex-none px-3" style={{ gap: "clamp(12px, 2.5vw, 20px)" }}>
       <MockupCard src={imgClientLogo} />
       <MockupCard src={imgClientLogo1} />
       <MockupCard src={imgClientLogo2} />
@@ -117,7 +117,7 @@ function MockupRibbonContent() {
 
 function MockupRibbonContent2() {
   return (
-    <div className="contenido-marquesina-mockups-2 flex items-center flex-none px-5" style={{ gap: "clamp(12px, 3vw, 40px)" }}>
+    <div className="contenido-marquesina-mockups-2 flex items-center flex-none px-3" style={{ gap: "clamp(12px, 2.5vw, 20px)" }}>
       <MockupCard src={imgClientLogo5} />
       <MockupCard src={imgClientLogo6} />
       <MockupCard src={imgClientLogo7} />
@@ -139,7 +139,7 @@ function HeroSection() {
       >
         Hacemos<br />grande tu marca
       </p>
-      <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9] mt-[-14px]">
+      <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9] mt-[-16px]">
         <video
           src={videoHero}
           autoPlay
@@ -161,7 +161,7 @@ function IntroAndDetailsSection() {
       <div className="contenedor-texto-intro w-full py-[0px]" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <p
           className="texto-intro font-normal text-[#20201f]"
-          style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-0.0125em", lineHeight: "1.05", maxWidth: 882 }}
+          style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-0.025em", lineHeight: "1.05", maxWidth: 882 }}
         >
           Innovación y creatividad es nuestro ADN. Diseñamos soluciones que impulsan tu proyecto
         </p>
@@ -420,7 +420,7 @@ function SectionProyects() {
 
   return (
     <div className="seccion-proyectos flex flex-col items-start w-full">
-      <div className="contenedor-proyectos flex flex-col gap-20 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
+      <div className="contenedor-proyectos flex flex-col gap-10 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="encabezado-proyectos flex flex-col gap-6 items-start max-w-[864px]">
           <p
             className="titulo-proyectos font-medium text-[#20201f]"
@@ -490,8 +490,8 @@ function SectionProyects() {
           </div>
         </div>
         <div
-          className="cta-ver-proyectos flex items-start justify-between overflow-hidden relative w-full"
-          style={{ cursor: "pointer", borderRadius: 8, paddingLeft: "clamp(16px, 4.5vw, 40px)", paddingRight: "clamp(16px, 4.5vw, 40px)", paddingTop: "clamp(32px, 5vw, 64px)", paddingBottom: "clamp(32px, 5vw, 64px)" }}
+          className="cta-ver-proyectos flex items-center justify-between overflow-hidden relative w-full"
+          style={{ cursor: "pointer", borderRadius: 8, padding: "clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px)" }}
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
         >
@@ -506,7 +506,7 @@ function SectionProyects() {
           <p
             className="texto-cta-proyectos font-normal relative z-10"
             style={{
-              fontSize: "clamp(40px, 6vw, 90px)",
+              fontSize: "clamp(32px, 4.8vw, 64px)",
               letterSpacing: "-0.03em",
               lineHeight: "0.9",
               maxWidth: 698,
