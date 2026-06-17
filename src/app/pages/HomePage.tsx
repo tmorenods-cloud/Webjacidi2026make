@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import videoHero from "../../assets/video/video-hero-prueba.mp4";
 const imgClientLogo = "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop";
 const imgClientLogo1 = "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop";
 const imgClientLogo2 = "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop";
@@ -139,9 +140,12 @@ function HeroSection() {
         Hacemos<br />grande tu marca
       </p>
       <div className="contenedor-imagen-hero relative w-full overflow-hidden aspect-[3/4] md:aspect-[16/9]">
-        <img
-          alt="Hero"
-          src={HERO_IMG}
+        <video
+          src={videoHero}
+          autoPlay
+          loop
+          muted
+          playsInline
           className="imagen-hero absolute inset-0 w-full h-full object-cover object-top mx-[0px] mt-[-10px] mb-[0px]"
         />
       </div>
@@ -153,7 +157,7 @@ function HeroSection() {
 
 function IntroAndDetailsSection() {
   return (
-    <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)" }} style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+    <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)", paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
       <div className="contenedor-texto-intro w-full py-[0px]" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <p
           className="texto-intro font-normal text-[#20201f]"
@@ -374,27 +378,29 @@ const clientList = [
 ];
 
 function SectionProyects() {
-  const [activeClient, setActiveClient] = useState<number | null>(null);
-  const [displayedClient, setDisplayedClient] = useState<number | null>(null);
-  const [revealing, setRevealing] = useState(false);
+  const [activeClient, setActiveClient] = useState<number>(0);
+  const [isHovering, setIsHovering] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [ctaHovered, setCtaHovered] = useState(false);
 
+  useEffect(() => {
+    if (isHovering) return;
+    const interval = setInterval(() => {
+      setActiveClient((prev) => (prev + 1) % clientList.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isHovering]);
+
   const handleClientEnter = (i: number) => {
+    setIsHovering(true);
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
       setActiveClient(i);
-      setDisplayedClient(i);
-      setRevealing(true);
-      setTimeout(() => setRevealing(false), 500);
     }, 50);
   };
 
   const handleClientLeave = () => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      setActiveClient(null);
-    }, 120);
+    setIsHovering(false);
   };
 
   const clientBullets: Record<number, string[]> = {
@@ -456,38 +462,26 @@ function SectionProyects() {
             ))}
           </div>
           <div className="preview-proyecto flex flex-col gap-[10px] h-[751px] items-start justify-end relative shrink-0 w-[600px] overflow-hidden">
-            {displayedClient !== null ? (
-              <>
-                <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden">
-                  <img
-                    key={displayedClient}
-                    alt={clientList[displayedClient].name}
-                    className="imagen-preview-proyecto absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview"
-                    src={clientList[displayedClient].preview}
-                    style={{ animation: revealing ? "revealFromRight 0.5s cubic-bezier(0.76,0,0.24,1) forwards" : "none" }}
-                  />
-                </div>
-                <div
-                  className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px]"
-                  style={{ bottom: 40 }}
-                >
-                  <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.0125em] list-disc whitespace-nowrap">
-                    {(clientBullets[displayedClient] ?? []).map((b, i) => (
-                      <li key={i} className="logro-proyecto ms-[30px] leading-[1.3]">{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            ) : (
-              <div className="imagen-placeholder-proyecto flex-1 w-full relative">
+            <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden">
+              {clientList.map((client, i) => (
                 <img
-                  alt=""
-                  className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-                  src={imgColumn1}
-                  style={{ opacity: 0.3 }}
+                  key={client.name}
+                  alt={client.name}
+                  className={`imagen-preview-proyecto absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview transition-opacity duration-500 ease-in-out ${activeClient === i ? "opacity-100" : "opacity-0"}`}
+                  src={client.preview}
                 />
-              </div>
-            )}
+              ))}
+            </div>
+            <div
+              className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.8)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px] transition-opacity duration-500 ease-in-out"
+              style={{ bottom: 40, opacity: activeClient !== null ? 1 : 0 }}
+            >
+              <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.0125em] list-disc whitespace-nowrap">
+                {(clientBullets[activeClient] ?? []).map((b, i) => (
+                  <li key={i} className="logro-proyecto ms-[30px] leading-[1.3]">{b}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <div
