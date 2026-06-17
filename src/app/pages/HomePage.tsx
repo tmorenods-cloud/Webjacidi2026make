@@ -14,7 +14,7 @@ import imgImage from "@/imports/Home-1/70ba5425a7dc220227b68ba509e823370c72311e.
 import imgImage1 from "@/imports/Home-1/a56b2ff5ab4dfbbad342e0ca02ad65a24d06e42d.png";
 
 const HERO_IMG =
-  "https://images.unsplash.com/photo-1742540531234-146d41a8833b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMGZhc2hpb24lMjBtb2RlbCUyMGRyYW1hdGljJTIwcG9ydHJhaXQlMjBlZGl0b3JpYWx8ZW58MXx8fHwxNzc5ODEyMjA3fDA&ixlib=rb-4.1.0&q=80&w=1080";
+  "https://images.unsplash.com/photo-1561070791-36c11767b26a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxkaWdpdGFsJTIwYWdlbmN5JTIwd29ya3NwYWNlJTIwYnJhbmRpbmclMjBkZXNpZ24lMjBib2xkfGVufDF8fHx8MTc4MTI5NTE5Mnww&ixlib=rb-4.1.0&q=80&w=1080";
 
 // ─── Client Logo Cards ─────────────────────────────────────────────────────────
 
@@ -154,7 +154,7 @@ function HeroSection() {
 
 function IntroAndDetailsSection() {
   return (
-    <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)" }} style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+    <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)", paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
       <div className="contenedor-texto-intro w-full py-[0px]" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
         <p
           className="texto-intro font-normal text-[#20201f]"
