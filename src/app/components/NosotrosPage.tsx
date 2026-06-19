@@ -46,7 +46,7 @@ function NosotrosIntroSection() {
     <div className="seccion-intro-nosotros flex flex-col gap-[65px] items-start pt-[44px] w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
       <div className="encabezado-intro-nosotros flex flex-col gap-[52px] items-start w-full">
         <p
-          className="titulo-intro-nosotros font-medium text-[#20201f]"
+          className="titulo-intro-nosotros font-medium text-foreground"
           style={{ fontSize: "clamp(48px, 4.5vw, 72px)", letterSpacing: "-0.04em", lineHeight: "0.9" }}
         >
           Nuestra Esencia
@@ -61,7 +61,7 @@ function NosotrosIntroSection() {
         </div>
       </div>
       <p
-        className="descripcion-intro-nosotros font-normal text-[#20201f]"
+        className="descripcion-intro-nosotros font-normal text-foreground"
         style={{ fontSize: "clamp(22px, 2.5vw, 40px)", letterSpacing: "-0.0125em", lineHeight: "1.15", maxWidth: 960 }}
       >
         No somos solo una consultora digital; somos agentes de cambio. En Jacidi, creemos que el mundo puede ser mejor a través de Outstanding Ideas que transforman marcas en sus mejores versiones.
@@ -96,8 +96,8 @@ function NosotrosValuesSection() {
                 </div>
               </div>
               <div className="texto-valor flex flex-col gap-8 items-start w-full">
-                <p className="titulo-valor font-semibold text-[#20201f] text-[32px] tracking-[-0.03em]">{v.title}</p>
-                <p className="descripcion-valor font-normal text-[#909090] text-[22px] tracking-[-0.0125em] leading-[1.5]">{v.description}</p>
+                <p className="titulo-valor font-semibold text-foreground text-[32px] tracking-[-0.03em]">{v.title}</p>
+                <p className="descripcion-valor font-normal text-muted-foreground text-[22px] tracking-[-0.0125em] leading-[1.5]">{v.description}</p>
               </div>
             </div>
           </div>
@@ -116,17 +116,17 @@ function NosotrosAboutSection() {
       <div className="columna-texto-nosotros flex-1 min-w-px flex flex-col justify-center pr-0 lg:pr-[88px]" style={{ paddingTop: "clamp(20px, 3vw, 40px)", paddingBottom: "clamp(20px, 3vw, 40px)" }}>
         <div className="contenido-texto-nosotros flex flex-col items-start" style={{ gap: "clamp(40px, 7vw, 94px)" }}>
           <p
-            className="titulo-about-nosotros font-medium text-[#20201f]"
+            className="titulo-about-nosotros font-medium text-foreground"
             style={{ fontSize: "clamp(36px, 3.2vw, 52px)", letterSpacing: "-0.03em", lineHeight: "1" }}
           >
             Jacidi nació para
           </p>
           <div className="descripcion-about-nosotros flex flex-col gap-[63px] items-start w-full">
-            <p className="texto-about-nosotros font-normal text-[#20201f] text-[22px] tracking-[-0.0125em] leading-[1.5]">
+            <p className="texto-about-nosotros font-normal text-foreground text-[22px] tracking-[-0.0125em] leading-[1.5]">
               Con años de trayectoria impulsando marcas competitivas, en Jacidi no solo pensamos, ¡ejecutamos! Entendemos que el objetivo de cada marca es alcanzar la máxima rentabilidad, por lo que integramos nuestra experiencia técnica con una visión comercial para apoyar cualquier objetivo que te plantees.
             </p>
             <p
-              className="cta-lets-talk-nosotros font-semibold text-[#20201f] underline decoration-solid cursor-pointer"
+              className="cta-lets-talk-nosotros font-semibold text-foreground underline decoration-solid cursor-pointer"
               style={{ fontSize: 32, letterSpacing: "-0.03em" }}
             >
               Let's talk

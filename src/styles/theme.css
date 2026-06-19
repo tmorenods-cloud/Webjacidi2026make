@@ -3,22 +3,28 @@
 :root {
   --font-size: 16px;
   --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+  --foreground: #20201f;
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
+  --card-foreground: #20201f;
+  --popover: #ffffff;
+  --popover-foreground: #20201f;
+  --primary: #20201f;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
+  --secondary-foreground: #20201f;
   --muted: #ececf0;
   --muted-foreground: #717182;
   --accent: #e9ebef;
-  --accent-foreground: #030213;
+  --accent-foreground: #20201f;
+  --accent-orange: #f26b2d;
+  --accent-orange-hover: #D55D26;
+  --muted-text: #909090;
+  --border-light: rgba(32, 32, 31, 0.12);
+  --border-medium: rgba(32, 32, 31, 0.20);
+  --surface-light: rgba(32, 32, 31, 0.04);
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(32, 32, 31, 0.12);
   --input: transparent;
   --input-background: #f3f3f5;
   --switch-background: #cbced4;
@@ -32,8 +38,8 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
+  --sidebar-foreground: #20201f;
+  --sidebar-primary: #20201f;
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
@@ -42,23 +48,29 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --background: #161615;
+  --foreground: #f5f5f4;
+  --card: #161615;
+  --card-foreground: #f5f5f4;
+  --popover: #161615;
+  --popover-foreground: #f5f5f4;
+  --primary: #f5f5f4;
+  --primary-foreground: #161615;
   --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  --secondary-foreground: #f5f5f4;
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent-foreground: #f5f5f4;
+  --accent-orange: #ff7e42;
+  --accent-orange-hover: #ff9562;
+  --muted-text: #a1a19e;
+  --border-light: rgba(255, 255, 255, 0.15);
+  --border-medium: rgba(255, 255, 255, 0.20);
+  --surface-light: rgba(255, 255, 255, 0.06);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
+  --border: rgba(255, 255, 255, 0.15);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
   --font-weight-medium: 500;
@@ -69,11 +81,11 @@
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-foreground: #f5f5f4;
   --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary-foreground: #f5f5f4;
   --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-accent-foreground: #f5f5f4;
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
 }
@@ -81,6 +93,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-orange-hover: var(--accent-orange-hover);
+  --color-muted-text: var(--muted-text);
+  --color-border-light: var(--border-light);
+  --color-border-medium: var(--border-medium);
+  --color-surface-light: var(--surface-light);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -195,5 +213,18 @@
   span,
   li {
     letter-spacing: -0.025em !important;
+  }
+
+  /* Smooth theme transitions (0.5s with will-change optimization) */
+  .root-layout,
+  section,
+  div,
+  header,
+  footer,
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, li, button, input, textarea, select,
+  svg, path {
+    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, fill 0.5s ease, stroke 0.5s ease;
+    will-change: background-color, border-color, color, fill, stroke;
   }
 }

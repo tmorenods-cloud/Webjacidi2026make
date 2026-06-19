@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // ─── Design System Page ────────────────────────────────────────────────────────
 // Jacidi · Visual audit de tipografía, colores y espaciados
 
@@ -497,6 +499,232 @@ function NamingSection() {
   );
 }
 
+// ─── Paleta Inversa / Modo Oscuro ──────────────────────────────────────────────
+
+function InversePaletteSection() {
+  const [isDark, setIsDark] = useState(false);
+
+  const mappings = [
+    {
+      name: "Fondo Principal",
+      light: { hex: "#ffffff", name: "White" },
+      dark: { hex: "#161615", name: "Charcoal Dark" },
+      desc: "El fondo de la página se invierte a un negro cálido para evitar fatiga visual sin perder la calidez de la marca.",
+    },
+    {
+      name: "Texto Principal",
+      light: { hex: "#20201f", name: "Primary Dark" },
+      dark: { hex: "#f5f5f4", name: "Warm Off-White" },
+      desc: "El texto oscuro pasa a un tono blanco hueso de alta legibilidad, reduciendo el contraste deslumbrante del blanco puro.",
+    },
+    {
+      name: "Acento Naranja",
+      light: { hex: "#f26b2d", name: "Accent Orange" },
+      dark: { hex: "#ff7e42", name: "Vibrant Orange" },
+      desc: "El naranja de la marca se ilumina sutilmente para destacar adecuadamente sobre el fondo Charcoal.",
+    },
+    {
+      name: "Texto Muted",
+      light: { hex: "#909090", name: "Gray Medium" },
+      dark: { hex: "#a1a19e", name: "Light Gray Muted" },
+      desc: "Subtítulos e información secundaria se aclaran para mantener el cumplimiento de contraste WCAG AA.",
+    },
+    {
+      name: "Bordes y Divisores",
+      light: { hex: "rgba(32,32,31,0.12)", name: "Border Light" },
+      dark: { hex: "rgba(255,255,255,0.15)", name: "Border Dark" },
+      desc: "Las líneas de división pasan de ser sombras oscuras sutiles a transparencias blancas ligeras.",
+    },
+    {
+      name: "Superficies (Cards)",
+      light: { hex: "rgba(32,32,31,0.04)", name: "Surface Light" },
+      dark: { hex: "rgba(255,255,255,0.06)", name: "Surface Dark" },
+      desc: "Las tarjetas de fondo gris claro pasan a tener un brillo blanco con opacidad muy baja sobre el fondo negro.",
+    },
+  ];
+
+  return (
+    <Section title="Paleta Inversa (Propuesta Modo Oscuro)">
+      <div className="flex flex-col lg:flex-row gap-12 w-full">
+        {/* Tabla comparativa */}
+        <div className="flex-1 flex flex-col gap-6">
+          <div className="border border-[rgba(32,32,31,0.12)] rounded-[16px] overflow-hidden bg-white shadow-sm">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[rgba(32,32,31,0.02)] border-b border-[rgba(32,32,31,0.08)]">
+                  <th className="p-4 text-[13px] font-semibold text-[#20201f] tracking-[-0.2px]">Token</th>
+                  <th className="p-4 text-[13px] font-semibold text-[#20201f] tracking-[-0.2px]">Modo Claro</th>
+                  <th className="p-4 text-[13px] font-semibold text-[#20201f] tracking-[-0.2px]">Modo Oscuro (Inverso)</th>
+                  <th className="p-4 text-[13px] font-semibold text-[#20201f] tracking-[-0.2px] hidden md:table-cell">Comportamiento / Razón</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mappings.map((m) => (
+                  <tr key={m.name} className="border-b border-[rgba(32,32,31,0.06)] last:border-b-0 hover:bg-[rgba(32,32,31,0.01)] transition-colors">
+                    <td className="p-4 align-middle">
+                      <p className="font-medium text-[#20201f] text-[14px] tracking-[-0.3px]">{m.name}</p>
+                    </td>
+                    <td className="p-4 align-middle">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 rounded-[6px] border border-[rgba(32,32,31,0.1)] shrink-0" style={{ backgroundColor: m.light.hex }} />
+                        <div>
+                          <p className="font-semibold text-[#20201f] text-[12px] font-mono leading-none">{m.light.hex}</p>
+                          <span className="text-[11px] text-[#909090] font-normal">{m.light.name}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 align-middle">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 rounded-[6px] border border-[rgba(255,255,255,0.15)] shrink-0" style={{ backgroundColor: m.dark.hex }} />
+                        <div>
+                          <p className="font-semibold text-[#f26b2d] text-[12px] font-mono leading-none">{m.dark.hex}</p>
+                          <span className="text-[11px] text-[#909090] font-normal">{m.dark.name}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 align-middle text-[13px] text-[#909090] leading-[1.3] hidden md:table-cell max-w-[300px]">
+                      {m.desc}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Live Interactive Preview */}
+        <div className="w-full lg:w-[420px] shrink-0">
+          <div className="border border-[rgba(32,32,31,0.12)] rounded-[16px] p-6 flex flex-col gap-6 bg-[rgba(32,32,31,0.02)] relative overflow-hidden">
+            <div className="flex items-center justify-between z-10">
+              <p className="font-semibold text-[#20201f] text-[15px] tracking-[-0.3px]">Vista previa interactiva</p>
+              
+              {/* Toggle Switch */}
+              <button 
+                onClick={() => setIsDark(!isDark)}
+                className="flex items-center gap-2 cursor-pointer bg-white px-3 py-1.5 rounded-full border border-[rgba(32,32,31,0.1)] shadow-sm hover:bg-[rgba(32,32,31,0.02)] transition-all"
+              >
+                <div className={`w-3 h-3 rounded-full transition-colors duration-300 ${isDark ? 'bg-[#ff7e42]' : 'bg-[#f26b2d]'}`} />
+                <span className="text-[12px] font-medium text-[#20201f]">
+                  {isDark ? "Modo Oscuro" : "Modo Claro"}
+                </span>
+              </button>
+            </div>
+
+            {/* Mock Component Box */}
+            <div 
+              className="rounded-[12px] p-6 border transition-all duration-500 flex flex-col gap-5 shadow-md"
+              style={{
+                backgroundColor: isDark ? "#161615" : "#ffffff",
+                borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(32,32,31,0.12)",
+                color: isDark ? "#f5f5f4" : "#20201f",
+              }}
+            >
+              {/* Card Badge & Year */}
+              <div className="flex items-center justify-between">
+                <span 
+                  className="font-semibold text-[12px] tracking-[-0.2px] px-2 py-0.5 rounded-[4px] transition-colors duration-500"
+                  style={{
+                    backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(32,32,31,0.05)",
+                    color: isDark ? "#a1a19e" : "#777777",
+                  }}
+                >
+                  DISEÑO WEB · BRANDING
+                </span>
+                <span 
+                  className="font-medium text-[12px] tracking-[-0.2px] transition-all duration-500 px-2 py-0.5 rounded-[4px]"
+                  style={{
+                    backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(32,32,31,0.7)",
+                    color: isDark ? "#ff7e42" : "#ffffff"
+                  }}
+                >
+                  2026
+                </span>
+              </div>
+
+              {/* Title */}
+              <div className="flex flex-col gap-1">
+                <p 
+                  className="text-[14px] font-semibold transition-colors duration-500"
+                  style={{ color: isDark ? "#ff7e42" : "#f26b2d" }}
+                >
+                  01 / PROYECTO DESTACADO
+                </p>
+                <h4 
+                  className="text-[26px] font-medium tracking-[-1.2px] leading-[1.05] transition-colors duration-500"
+                  style={{ color: isDark ? "#f5f5f4" : "#20201f" }}
+                >
+                  Castro Suites
+                </h4>
+              </div>
+
+              {/* Divider */}
+              <div 
+                className="h-[1px] w-full transition-colors duration-500"
+                style={{ backgroundColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(32,32,31,0.12)" }}
+              />
+
+              {/* Description */}
+              <p 
+                className="text-[15px] font-normal leading-[1.4] transition-colors duration-500"
+                style={{ color: isDark ? "#a1a19e" : "#909090" }}
+              >
+                Diseñamos una experiencia digital de primer nivel que conecta la esencia del hospedaje boutique con la simplicidad tecnológica del sector hotelero moderno.
+              </p>
+
+              {/* Items List */}
+              <ul className="flex flex-col gap-1.5 pl-4 list-disc text-[14px]">
+                {[
+                  "Optimización del embudo de conversión",
+                  "Diseño UI/UX de alta fidelidad",
+                  "Desarrollo frontend interactivo"
+                ].map((item, idx) => (
+                  <li 
+                    key={idx} 
+                    className="transition-colors duration-500"
+                    style={{ color: isDark ? "#e5e5e3" : "#404040" }}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Interactive Button */}
+              <div 
+                className="mt-2 flex items-center justify-between rounded-[8px] p-3 border transition-all duration-500 cursor-pointer"
+                style={{
+                  backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(32,32,31,0.02)",
+                  borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(32,32,31,0.08)",
+                }}
+              >
+                <span 
+                  className="text-[14px] font-medium transition-colors duration-500"
+                  style={{ color: isDark ? "#f5f5f4" : "#20201f" }}
+                >
+                  Ver estudio de caso
+                </span>
+                <svg 
+                  className="w-4 h-4 transition-transform duration-300 transform translate-x-0 hover:translate-x-1" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5"
+                  style={{ color: isDark ? "#ff7e42" : "#f26b2d" }}
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+            
+            <p className="text-[12px] text-[#909090] leading-none text-center">
+              Haz clic en el botón de modo arriba para ver la transición de colores.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 // ─── Export ───────────────────────────────────────────────────────────────────
 
 export function DesignSystemPage() {
@@ -517,6 +745,7 @@ export function DesignSystemPage() {
 
       <TypographySection />
       <ColorsSection />
+      <InversePaletteSection />
       <SpacingSection />
       <TransitionsSection />
       <NamingSection />

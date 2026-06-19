@@ -9,12 +9,12 @@ type Tab = "servicio" | "vacante";
 function Campo({ label, type = "text" }: { label: string; type?: string }) {
   return (
     <div className="campo-input relative w-full">
-      <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+      <div className="borde-campo absolute border-b border-border-medium inset-0 pointer-events-none" />
       <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
         <input
           type={type}
           placeholder={label}
-          className="w-full bg-transparent font-normal text-[#20201f] placeholder:text-[#909090] tracking-[-0.0125em] leading-[0.9] outline-none"
+          className="w-full bg-transparent font-normal text-foreground placeholder:text-muted-text tracking-[-0.0125em] leading-[0.9] outline-none"
           style={{ fontSize: "clamp(15px, 2vw, 20px)" }}
         />
       </div>
@@ -27,12 +27,12 @@ function CampoFila({ labels }: { labels: [string, string] }) {
     <div className="fila-campos flex gap-4 items-start w-full flex-wrap">
       {labels.map((label) => (
         <div key={label} className="campo-input flex-1 min-w-[180px] relative">
-          <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+          <div className="borde-campo absolute border-b border-border-medium inset-0 pointer-events-none" />
           <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
             <input
               type="text"
               placeholder={label}
-              className="w-full bg-transparent font-normal text-[#20201f] placeholder:text-[#909090] tracking-[-0.0125em] leading-[0.9] outline-none"
+              className="w-full bg-transparent font-normal text-foreground placeholder:text-muted-text tracking-[-0.0125em] leading-[0.9] outline-none"
               style={{ fontSize: "clamp(15px, 2vw, 20px)" }}
             />
           </div>
@@ -51,13 +51,13 @@ function CampoCV() {
 
   return (
     <div className="campo-cv flex flex-col gap-3 w-full">
-      <p className="font-normal text-[#909090] tracking-[-0.0125em]" style={{ fontSize: "clamp(12px, 1.5vw, 14px)" }}>
+      <p className="font-normal text-muted-text tracking-[-0.0125em]" style={{ fontSize: "clamp(12px, 1.5vw, 14px)" }}>
         CV / Portafolio
       </p>
 
       {/* Zona adjuntar archivo */}
       <div
-        className="zona-archivo border border-dashed border-[rgba(32,32,31,0.2)] rounded-[8px] px-4 py-4 flex items-center gap-3 cursor-pointer hover:border-[#20201f] transition-colors duration-300"
+        className="zona-archivo border border-dashed border-border-medium rounded-[8px] px-4 py-4 flex items-center gap-3 cursor-pointer hover:border-foreground transition-colors duration-300"
         onClick={() => fileRef.current?.click()}
       >
         <input
@@ -68,24 +68,24 @@ function CampoCV() {
           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? null)}
         />
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 13V4M10 4L7 7M10 4L13 7" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M3 14v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M10 13V4M10 4L7 7M10 4L13 7" stroke="currentColor" className="text-muted-text" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M3 14v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" className="text-muted-text" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
-        <p className="font-normal text-[#909090] tracking-[-0.0125em] truncate" style={{ fontSize: "clamp(14px, 1.8vw, 18px)" }}>
+        <p className="font-normal text-muted-text tracking-[-0.0125em] truncate" style={{ fontSize: "clamp(14px, 1.8vw, 18px)" }}>
           {fileName ?? "Adjuntar archivo (.pdf, .doc, .png…)"}
         </p>
       </div>
 
       {/* Preview nombre archivo */}
       {fileName && (
-        <div className="preview-archivo flex items-center gap-2 px-3 py-2 bg-[rgba(32,32,31,0.04)] rounded-[6px]">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="1" width="10" height="13" rx="1" stroke="#20201f" strokeWidth="1.2" />
-            <path d="M5 5h5M5 8h5M5 11h3" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
+        <div className="preview-archivo flex items-center gap-2 px-3 py-2 bg-surface-light rounded-[6px]">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-foreground">
+            <rect x="2" y="1" width="10" height="13" rx="1" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M5 5h5M5 8h5M5 11h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-          <p className="font-normal text-[#20201f] tracking-[-0.0125em] truncate text-[13px]">{fileName}</p>
+          <p className="font-normal text-foreground tracking-[-0.0125em] truncate text-[13px]">{fileName}</p>
           <button
-            className="ml-auto text-[#909090] hover:text-[#20201f] transition-colors"
+            className="ml-auto text-muted-text hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => { e.stopPropagation(); setFileName(null); if (fileRef.current) fileRef.current.value = ""; }}
           >
             ✕
@@ -95,14 +95,14 @@ function CampoCV() {
 
       {/* Campo enlace */}
       <div className="campo-input relative w-full">
-        <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+        <div className="borde-campo absolute border-b border-border-medium inset-0 pointer-events-none" />
         <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
           <input
             type="url"
             placeholder="Enlace a portafolio o LinkedIn"
             value={linkValue}
             onChange={(e) => setLinkValue(e.target.value)}
-            className="w-full bg-transparent font-normal text-[#20201f] placeholder:text-[#909090] tracking-[-0.0125em] leading-[0.9] outline-none"
+            className="w-full bg-transparent font-normal text-foreground placeholder:text-muted-text tracking-[-0.0125em] leading-[0.9] outline-none"
             style={{ fontSize: "clamp(15px, 2vw, 20px)" }}
           />
         </div>
@@ -110,12 +110,12 @@ function CampoCV() {
 
       {/* Preview enlace */}
       {linkValue && (
-        <div className="preview-link flex items-center gap-2 px-3 py-2 bg-[rgba(32,32,31,0.04)] rounded-[6px]">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M6 8a3 3 0 004.243 0l1.414-1.414a3 3 0 00-4.243-4.243L6.586 3.76" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
-            <path d="M8 6a3 3 0 00-4.243 0L2.343 7.414a3 3 0 004.243 4.243L7.414 10.24" stroke="#20201f" strokeWidth="1.2" strokeLinecap="round" />
+        <div className="preview-link flex items-center gap-2 px-3 py-2 bg-surface-light rounded-[6px]">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-foreground">
+            <path d="M6 8a3 3 0 004.243 0l1.414-1.414a3 3 0 00-4.243-4.243L6.586 3.76" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M8 6a3 3 0 00-4.243 0L2.343 7.414a3 3 0 004.243 4.243L7.414 10.24" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-          <a href={linkValue} target="_blank" rel="noopener noreferrer" className="text-[#20201f] text-[13px] underline truncate tracking-[-0.0125em]">
+          <a href={linkValue} target="_blank" rel="noopener noreferrer" className="text-foreground text-[13px] underline truncate tracking-[-0.0125em]">
             {linkValue}
           </a>
         </div>
@@ -141,20 +141,20 @@ const SERVICIOS = [
 function SelectServicio() {
   return (
     <div className="campo-input relative w-full">
-      <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+      <div className="borde-campo absolute border-b border-border-medium inset-0 pointer-events-none" />
       <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
         <select
-          className="w-full bg-transparent font-normal text-[#404040] tracking-[-0.0125em] leading-[0.9] outline-none appearance-none cursor-pointer"
+          className="w-full bg-transparent font-normal text-foreground dark:text-foreground tracking-[-0.0125em] leading-[0.9] outline-none appearance-none cursor-pointer"
           style={{ fontSize: "clamp(15px, 2vw, 20px)" }}
           defaultValue=""
         >
-          <option value="" disabled>Servicio requerido</option>
+          <option value="" disabled className="bg-background text-muted-text">Servicio requerido</option>
           {SERVICIOS.map((s) => (
-            <option key={s} value={s}>{s}</option>
+            <option key={s} value={s} className="bg-background text-foreground">{s}</option>
           ))}
         </select>
         <svg className="shrink-0 ml-2 mt-1 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M4 6l4 4 4-4" stroke="#909090" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 6l4 4 4-4" stroke="currentColor" className="text-muted-text" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     </div>
@@ -170,12 +170,12 @@ function TabServicio() {
       <CampoFila labels={["Número de teléfono", "Ciudad"]} />
       <SelectServicio />
       <div className="campo-input relative w-full">
-        <div className="borde-campo absolute border-b border-[rgba(32,32,31,0.2)] inset-0 pointer-events-none" />
+        <div className="borde-campo absolute border-b border-border-medium inset-0 pointer-events-none" />
         <div className="contenido-campo flex items-start pb-4 pl-[14px] pr-2 pt-5">
           <textarea
             placeholder="Mensaje"
             rows={3}
-            className="w-full bg-transparent font-normal text-[#20201f] placeholder:text-[#909090] tracking-[-0.0125em] leading-[1.4] outline-none resize-none"
+            className="w-full bg-transparent font-normal text-foreground placeholder:text-muted-text tracking-[-0.0125em] leading-[1.4] outline-none resize-none"
             style={{ fontSize: "clamp(15px, 2vw, 20px)" }}
           />
         </div>
@@ -201,7 +201,7 @@ function TabVacante() {
 function BotonEnviar() {
   return (
     <button
-      className="boton-enviar-cta group flex items-center gap-3 font-semibold text-[#20201f] underline decoration-solid underline-offset-4 transition-colors duration-300 hover:text-[#D55D26]"
+      className="boton-enviar-cta group flex items-center gap-3 font-semibold text-foreground underline decoration-solid underline-offset-4 transition-colors duration-300 hover:text-accent-orange-hover cursor-pointer"
       style={{ fontSize: "clamp(15px, 2.2vw, 24px)", letterSpacing: "-0.0125em" }}
     >
       Enviar mensaje
@@ -224,24 +224,24 @@ export function SectionContact() {
     fontSize: "clamp(14px, 1.8vw, 18px)",
     letterSpacing: "-0.0125em",
     paddingBottom: "10px",
-    color: activeTab === tab ? "#20201f" : "#909090",
+    color: activeTab === tab ? "var(--foreground)" : "var(--muted-text)",
     transition: "color 0.3s ease, border-color 0.3s ease",
     cursor: "pointer",
     fontWeight: 500,
     background: "none",
     border: "none",
-    borderBottom: activeTab === tab ? "2px solid #20201f" : "2px solid transparent",
+    borderBottom: activeTab === tab ? "2px solid var(--foreground)" : "2px solid transparent",
   });
 
   return (
     <div id="contacto" className="seccion-contacto relative w-full" data-name="Section - Contact">
       <div
-        className="contenedor-contacto flex flex-col gap-8 items-start w-full"
-        style={{ padding: "clamp(40px, 6vw, 80px) clamp(16px, 4.5vw, 80px)" }}
+        className="contenedor-contacto flex flex-col gap-8 items-start w-full pt-0 md:pt-[clamp(40px,6vw,80px)]"
+        style={{ paddingBottom: "clamp(40px, 6vw, 80px)", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}
       >
         {/* Título */}
         <p
-          className="titulo-lets-talk font-medium text-[#20201f]"
+          className="titulo-lets-talk font-medium text-foreground"
           style={{ fontSize: "clamp(40px, 8vw, 120px)", letterSpacing: "-0.04em", lineHeight: "0.9" }}
         >
           {"Let's Talk"}
@@ -253,16 +253,14 @@ export function SectionContact() {
           {/* Columna izquierda: descripción + email */}
           <div className="info-contacto flex flex-col gap-12 items-start justify-center" style={{ maxWidth: 614 }}>
             <p
-              className="descripcion-contacto font-normal text-[#20201f] leading-[1.1]"
+              className="descripcion-contacto font-normal text-foreground leading-[1.1]"
               style={{ fontSize: "clamp(18px, 3vw, 40px)", letterSpacing: "-0.0125em" }}
             >
               Tu idea merece algo mejor.<br />¡Contáctanos!
             </p>
             <p
-              className="email-contacto font-semibold underline decoration-solid transition-colors duration-300 cursor-pointer"
-              style={{ fontSize: "clamp(22px, 4vw, 64px)", letterSpacing: "-0.04em", lineHeight: "1", color: "#909090" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#D55D26")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#909090")}
+              className="email-contacto font-semibold underline decoration-solid transition-colors duration-300 cursor-pointer text-muted-text hover:text-accent-orange-hover"
+              style={{ fontSize: "clamp(22px, 4vw, 64px)", letterSpacing: "-0.04em", lineHeight: "1" }}
             >
               info@jacidi.com
             </p>
@@ -272,7 +270,7 @@ export function SectionContact() {
           <div className="formulario-contacto flex flex-col gap-8 items-start flex-1 min-w-[280px]" style={{ maxWidth: 710 }}>
 
             {/* Tabs */}
-            <div className="tabs-contacto flex gap-8 items-end border-b border-[rgba(32,32,31,0.1)] w-full">
+            <div className="tabs-contacto flex gap-8 items-end border-b border-border-light w-full">
               <button style={tabStyle("servicio")} onClick={() => setActiveTab("servicio")}>
                 Solicitar Servicio
               </button>

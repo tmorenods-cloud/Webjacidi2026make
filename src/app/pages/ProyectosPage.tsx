@@ -59,7 +59,7 @@ function ArrowIcon({ isHovered, size = 32 }: ArrowIconProps) {
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
             }}
             d={arrowPath}
-            fill="#20201F"
+            fill="currentColor"
           />
 
           {/* Arrow Path 2 - Estado inicial: x=-20, y=36 | Hover: x=8, y=8 */}
@@ -70,7 +70,7 @@ function ArrowIcon({ isHovered, size = 32 }: ArrowIconProps) {
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
             }}
             d={arrowPath}
-            fill="#20201F"
+            fill="currentColor"
           />
         </g>
       </svg>
@@ -136,14 +136,14 @@ function ProjectCardLarge({ title, tags, year, image, gradient, slug }: ProjectC
       {/* Info Container */}
       <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto font-medium text-foreground text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-2">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-[#909090] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-muted-foreground tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
                 fontSize: isMobile ? "14px" : "18px",
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(100%)",
@@ -211,14 +211,14 @@ function ProjectCardNormal({ title, tags, year, image, gradient, slug }: Project
       {/* Info Container */}
       <div className="info-proyecto flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto font-medium text-foreground text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Flecha Container */}
         <div className="contenedor-tags-icono flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-[#777] text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
@@ -285,14 +285,14 @@ function ProjectCardSmall({ title, tags, year, image, gradient, slug }: ProjectC
       {/* Info Container */}
       <div className="info-proyecto-small flex items-center justify-between w-full">
         {/* Título */}
-        <p className="titulo-proyecto-small font-medium text-[#20201f] text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
+        <p className="titulo-proyecto-small font-medium text-foreground text-[24px] tracking-[-0.03em] whitespace-nowrap">{title}</p>
 
         {/* Tags y Icono Container */}
         <div className="contenedor-tags-icono-small flex items-center gap-1">
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-small-visible font-semibold text-[#777] text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-small-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
               style={{
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
@@ -318,7 +318,7 @@ export function ProyectosPage() {
       {/* Título */}
       <div className="encabezado-proyectos w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(32px, 5vw, 60px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
         <h1
-          className="titulo-pagina-proyectos font-medium text-[#20201f]"
+          className="titulo-pagina-proyectos font-medium text-foreground"
           style={{ fontSize: "clamp(48px, 5vw, 72px)", letterSpacing: "-0.04em", lineHeight: "0.83", maxWidth: 459 }}
         >
           Nuestros casos de éxito

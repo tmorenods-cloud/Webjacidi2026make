@@ -10,7 +10,7 @@ const GAP_SECTIONS = "clamp(40px, 6vw, 64px)";
 
 // ─── Arrow icon (diagonal) ────────────────────────────────────────────────────
 
-function ArrowDiagonal({ size = 34, color = "#20201F" }: { size?: number; color?: string }) {
+function ArrowDiagonal({ size = 34, color = "currentColor" }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -44,7 +44,7 @@ function HeroSection({ data }: { data: CaseStudyData }) {
       {/* CTA Row: título + visitar sitio */}
       <div className="cta-row-cs flex items-end justify-between w-full flex-wrap gap-4">
         <p
-          className="titulo-cs font-medium text-[#20201f]"
+          className="titulo-cs font-medium text-foreground"
           style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-0.04em", lineHeight: "1" }}
         >
           {data.client}
@@ -57,7 +57,7 @@ function HeroSection({ data }: { data: CaseStudyData }) {
             className="visitar-sitio-cs flex items-center gap-[6px] shrink-0"
           >
             <span
-              className="font-medium text-[#20201f] whitespace-nowrap"
+              className="font-medium text-foreground whitespace-nowrap"
               style={{ fontSize: "clamp(18px, 2vw, 28px)", letterSpacing: "-0.03em" }}
             >
               Visitar sitio
@@ -81,20 +81,20 @@ function IntroSection({ data }: { data: CaseStudyData }) {
       {/* Text block */}
       <div className="text-block-cs flex flex-col lg:flex-row items-start justify-between gap-8 w-full">
         <p
-          className="h2-cs font-medium text-[#20201f] shrink-0"
+          className="h2-cs font-medium text-foreground shrink-0"
           style={{ fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em", lineHeight: "1" }}
         >
           {data.intro.h2}
         </p>
         <div className="flex flex-col gap-[clamp(32px,4vw,64px)] items-start" style={{ maxWidth: 867 }}>
           <p
-            className="font-normal text-[#20201f] leading-[1.2]"
+            className="font-normal text-foreground leading-[1.2]"
             style={{ fontSize: "clamp(16px, 1.8vw, 22px)", letterSpacing: "-0.0125em" }}
           >
             {data.intro.text}
           </p>
           <ul
-            className="list-disc font-medium text-[#20201f]"
+            className="list-disc font-medium text-foreground"
             style={{ fontSize: "clamp(16px, 1.8vw, 22px)", letterSpacing: "-0.0125em", lineHeight: "1.5", marginLeft: 33 }}
           >
             {data.intro.bullets.map((b) => (
@@ -128,13 +128,13 @@ function BrandingSection({ data }: { data: CaseStudyData }) {
       {/* Text block */}
       <div className="text-block-cs flex flex-col gap-[clamp(20px,3vw,34px)] w-full" style={{ maxHeight: "unset" }}>
         <p
-          className="h2-cs font-medium text-[#20201f]"
+          className="h2-cs font-medium text-foreground"
           style={{ fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em", lineHeight: "1" }}
         >
           {data.branding.h2}
         </p>
         <p
-          className="font-normal text-[#20201f] leading-[1.2]"
+          className="font-normal text-foreground leading-[1.2]"
           style={{ fontSize: "clamp(16px, 1.8vw, 22px)", letterSpacing: "-0.0125em", maxWidth: 867 }}
         >
           {data.branding.text}
@@ -160,13 +160,13 @@ function SolutionSection({ data }: { data: CaseStudyData }) {
       {/* Text block */}
       <div className="text-block-cs flex flex-col gap-[clamp(20px,3vw,34px)] w-full">
         <p
-          className="h2-cs font-medium text-[#20201f]"
+          className="h2-cs font-medium text-foreground"
           style={{ fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em", lineHeight: "1" }}
         >
           {data.solution.h2}
         </p>
         <p
-          className="font-normal text-[#20201f] leading-[1.2]"
+          className="font-normal text-foreground leading-[1.2]"
           style={{ fontSize: "clamp(16px, 1.8vw, 22px)", letterSpacing: "-0.0125em", maxWidth: 867 }}
         >
           {data.solution.text}
@@ -211,8 +211,8 @@ function RelatedProjectCard({ project }: { project: RelatedProject }) {
       </div>
       {/* Labels */}
       <div className="flex items-end justify-between w-full">
-        <p className="font-medium text-[#20201f] text-[24px] tracking-[-0.03em]">{project.title}</p>
-        <p className="font-normal text-[#20201f] text-[20px] tracking-[-0.0125em]">{project.tags}</p>
+        <p className="font-medium text-foreground text-[24px] tracking-[-0.03em]">{project.title}</p>
+        <p className="font-normal text-muted-foreground text-[20px] tracking-[-0.0125em]">{project.tags}</p>
       </div>
     </div>
   );
@@ -225,7 +225,7 @@ function RelatedProjectsSection({ data }: { data: CaseStudyData }) {
       style={{ gap: "clamp(32px, 4vw, 52px)", paddingLeft: PAD_H, paddingRight: PAD_H, paddingTop: PAD_V_LG, paddingBottom: PAD_V_LG }}
     >
       <p
-        className="font-medium text-[#20201f]"
+        className="font-medium text-foreground"
         style={{ fontSize: "clamp(32px, 5vw, 68px)", letterSpacing: "-0.03em", lineHeight: "0.9", maxWidth: 578 }}
       >
         Proyectos más recientes
@@ -248,10 +248,10 @@ export function CaseStudyPage() {
   if (!data) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
-        <p className="font-medium text-[#20201f]" style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-0.03em" }}>
+        <p className="font-medium text-foreground" style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-0.03em" }}>
           Proyecto no encontrado
         </p>
-        <Link to="/proyectos" className="font-medium text-[#20201f] underline text-[18px] tracking-[-0.0125em]">
+        <Link to="/proyectos" className="font-medium text-foreground underline text-[18px] tracking-[-0.0125em]">
           Ver todos los proyectos
         </Link>
       </div>
@@ -259,7 +259,7 @@ export function CaseStudyPage() {
   }
 
   return (
-    <div className="pagina-case-study w-full bg-white flex flex-col">
+    <div className="pagina-case-study w-full bg-background flex flex-col">
       <HeroSection data={data} />
       <IntroSection data={data} />
       <BrandingSection data={data} />
