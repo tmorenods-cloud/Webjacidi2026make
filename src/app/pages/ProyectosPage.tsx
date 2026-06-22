@@ -328,7 +328,7 @@ export function ProyectosPage() {
       {/* Grid de Proyectos */}
       <div className="contenedor-grid-proyectos w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
         {/* Fila 1: mobile 1col · md 5col · lg 7col */}
-        <div className="fila-proyectos-1 grid grid-cols-1 md:grid-cols-5 lg:grid-cols-7 gap-3 mb-[clamp(48px,8vw,110px)]">
+        <div className="fila-proyectos-1 grid grid-cols-1 md:grid-cols-5 lg:grid-cols-7 gap-[clamp(48px,8vw,110px)] md:gap-3 mb-[clamp(48px,8vw,110px)]">
           <div className="col-span-1 md:col-span-3">
             <ProjectCardLarge
               title="navicu.com" slug="navicu"
@@ -357,7 +357,7 @@ export function ProyectosPage() {
         </div>
 
         {/* Fila 2: mobile 1col · md 2col · lg 3col */}
-        <div className="fila-proyectos-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-[clamp(48px,8vw,110px)]">
+        <div className="fila-proyectos-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[clamp(48px,8vw,110px)] md:gap-3 mb-[clamp(48px,8vw,110px)]">
           <ProjectCardSmall
             title="Heyba" slug="heyba"
             tags="Branding, Web design"
@@ -379,7 +379,7 @@ export function ProyectosPage() {
         </div>
 
         {/* Fila 3: mobile 1col · md 2col · lg 3col */}
-        <div className="fila-proyectos-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="fila-proyectos-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[clamp(48px,8vw,110px)] md:gap-3">
           <ProjectCardSmall
             title="Mas Oliu" slug="mas-oliu"
             tags="Web Design, Development"
