@@ -549,7 +549,14 @@ function SectionProyects() {
               ))}
             </div>
           )}
-          <Link to="/proyectos" className="preview-proyecto flex flex-col gap-[10px] h-[550px] lg:h-[751px] items-start justify-end relative shrink-0 w-full lg:w-[600px] overflow-hidden group">
+          <Link 
+            to="/proyectos" 
+            className="preview-proyecto flex flex-col gap-[10px] items-start justify-end relative shrink-0 w-full lg:w-[600px] overflow-hidden group"
+            style={{ 
+              height: isMobile ? "auto" : "751px", 
+              aspectRatio: isMobile ? "600/751" : "auto" 
+            }}
+          >
             <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden bg-muted rounded-none">
               {clientList.map((client, i) => (
                 <div
@@ -574,10 +581,10 @@ function SectionProyects() {
                 <div 
                   className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none" 
                   style={{ 
-                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, transparent 100%)", 
+                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)", 
                     backdropFilter: "blur(6px)",
                     WebkitBackdropFilter: "blur(6px)",
-                    padding: "1rem"
+                    padding: "1.5rem"
                   }}
                 >
                   <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
