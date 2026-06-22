@@ -122,7 +122,7 @@ function Marquee({ direction, duration = 40, children }: MarqueeProps) {
         lastScrollY = window.scrollY;
         currentRate = 1;
       }
-      
+
       rafId = requestAnimationFrame(update);
     };
 
@@ -327,7 +327,7 @@ const services = [
     index: "03",
     name: "Desarrollo",
     subtitle: "Desarrollamos experiencias interactivas para captar, fidelizar y generar engagement",
-    items: ["Desarrollo Web a medida", "Desarrollo de tienda online en Shopify, Woocommerce", "Apps a medida", "Configuración y gestión de Redes"],
+    items: ["Desarrollo Web a medida", "Desarrollo de tienda online", "Apps a medida", "Configuración y gestión de Redes"],
   },
   {
     index: "04",
@@ -549,21 +549,20 @@ function SectionProyects() {
               ))}
             </div>
           )}
-          <Link 
-            to="/proyectos" 
+          <Link
+            to="/proyectos"
             className="preview-proyecto flex flex-col gap-[10px] items-start justify-end relative shrink-0 w-full lg:w-[600px] overflow-hidden group"
-            style={{ 
-              height: isMobile ? "auto" : "751px", 
-              aspectRatio: isMobile ? "600/751" : "auto" 
+            style={{
+              height: isMobile ? "auto" : "751px",
+              aspectRatio: isMobile ? "600/751" : "auto"
             }}
           >
             <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden bg-muted rounded-none">
               {clientList.map((client, i) => (
                 <div
                   key={client.name}
-                  className={`image-reveal-container bg-muted ${
-                    activeClient === i ? "active" : prevActive === i ? "prev-active" : ""
-                  }`}
+                  className={`image-reveal-container bg-muted ${activeClient === i ? "active" : prevActive === i ? "prev-active" : ""
+                    }`}
                 >
                   {!brokenImages[client.name] && (
                     <img
@@ -578,10 +577,10 @@ function SectionProyects() {
 
               {/* Overlay y titulos indicadores para Mobile */}
               {isMobile && (
-                <div 
-                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none" 
-                  style={{ 
-                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)", 
+                <div
+                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none"
+                  style={{
+                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)",
                     backdropFilter: "blur(6px)",
                     WebkitBackdropFilter: "blur(6px)",
                     padding: "1.5rem"
@@ -590,21 +589,21 @@ function SectionProyects() {
                   <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
                     {clientList.map((client, i) => (
                       <div key={client.name} className="item-proyecto-mobile flex items-center justify-end w-full">
-                        <p 
-                          className="font-semibold text-right transition-all duration-300 whitespace-nowrap" 
-                          style={{ 
-                            fontSize: "20px", 
-                            letterSpacing: "-0.01em", 
-                            color: "var(--foreground)", 
-                            opacity: activeClient === i ? 1 : 0.3 
+                        <p
+                          className="font-semibold text-right transition-all duration-300 whitespace-nowrap"
+                          style={{
+                            fontSize: "20px",
+                            letterSpacing: "-0.01em",
+                            color: "var(--foreground)",
+                            opacity: activeClient === i ? 1 : 0.3
                           }}
                         >
                           {client.name}
                         </p>
                         <div className="indicador-proyecto-mobile flex items-center justify-center ml-[10px]">
-                          <div 
-                            className="linea-indicador bg-[#f26b2d] h-[2px] transition-all duration-300" 
-                            style={{ width: activeClient === i ? 24 : 0 }} 
+                          <div
+                            className="linea-indicador bg-[#f26b2d] h-[2px] transition-all duration-300"
+                            style={{ width: activeClient === i ? 24 : 0 }}
                           />
                         </div>
                       </div>

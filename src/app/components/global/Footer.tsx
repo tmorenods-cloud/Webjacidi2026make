@@ -36,7 +36,7 @@ export function Footer() {
               </div>
             </div>
             <div className="footer-bottom flex items-center justify-between w-full font-normal text-muted-text text-[16px] tracking-[-0.0125em] whitespace-nowrap">
-              <span className="copyright-footer">Jacidi C.A, 2026</span>
+              <span className="copyright-footer">Jacidi, 2026</span>
               <span className="politica-cookies">Política de cookies</span>
             </div>
           </div>
