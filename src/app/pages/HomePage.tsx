@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useOutletContext, Link } from "react-router";
 import videoHero from "../../assets/video/video-hero-prueba.mp4";
 const imgClientLogo = "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop";
 const imgClientLogo1 = "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop";
@@ -76,6 +76,64 @@ function Marquee({ direction, duration = 40, children }: MarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const animName = direction === "left" ? "marqueeLeft" : "marqueeRight";
   const directionClass = direction === "left" ? "marquesina-izq" : "marquesina-der";
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let inView = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        if (!inView) {
+          track.getAnimations().forEach((anim) => {
+            anim.playbackRate = 1;
+          });
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(track);
+
+    let currentRate = 1;
+    let targetRate = 1;
+    let lastScrollY = window.scrollY;
+    let rafId: number;
+
+    const update = () => {
+      if (inView) {
+        const scrollY = window.scrollY;
+        // Calcular la velocidad de scroll por frame (delta)
+        const delta = Math.abs(scrollY - lastScrollY);
+        lastScrollY = scrollY;
+
+        // La velocidad base es 1. Multiplicamos el delta por un factor para obtener la aceleración extra,
+        // con un tope máximo (ej. tope de +3 para un playbackRate máximo de 4)
+        targetRate = 1 + Math.min(delta * 0.15, 3);
+
+        // Suavizar la transición (Lerp) de la velocidad actual a la objetivo
+        currentRate += (targetRate - currentRate) * 0.1;
+
+        track.getAnimations().forEach((anim) => {
+          anim.playbackRate = Math.max(1, currentRate);
+        });
+      } else {
+        // Si no está a la vista, sincronizamos lastScrollY pero mantenemos rate en 1
+        lastScrollY = window.scrollY;
+        currentRate = 1;
+      }
+      
+      rafId = requestAnimationFrame(update);
+    };
+
+    rafId = requestAnimationFrame(update);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <div className={`contenedor-marquesina ${directionClass} overflow-hidden w-full relative`}>
       <div
@@ -350,11 +408,11 @@ function SectionClientsLogos() {
       <div className="contenedor-marquesinas-logos flex flex-col gap-[6px] items-start w-full relative">
         <div
           className="fade-izquierdo absolute left-0 top-0 h-full w-40 z-10 pointer-events-none"
-          style={{ backgroundImage: "linear-gradient(90deg, var(--background) 0%, var(--background) 50%, rgba(255,255,255,0) 100%)" }}
+          style={{ backgroundImage: "linear-gradient(90deg, var(--background) 0%, var(--background) 50%, transparent 100%)" }}
         />
         <div
           className="fade-derecho absolute right-0 top-0 h-full w-40 z-10 pointer-events-none"
-          style={{ backgroundImage: "linear-gradient(270deg, var(--background) 0%, var(--background) 50%, rgba(255,255,255,0) 100%)" }}
+          style={{ backgroundImage: "linear-gradient(270deg, var(--background) 0%, var(--background) 50%, transparent 100%)" }}
         />
         <div className="marquesina-logos-row1 w-full overflow-hidden">
           <Marquee direction="left" duration={45}>
@@ -385,27 +443,49 @@ const clientList = [
 
 function SectionProyects() {
   const [activeClient, setActiveClient] = useState<number>(0);
+  const [prevActive, setPrevActive] = useState<number | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [ctaHovered, setCtaHovered] = useState(false);
+  const [brokenImages, setBrokenImages] = useState<Record<string, boolean>>({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleImageError = (name: string) => {
+    setBrokenImages((prev) => ({ ...prev, [name]: true }));
+  };
 
   useEffect(() => {
-    if (isHovering) return;
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isHovering && !isMobile) return;
     const interval = setInterval(() => {
-      setActiveClient((prev) => (prev + 1) % clientList.length);
+      setPrevActive(activeClient);
+      setActiveClient((activeClient + 1) % clientList.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [isHovering]);
+  }, [isHovering, activeClient, isMobile]);
 
   const handleClientEnter = (i: number) => {
+    if (isMobile) return;
     setIsHovering(true);
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      setActiveClient(i);
+      if (i !== activeClient) {
+        setPrevActive(activeClient);
+        setActiveClient(i);
+      }
     }, 50);
   };
 
   const handleClientLeave = () => {
+    if (isMobile) return;
     setIsHovering(false);
   };
 
@@ -436,50 +516,98 @@ function SectionProyects() {
             Conoce nuestra experiencia a través de nuestros clientes
           </p>
         </div>
-        <div className="contenido-proyectos flex gap-5 items-start justify-end pb-10 w-full flex-wrap lg:flex-nowrap">
-          <div className="lista-proyectos flex flex-col items-end flex-1 max-w-[1043px]">
-            {clientList.map((client, i) => (
-              <div
-                key={client.name}
-                className={`item-proyecto item-proyecto-${i + 1} flex items-end justify-end w-full`}
-                onMouseEnter={() => handleClientEnter(i)}
-                onMouseLeave={handleClientLeave}
-                style={{ cursor: "pointer" }}
-              >
-                <p
-                  className="nombre-proyecto font-medium text-right transition-all duration-300 whitespace-nowrap"
-                  style={{
-                    fontSize: "clamp(32px, 4.5vw, 64px)",
-                    letterSpacing: "-0.03em",
-                    lineHeight: "1.1",
-                    color: "var(--foreground)",
-                    opacity: activeClient === i ? 1 : 0.2,
-                  }}
-                >
-                  {client.name}
-                </p>
-                <div className="indicador-proyecto flex items-center justify-center ml-2">
-                  <div
-                    className="linea-indicador bg-[#f26b2d] h-[3px] transition-all duration-300"
-                    style={{ width: activeClient === i ? 32 : 0 }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="preview-proyecto flex flex-col gap-[10px] h-[751px] items-start justify-end relative shrink-0 w-[600px] overflow-hidden">
-            <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden">
+        <div className="contenido-proyectos flex gap-5 items-start justify-end pb-10 w-full flex-wrap lg:flex-nowrap relative">
+          {!isMobile && (
+            <div className="lista-proyectos hidden lg:flex flex-col items-end flex-1 max-w-[1043px] gap-[2px]">
               {clientList.map((client, i) => (
-                <img
+                <div
                   key={client.name}
-                  alt={client.name}
-                  className={`imagen-preview-proyecto absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview transition-opacity duration-500 ease-in-out ${activeClient === i ? "opacity-100" : "opacity-0"}`}
-                  src={client.preview}
-                />
+                  className={`item-proyecto item-proyecto-${i + 1} flex items-end justify-end w-full`}
+                  onMouseEnter={() => handleClientEnter(i)}
+                  onMouseLeave={handleClientLeave}
+                  style={{ cursor: "pointer" }}
+                >
+                  <p
+                    className="nombre-proyecto font-medium text-right transition-all duration-300 whitespace-nowrap"
+                    style={{
+                      fontSize: "clamp(32px, 4.5vw, 64px)",
+                      letterSpacing: "-0.03em",
+                      lineHeight: "1.1",
+                      color: "var(--foreground)",
+                      opacity: activeClient === i ? 1 : 0.2,
+                    }}
+                  >
+                    {client.name}
+                  </p>
+                  <div className="indicador-proyecto flex items-center justify-center ml-2">
+                    <div
+                      className="linea-indicador bg-[#f26b2d] h-[3px] transition-all duration-300"
+                      style={{ width: activeClient === i ? 32 : 0 }}
+                    />
+                  </div>
+                </div>
               ))}
             </div>
+          )}
+          <Link to="/proyectos" className="preview-proyecto flex flex-col gap-[10px] h-[550px] lg:h-[751px] items-start justify-end relative shrink-0 w-full lg:w-[600px] overflow-hidden group">
+            <div className="contenedor-imagen-proyecto flex-1 min-h-0 relative w-full overflow-hidden bg-muted rounded-none">
+              {clientList.map((client, i) => (
+                <div
+                  key={client.name}
+                  className={`image-reveal-container bg-muted ${
+                    activeClient === i ? "active" : prevActive === i ? "prev-active" : ""
+                  }`}
+                >
+                  {!brokenImages[client.name] && (
+                    <img
+                      alt={client.name}
+                      onError={() => handleImageError(client.name)}
+                      className="imagen-preview-proyecto absolute inset-0 max-w-none object-cover pointer-events-none size-full has-hover-preview group-hover:scale-105 transition-transform duration-700"
+                      src={client.preview}
+                    />
+                  )}
+                </div>
+              ))}
+
+              {/* Overlay y titulos indicadores para Mobile */}
+              {isMobile && (
+                <div 
+                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none" 
+                  style={{ 
+                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, transparent 100%)", 
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)",
+                    padding: "1rem"
+                  }}
+                >
+                  <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
+                    {clientList.map((client, i) => (
+                      <div key={client.name} className="item-proyecto-mobile flex items-center justify-end w-full">
+                        <p 
+                          className="font-semibold text-right transition-all duration-300 whitespace-nowrap" 
+                          style={{ 
+                            fontSize: "20px", 
+                            letterSpacing: "-0.01em", 
+                            color: "var(--foreground)", 
+                            opacity: activeClient === i ? 1 : 0.3 
+                          }}
+                        >
+                          {client.name}
+                        </p>
+                        <div className="indicador-proyecto-mobile flex items-center justify-center ml-[10px]">
+                          <div 
+                            className="linea-indicador bg-[#f26b2d] h-[2px] transition-all duration-300" 
+                            style={{ width: activeClient === i ? 24 : 0 }} 
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
             <div
-              className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.55)] flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px] transition-opacity duration-500 ease-in-out"
+              className="tarjeta-info-proyecto absolute backdrop-blur-[16px] bg-[rgba(0,0,0,0.55)] hidden lg:flex items-center left-[17px] overflow-hidden px-6 py-[23px] rounded-[12px] w-[566px] transition-opacity duration-300 ease-in-out z-20 pointer-events-none"
               style={{ bottom: 17, opacity: activeClient !== null ? 1 : 0 }}
             >
               <ul className="lista-logros-proyecto font-medium text-white text-[20px] tracking-[-0.0125em] list-disc whitespace-nowrap">
@@ -488,10 +616,10 @@ function SectionProyects() {
                 ))}
               </ul>
             </div>
-          </div>
+          </Link>
         </div>
         <div
-          className="cta-ver-proyectos flex items-center justify-between overflow-hidden relative w-full text-foreground hover:text-background transition-colors duration-500"
+          className="cta-ver-proyectos flex items-center justify-between overflow-hidden relative w-full text-foreground hover:text-background transition-colors duration-300"
           style={{ cursor: "pointer", borderRadius: 8, padding: "clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px)", border: "1px solid var(--border-medium)" }}
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
@@ -505,7 +633,7 @@ function SectionProyects() {
             }}
           />
           <p
-            className="texto-cta-proyectos font-normal relative z-10 transition-colors duration-500"
+            className="texto-cta-proyectos font-normal relative z-10 transition-colors duration-300"
             style={{
               fontSize: "clamp(32px, 4.8vw, 64px)",
               letterSpacing: "-0.03em",
@@ -518,7 +646,7 @@ function SectionProyects() {
             <br />
             los proyectos
           </p>
-          <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center transition-colors duration-500" style={{ color: ctaHovered ? "var(--background)" : "var(--foreground)" }}>
+          <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center transition-colors duration-300" style={{ color: ctaHovered ? "var(--background)" : "var(--foreground)" }}>
             <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="currentColor" />
             </svg>

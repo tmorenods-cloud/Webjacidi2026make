@@ -53,7 +53,7 @@ function ArrowIcon({ isHovered, size = 32 }: ArrowIconProps) {
         <g clipPath="url(#clip-arrow)">
           {/* Arrow Path 1 - Estado inicial: x=8, y=8 | Hover: x=36, y=-21 */}
           <path
-            className="arrow-path-1 transition-transform duration-500"
+            className="arrow-path-1 transition-transform duration-300"
             style={{
               transform: isHovered ? "translate(36px, -21px)" : "translate(8px, 8px)",
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
@@ -64,7 +64,7 @@ function ArrowIcon({ isHovered, size = 32 }: ArrowIconProps) {
 
           {/* Arrow Path 2 - Estado inicial: x=-20, y=36 | Hover: x=8, y=8 */}
           <path
-            className="arrow-path-2 transition-transform duration-500"
+            className="arrow-path-2 transition-transform duration-300"
             style={{
               transform: isHovered ? "translate(8px, 8px)" : "translate(-20px, 36px)",
               transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
@@ -143,7 +143,7 @@ function ProjectCardLarge({ title, tags, year, image, gradient, slug }: ProjectC
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-muted-foreground tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-muted-foreground tracking-[-0.0125em] whitespace-nowrap transition-transform duration-300"
               style={{
                 fontSize: isMobile ? "14px" : "18px",
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(100%)",
@@ -218,7 +218,7 @@ function ProjectCardNormal({ title, tags, year, image, gradient, slug }: Project
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-300"
               style={{
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
@@ -292,7 +292,7 @@ function ProjectCardSmall({ title, tags, year, image, gradient, slug }: ProjectC
           {/* Tags Container con overflow hidden */}
           <div className="contenedor-tags-hidden-small relative h-8 overflow-hidden flex items-end">
             <p
-              className="tags-texto-small-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-500"
+              className="tags-texto-small-visible font-semibold text-muted-foreground text-[14px] tracking-[-0.0125em] whitespace-nowrap transition-transform duration-300"
               style={{
                 transform: isMobile || isHovered ? "translateY(0%)" : "translateY(120%)",
                 transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",

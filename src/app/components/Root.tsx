@@ -60,7 +60,7 @@ function StaticHeader({ visible, isDark }: { visible: boolean; isDark: boolean }
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(-20px)",
-        transition: "opacity 0.4s ease, transform 0.4s ease",
+        transition: "opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease",
         pointerEvents: visible ? "auto" : "none",
       }}
     >
@@ -99,7 +99,7 @@ function StickyHeaderPill({ visible, isDark }: { visible: boolean; isDark: boole
         border: isDark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(32,32,31,0.2)",
         transform: `translateX(-50%) translateY(${visible ? "0" : "-120%"})`,
         opacity: visible ? 1 : 0,
-        transition: "transform 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease",
+        transition: "transform 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease, background-color 0.3s ease, border-color 0.3s ease",
         pointerEvents: visible ? "auto" : "none",
       }}
     >
@@ -166,7 +166,7 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
               height: "1.5px",
               width: open ? "20px" : "20px",
               transform: open ? "translateY(3.75px) rotate(45deg)" : "none",
-              transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease",
+              transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease, background-color 0.3s ease",
             }}
           />
           <span
@@ -175,7 +175,7 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
               height: "1.5px",
               width: open ? "20px" : "14px",
               transform: open ? "translateY(-3.75px) rotate(-45deg)" : "none",
-              transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease",
+              transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease, background-color 0.3s ease",
             }}
           />
         </button>
@@ -188,7 +188,7 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
           ...glassStyle,
           maxHeight: open ? "400px" : "0px",
           opacity: open ? 1 : 0,
-          transition: "max-height 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease",
+          transition: "max-height 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease, background-color 0.3s ease, border-color 0.3s ease",
           pointerEvents: open ? "auto" : "none",
         }}
       >
