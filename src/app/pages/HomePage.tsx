@@ -502,7 +502,7 @@ function SectionProyects() {
 
   return (
     <div className="seccion-proyectos flex flex-col items-start w-full">
-      <div className="contenedor-proyectos flex flex-col gap-0 lg:gap-10 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
+      <div className="contenedor-proyectos flex flex-col gap-0 lg:gap-10 items-start w-full" style={{ paddingLeft: "clamp(20px, 4vw, 80px)", paddingRight: "clamp(20px, 4vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="encabezado-proyectos flex flex-col gap-6 items-start max-w-[864px]">
           <p
             className="titulo-proyectos font-medium text-foreground"
@@ -578,10 +578,10 @@ function SectionProyects() {
 
               {/* Overlay y titulos indicadores para Mobile */}
               {isMobile && (
-                <div 
-                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none" 
-                  style={{ 
-                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)", 
+                <div
+                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none"
+                  style={{
+                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)",
                     backdropFilter: "blur(6px)",
                     WebkitBackdropFilter: "blur(6px)",
                     padding: "1.5rem",
@@ -589,7 +589,8 @@ function SectionProyects() {
                     borderLeft: "none",
                     borderRight: "none",
                     borderBottom: "none",
-                    outline: "none"
+                    outline: "none",
+                    marginBottom: "-1px"
                   }}
                 >
                   <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
