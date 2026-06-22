@@ -142,8 +142,21 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
     border: isDark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(32,32,31,0.15)",
   };
 
+  const dropdownStyle: React.CSSProperties = {
+    backdropFilter: "blur(32px) saturate(1.5) contrast(1.25)",
+    WebkitBackdropFilter: "blur(32px) saturate(1.5) contrast(1.25)",
+    backgroundColor: isDark ? "rgba(22, 22, 21, 0.95)" : "rgba(255, 255, 255, 0.95)",
+    border: isDark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(32,32,31,0.15)",
+  };
+
   return (
-    <div className="header-mobile fixed top-4 left-0 right-0 z-50 flex flex-col items-center px-4 md:hidden">
+    <div 
+      className="header-mobile fixed top-4 left-1/2 z-50 flex flex-col items-center md:hidden"
+      style={{
+        width: "61%",
+        transform: "translateX(-50%)",
+      }}
+    >
       {/* Pill principal */}
       <div
         className="pill-header-mobile flex items-center justify-between w-full rounded-[64px] px-4 py-3"
@@ -163,18 +176,18 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
           <span
             className="burger-line block bg-foreground rounded-full"
             style={{
-              height: "1.5px",
-              width: open ? "20px" : "20px",
-              transform: open ? "translateY(3.75px) rotate(45deg)" : "none",
+              height: "2px",
+              width: "32px",
+              transform: open ? "translateY(4px) rotate(45deg)" : "none",
               transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease, background-color 0.3s ease",
             }}
           />
           <span
             className="burger-line block bg-foreground rounded-full"
             style={{
-              height: "1.5px",
-              width: open ? "20px" : "14px",
-              transform: open ? "translateY(-3.75px) rotate(-45deg)" : "none",
+              height: "2px",
+              width: open ? "32px" : "22px",
+              transform: open ? "translateY(-4px) rotate(-45deg)" : "none",
               transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease, background-color 0.3s ease",
             }}
           />
@@ -185,7 +198,7 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
       <div
         className="pill-menu-mobile w-full rounded-[24px] overflow-hidden mt-2"
         style={{
-          ...glassStyle,
+          ...dropdownStyle,
           maxHeight: open ? "400px" : "0px",
           opacity: open ? 1 : 0,
           transition: "max-height 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease, background-color 0.3s ease, border-color 0.3s ease",
@@ -193,35 +206,45 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
         }}
       >
         <nav className="flex flex-col px-6 py-5 gap-1">
-          {navLinks.map(({ label, to, anchor }, i) => (
-            <div
-              key={label}
-              style={{
-                opacity: open ? 1 : 0,
-                transform: open ? "translateY(0)" : "translateY(8px)",
-                transition: `opacity 0.4s ease ${i * 60}ms, transform 0.4s cubic-bezier(0.76,0,0.24,1) ${i * 60}ms`,
-              }}
-            >
-              {to ? (
-                <Link
-                  to={to}
-                  onClick={() => setOpen(false)}
-                  className="nav-link-mobile block font-medium text-foreground py-3 border-b border-[rgba(32,32,31,0.08)] dark:border-[rgba(255,255,255,0.08)] last:border-0"
-                  style={{ fontSize: "18px", letterSpacing: "-0.03em" }}
-                >
-                  {label}
-                </Link>
-              ) : (
-                <span
-                  className="nav-link-mobile block font-medium text-foreground py-3 border-b border-[rgba(32,32,31,0.08)] dark:border-[rgba(255,255,255,0.08)] cursor-pointer"
-                  style={{ fontSize: "18px", letterSpacing: "-0.03em" }}
-                  onClick={() => { setOpen(false); if (anchor) scrollTo(anchor); }}
-                >
-                  {label}
-                </span>
-              )}
-            </div>
-          ))}
+          {navLinks.map(({ label, to, anchor }, i) => {
+            const isLast = i === navLinks.length - 1;
+            const borderClasses = isLast
+              ? ""
+              : "border-b border-[rgba(32,32,31,0.08)] dark:border-[rgba(255,255,255,0.08)]";
+
+            return (
+              <div
+                key={label}
+                style={{
+                  opacity: open ? 1 : 0,
+                  transform: open ? "translateY(0)" : "translateY(8px)",
+                  transition: `opacity 0.4s ease ${i * 60}ms, transform 0.4s cubic-bezier(0.76,0,0.24,1) ${i * 60}ms`,
+                }}
+              >
+                {to ? (
+                  <Link
+                    to={to}
+                    onClick={() => setOpen(false)}
+                    className={`nav-link-mobile block font-medium text-foreground py-3 ${borderClasses}`}
+                    style={{ fontSize: "18px", letterSpacing: "-0.03em" }}
+                  >
+                    {label}
+                  </Link>
+                ) : (
+                  <span
+                    className={`nav-link-mobile block font-medium text-foreground py-3 ${borderClasses} cursor-pointer`}
+                    style={{ fontSize: "18px", letterSpacing: "-0.03em" }}
+                    onClick={() => {
+                      setOpen(false);
+                      if (anchor) scrollTo(anchor);
+                    }}
+                  >
+                    {label}
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </nav>
       </div>
     </div>
