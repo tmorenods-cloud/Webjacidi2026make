@@ -449,6 +449,7 @@ function SectionProyects() {
   const [ctaHovered, setCtaHovered] = useState(false);
   const [brokenImages, setBrokenImages] = useState<Record<string, boolean>>({});
   const [isMobile, setIsMobile] = useState(false);
+  const { isDark } = useOutletContext<{ isDark: boolean }>();
 
   const handleImageError = (name: string) => {
     setBrokenImages((prev) => ({ ...prev, [name]: true }));
@@ -501,7 +502,7 @@ function SectionProyects() {
 
   return (
     <div className="seccion-proyectos flex flex-col items-start w-full">
-      <div className="contenedor-proyectos flex flex-col gap-10 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
+      <div className="contenedor-proyectos flex flex-col gap-0 lg:gap-10 items-start w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
         <div className="encabezado-proyectos flex flex-col gap-6 items-start max-w-[864px]">
           <p
             className="titulo-proyectos font-medium text-foreground"
@@ -577,13 +578,18 @@ function SectionProyects() {
 
               {/* Overlay y titulos indicadores para Mobile */}
               {isMobile && (
-                <div
-                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none"
-                  style={{
-                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)",
+                <div 
+                  className="indicadores-mobile absolute bottom-0 right-0 w-full flex flex-col items-end justify-end z-10 pointer-events-none" 
+                  style={{ 
+                    backgroundImage: "linear-gradient(0deg, var(--background) 0%, var(--background) 15%, #00000047 100%)", 
                     backdropFilter: "blur(6px)",
                     WebkitBackdropFilter: "blur(6px)",
-                    padding: "1.5rem"
+                    padding: "1.5rem",
+                    borderTop: isDark ? "1px solid rgba(255, 255, 255, 0.12)" : "1px solid rgba(32, 32, 31, 0.12)",
+                    borderLeft: "none",
+                    borderRight: "none",
+                    borderBottom: "none",
+                    outline: "none"
                   }}
                 >
                   <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
@@ -626,7 +632,7 @@ function SectionProyects() {
         </div>
         <div
           className="cta-ver-proyectos flex items-center justify-between overflow-hidden relative w-full text-foreground hover:text-background transition-colors duration-300"
-          style={{ cursor: "pointer", borderRadius: 8, padding: "clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px)", border: "1px solid var(--border-medium)" }}
+          style={{ cursor: "pointer", borderRadius: isMobile ? 0 : 8, padding: "clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px)", border: "1px solid var(--border-medium)" }}
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
         >
@@ -652,8 +658,8 @@ function SectionProyects() {
             <br />
             los proyectos
           </p>
-          <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[160px] z-10 flex items-center justify-center transition-colors duration-300" style={{ color: ctaHovered ? "var(--background)" : "var(--foreground)" }}>
-            <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="icono-flecha-cta overflow-hidden relative shrink-0 size-[100px] lg:size-[160px] z-10 flex items-center justify-center transition-colors duration-300" style={{ color: ctaHovered ? "var(--background)" : "var(--foreground)" }}>
+            <svg className="w-full h-full" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="currentColor" />
             </svg>
           </div>
