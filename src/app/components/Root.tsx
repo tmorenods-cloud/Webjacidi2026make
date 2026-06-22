@@ -186,7 +186,7 @@ function MobileHeader({ isDark }: { isDark: boolean }) {
             className="burger-line block bg-foreground rounded-full"
             style={{
               height: "2px",
-              width: open ? "32px" : "22px",
+              width: "32px",
               transform: open ? "translateY(-4px) rotate(-45deg)" : "none",
               transition: "transform 0.4s cubic-bezier(0.76,0,0.24,1), width 0.3s ease, background-color 0.3s ease",
             }}
