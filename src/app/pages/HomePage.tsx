@@ -25,40 +25,36 @@ function LogoCard({ children }: { children: React.ReactNode }) {
       <div className="contenido-tarjeta-logo flex flex-col items-center justify-center overflow-clip relative rounded-[inherit] size-full">
         {children}
       </div>
-      <div className="borde-tarjeta-logo absolute border border-border-light border-solid inset-0 pointer-events-none rounded-[16px]" />
+      <div className="borde-tarjeta-logo absolute border border-white/5 border-solid inset-0 pointer-events-none rounded-[16px]" />
     </div>
   );
 }
 
-function LogoText({ name }: { name: string }) {
-  return (
-    <span
-      className="texto-nombre-cliente font-semibold text-foreground tracking-tight select-none"
-      style={{ fontSize: 18, opacity: 0.7, fontFamily: "Inter, sans-serif", letterSpacing: "-0.0125em" }}
-    >
-      {name}
-    </span>
-  );
-}
+const row1LogosRaw = import.meta.glob("../../assets/logo/marquesina 1/*.svg", { eager: true, query: '?url', import: 'default' });
+const row1Logos = Object.values(row1LogosRaw) as string[];
 
-const row1Logos = ["Castro Suites", "Testis Suite", "Navicu", "Hyatt", "Metropolitan", "Barok", "eRoom"];
-const row2Logos = ["Hesperia", "Mas Oliu", "Grand Hyatt", "Odoo", "iDempiere", "Jacidi Pro", "MediaHub"];
+const row2LogosRaw = import.meta.glob("../../assets/logo/marquesina 2/*.svg", { eager: true, query: '?url', import: 'default' });
+const row2Logos = Object.values(row2LogosRaw) as string[];
 
-function LogoRibbonRow1() {
+function LogoRibbonRow1({ scale = 1 }: { scale?: number }) {
   return (
     <div className="fila-logos-1 flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
-      {row1Logos.map((name) => (
-        <LogoCard key={name}><LogoText name={name} /></LogoCard>
+      {row1Logos.map((src, idx) => (
+        <LogoCard key={idx}>
+          <img src={src} alt={`Client Logo ${idx}`} className="w-auto h-auto object-contain" style={{ transform: `scale(${scale})`, transformOrigin: "center" }} />
+        </LogoCard>
       ))}
     </div>
   );
 }
 
-function LogoRibbonRow2() {
+function LogoRibbonRow2({ scale = 1 }: { scale?: number }) {
   return (
     <div className="fila-logos-2 flex gap-[6px] items-center flex-none mx-[3px] my-[0px]">
-      {row2Logos.map((name) => (
-        <LogoCard key={name}><LogoText name={name} /></LogoCard>
+      {row2Logos.map((src, idx) => (
+        <LogoCard key={idx}>
+          <img src={src} alt={`Client Logo ${idx}`} className="w-auto h-auto object-contain" style={{ transform: `scale(${scale})`, transformOrigin: "center" }} />
+        </LogoCard>
       ))}
     </div>
   );
@@ -395,6 +391,19 @@ function SectionServices() {
 // ─── Section Clients ───────────────────────────────────────────────────────────
 
 function SectionClientsLogos() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      const cardWidth = Math.min(288, Math.max(202, vw * 0.25));
+      setScale(cardWidth / 288);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="seccion-clientes-logos flex flex-col gap-[52px] items-start overflow-hidden w-full" style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
       <div className="contenedor-titulo-clientes w-full" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
@@ -415,13 +424,13 @@ function SectionClientsLogos() {
           style={{ backgroundImage: "linear-gradient(270deg, var(--background) 0%, var(--background) 50%, transparent 100%)" }}
         />
         <div className="marquesina-logos-row1 w-full overflow-hidden">
-          <Marquee direction="left" duration={45}>
-            <LogoRibbonRow1 />
+          <Marquee direction="left" duration={80}>
+            <LogoRibbonRow1 scale={scale} />
           </Marquee>
         </div>
         <div className="marquesina-logos-row2 w-full overflow-hidden">
-          <Marquee direction="right" duration={45}>
-            <LogoRibbonRow2 />
+          <Marquee direction="right" duration={80}>
+            <LogoRibbonRow2 scale={scale} />
           </Marquee>
         </div>
       </div>
