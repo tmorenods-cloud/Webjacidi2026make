@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { EmailLink } from "./EmailLink";
 
 // ─── Footer ────────────────────────────────────────────────────────────────────
 
@@ -28,7 +29,7 @@ export function Footer() {
               <div className="columna-info flex flex-col flex-1 items-end min-w-0">
                 <div className="info-contacto-footer flex flex-col gap-[18px] items-start">
                   <div className="email-footer flex gap-[6px] items-center">
-                    <a href="mailto:info@jacidi.com" className="texto-email-footer font-semibold text-[#909090] hover:text-accent-orange text-[24px] tracking-[-0.03em] whitespace-nowrap transition-colors duration-300">info@jacidi.com</a>
+                    <EmailLink className="texto-email-footer font-semibold text-[#909090] hover:text-accent-orange text-[24px] tracking-[-0.03em] whitespace-nowrap transition-colors duration-300" />
                   </div>
                   <div className="redes-sociales flex gap-[18px] items-start font-normal text-foreground text-[16px] tracking-[-0.0125em] whitespace-nowrap">
                     <a href="https://www.instagram.com/jacidi_/" target="_blank" rel="noopener noreferrer" className="link-instagram hover:text-accent-orange transition-colors duration-300">Instagram</a>

@@ -1,6 +1,8 @@
 import { useState, useRef, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import { EmailLink } from "./EmailLink";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // ─── EmailJS Config ────────────────────────────────────────────────────────────
 
@@ -31,6 +33,8 @@ export function SectionContact() {
   const [activeTab, setActiveTab] = useState<Tab>("servicio");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   // Form State - Servicio
   const [servicioData, setServicioData] = useState({
@@ -70,6 +74,8 @@ export function SectionContact() {
   const handleTabChange = (newTab: Tab) => {
     setActiveTab(newTab);
     setStatusMessage(null);
+    setCaptchaToken(null);
+    recaptchaRef.current?.reset();
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -78,6 +84,13 @@ export function SectionContact() {
     setStatusMessage(null);
 
     try {
+      if (!captchaToken) {
+        toast.error("Por favor completa el captcha ('No soy un robot').");
+        setStatusMessage({ type: "error", text: "Por favor marca la casilla de verificación 'No soy un robot'." });
+        setIsSubmitting(false);
+        return;
+      }
+
       if (activeTab === "servicio") {
         if (!servicioData.name || !servicioData.email) {
           toast.error("Por favor completa los campos obligatorios (Nombre y Correo).");
@@ -86,21 +99,22 @@ export function SectionContact() {
           return;
         }
 
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_INFO,
-          {
-            name: servicioData.name,
-            email: servicioData.email,
-            phone: servicioData.phone || "No especificado",
-            city: servicioData.city || "No especificada",
-            service: servicioData.service || "No especificado",
-            message: servicioData.message || "Sin mensaje adicional",
-          },
-          EMAILJS_PUBLIC_KEY
-        );
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_INFO,
+            {
+              name: servicioData.name,
+              email: servicioData.email,
+              phone: servicioData.phone || "No especificado",
+              city: servicioData.city || "No especificada",
+              service: servicioData.service || "No especificado",
+              message: servicioData.message || "Sin mensaje adicional",
+              "g-recaptcha-response": captchaToken,
+            },
+            EMAILJS_PUBLIC_KEY
+          );
 
-        setServicioData({ name: "", email: "", phone: "", city: "", service: "", message: "" });
+          setServicioData({ name: "", email: "", phone: "", city: "", service: "", message: "" });
       } else {
         if (!vacanteData.name || !vacanteData.email) {
           toast.error("Por favor completa los campos obligatorios (Nombre y Correo).");
@@ -109,27 +123,30 @@ export function SectionContact() {
           return;
         }
 
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_VACANTE,
-          {
-            name: vacanteData.name,
-            phone: vacanteData.phone || "No especificado",
-            email: vacanteData.email,
-            city: vacanteData.city || "No especificada",
-            link: vacanteData.link || "No proporcionado",
-            file_name: fileName ? fileName : "No adjuntó archivo",
-          },
-          EMAILJS_PUBLIC_KEY
-        );
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_VACANTE,
+            {
+              name: vacanteData.name,
+              phone: vacanteData.phone || "No especificado",
+              email: vacanteData.email,
+              city: vacanteData.city || "No especificada",
+              link: vacanteData.link || "No proporcionado",
+              file_name: fileName ? fileName : "No adjuntó archivo",
+              "g-recaptcha-response": captchaToken,
+            },
+            EMAILJS_PUBLIC_KEY
+          );
 
-        setVacanteData({ name: "", phone: "", email: "", city: "", link: "" });
+          setVacanteData({ name: "", phone: "", email: "", city: "", link: "" });
         setFileName(null);
         if (fileRef.current) fileRef.current.value = "";
       }
 
       toast.success("¡Mensaje enviado con éxito! Te contactaremos pronto.");
       setStatusMessage({ type: "success", text: "¡Mensaje enviado con éxito! Te contactaremos pronto." });
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (err) {
       console.error("EmailJS Error:", err);
       toast.error("Error al enviar el mensaje. Inténtalo de nuevo más tarde.");
@@ -164,13 +181,10 @@ export function SectionContact() {
             >
               Tu idea merece algo mejor.<br />¡Contáctanos!
             </p>
-            <a
-              href="mailto:info@jacidi.com"
+            <EmailLink
               className="email-contacto font-semibold underline decoration-solid transition-colors duration-300 cursor-pointer text-muted-text hover:text-accent-orange-hover"
               style={{ fontSize: "clamp(22px, 4vw, 64px)", letterSpacing: "-0.04em", lineHeight: "1" }}
-            >
-              info@jacidi.com
-            </a>
+            />
           </div>
 
           {/* Formulario: alineado izquierda */}
@@ -439,6 +453,16 @@ export function SectionContact() {
                 {statusMessage.text}
               </p>
             )}
+
+            {/* Widget reCAPTCHA v2 */}
+            <div className="my-2">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey="6LdLaXUtAAAAAM7T1nCEI8ZLdBHeQF6A9EHA7cYo"
+                onChange={(token) => setCaptchaToken(token)}
+                onExpired={() => setCaptchaToken(null)}
+              />
+            </div>
 
             {/* CTA lineal */}
             <button
