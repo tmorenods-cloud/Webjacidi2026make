@@ -1,6 +1,81 @@
 import { useState, useRef, useEffect } from "react";
 import { useOutletContext, Link } from "react-router";
 import videoHero from "../../assets/video/video-hero-prueba.mp4";
+
+// ─── Imágenes Marquesina Horizontal (Intro) ──────────────────────────────────
+import imgAcelsa from "../../assets/img/marquesina horizontales/acelsa.png";
+import imgAltheon from "../../assets/img/marquesina horizontales/altheon.png";
+import imgCindu from "../../assets/img/marquesina horizontales/cindu.png";
+import imgDossierSantceloni from "../../assets/img/marquesina horizontales/dossier-santceloni.png";
+import imgDucsonCapital from "../../assets/img/marquesina horizontales/ducson-capital.png";
+import imgFocoroVinos from "../../assets/img/marquesina horizontales/focoro-vinos.png";
+import imgHesperiaValencia from "../../assets/img/marquesina horizontales/hesperia-valencia.png";
+import imgMagazineHesperia from "../../assets/img/marquesina horizontales/magazine-hesperia.png";
+import imgMarcaCiudadMorrocoy from "../../assets/img/marquesina horizontales/marca-ciudad-morrocoy.png";
+import imgMenuHesperia from "../../assets/img/marquesina horizontales/menu-hesperia.png";
+import imgOkdoki from "../../assets/img/marquesina horizontales/okdoki.png";
+import imgSosnetFeed from "../../assets/img/marquesina horizontales/sosnet-feed.png";
+import imgSuperContigoValla from "../../assets/img/marquesina horizontales/super-contigo-valla.png";
+import imgSuperContigo from "../../assets/img/marquesina horizontales/super-contigo.png";
+import imgVenport1 from "../../assets/img/marquesina horizontales/venport-1.png";
+import imgZyntrox from "../../assets/img/marquesina horizontales/zyntrox.png";
+
+// ─── Imágenes Sección Proyectos Home ──────────────────────────────────────────
+import imgHesperiaHotels from "../../assets/img/proyectos home/hesperia-hotels.png";
+import imgHesperiaWorldAmerica from "../../assets/img/proyectos home/hesperia-world-america.png";
+import imgHesperiaProductions from "../../assets/img/proyectos home/hesperia-productions.png";
+import imgHesperiaCircle from "../../assets/img/proyectos home/hesperia-circle.png";
+import imgNavicu from "../../assets/img/proyectos home/navicu-com.png";
+import imgClubMetropolitan from "../../assets/img/proyectos home/metropolitan-club-sp.png";
+
+// Listas de asignación mantenidas por separado para cada marquesina
+const marquesinaSuperiorImages = [
+  imgAcelsa,
+  imgAltheon,
+  imgCindu,
+  imgDossierSantceloni,
+  imgDucsonCapital,
+  imgFocoroVinos,
+  imgHesperiaValencia,
+  imgMagazineHesperia,
+  imgMarcaCiudadMorrocoy,
+  imgMenuHesperia,
+  imgOkdoki,
+  imgSosnetFeed,
+  imgSuperContigoValla,
+  imgSuperContigo,
+  imgVenport1,
+  imgZyntrox,
+];
+
+const marquesinaInferiorImages = [
+  imgAcelsa,
+  imgAltheon,
+  imgCindu,
+  imgDossierSantceloni,
+  imgDucsonCapital,
+  imgFocoroVinos,
+  imgHesperiaValencia,
+  imgMagazineHesperia,
+  imgMarcaCiudadMorrocoy,
+  imgMenuHesperia,
+  imgOkdoki,
+  imgSosnetFeed,
+  imgSuperContigoValla,
+  imgSuperContigo,
+  imgVenport1,
+  imgZyntrox,
+];
+
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 const imgClientLogo = "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop";
 const imgClientLogo1 = "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop";
 const imgClientLogo2 = "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop";
@@ -25,7 +100,7 @@ function LogoCard({ children }: { children: React.ReactNode }) {
       <div className="contenido-tarjeta-logo flex flex-col items-center justify-center overflow-clip relative rounded-[inherit] size-full">
         {children}
       </div>
-      <div className="borde-tarjeta-logo absolute border border-white/5 border-solid inset-0 pointer-events-none rounded-[16px]" />
+      <div className="borde-tarjeta-logo absolute border border-solid inset-0 pointer-events-none rounded-[16px]" style={{ borderColor: "rgba(35, 35, 35, 0.05)" }} />
     </div>
   );
 }
@@ -157,28 +232,22 @@ function MockupCard({ src }: { src: string }) {
   );
 }
 
-function MockupRibbonContent() {
+function MockupRibbonContent({ images }: { images: string[] }) {
   return (
     <div className="contenido-marquesina-mockups-1 flex items-center flex-none px-3" style={{ gap: "clamp(12px, 2.5vw, 20px)" }}>
-      <MockupCard src={imgClientLogo} />
-      <MockupCard src={imgClientLogo1} />
-      <MockupCard src={imgClientLogo2} />
-      <MockupCard src={imgClientLogo3} />
-      <MockupCard src={imgClientLogo4} />
-      <MockupCard src={imgClientLogo3} />
+      {images.map((src, idx) => (
+        <MockupCard key={idx} src={src} />
+      ))}
     </div>
   );
 }
 
-function MockupRibbonContent2() {
+function MockupRibbonContent2({ images }: { images: string[] }) {
   return (
     <div className="contenido-marquesina-mockups-2 flex items-center flex-none px-3" style={{ gap: "clamp(12px, 2.5vw, 20px)" }}>
-      <MockupCard src={imgClientLogo5} />
-      <MockupCard src={imgClientLogo6} />
-      <MockupCard src={imgClientLogo7} />
-      <MockupCard src={imgClientLogo} />
-      <MockupCard src={imgClientLogo5} />
-      <MockupCard src={imgClientLogo8} />
+      {images.map((src, idx) => (
+        <MockupCard key={idx} src={src} />
+      ))}
     </div>
   );
 }
@@ -211,6 +280,9 @@ function HeroSection() {
 // ─── Intro + Details ──────────────────────────────────────────────────────────
 
 function IntroAndDetailsSection() {
+  const [topImages] = useState(() => shuffleArray(marquesinaSuperiorImages));
+  const [bottomImages] = useState(() => shuffleArray(marquesinaInferiorImages));
+
   return (
     <div className="seccion-intro-detalles flex flex-col items-center w-full" style={{ gap: "clamp(60px, 12vw, 160px)", paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
       <div className="contenedor-texto-intro w-full py-[0px]" style={{ paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
@@ -222,8 +294,8 @@ function IntroAndDetailsSection() {
         </p>
       </div>
       <div className="marquesina-mockups-superior h-auto md:h-[267px] overflow-hidden w-full">
-        <Marquee direction="left" duration={35}>
-          <MockupRibbonContent />
+        <Marquee direction="left" duration={50}>
+          <MockupRibbonContent images={topImages} />
         </Marquee>
       </div>
       <div className="contenedor-estadisticas flex flex-col gap-[52px] items-center w-full" style={{ paddingTop: "clamp(32px, 4vw, 52px)", paddingBottom: "clamp(32px, 4vw, 52px)", paddingLeft: "clamp(16px, 4.5vw, 80px)", paddingRight: "clamp(16px, 4.5vw, 80px)" }}>
@@ -258,8 +330,8 @@ function IntroAndDetailsSection() {
         </a>
       </div>
       <div className="marquesina-mockups-inferior h-auto md:h-[267px] overflow-hidden w-full">
-        <Marquee direction="right" duration={35}>
-          <MockupRibbonContent2 />
+        <Marquee direction="right" duration={50}>
+          <MockupRibbonContent2 images={bottomImages} />
         </Marquee>
       </div>
     </div>
@@ -441,13 +513,12 @@ function SectionClientsLogos() {
 // ─── Section Projects ──────────────────────────────────────────────────────────
 
 const clientList = [
-  { name: "Navicu.com", preview: imgColumn1 },
-  { name: "Mas Oliu", preview: imgColumn },
-  { name: "Barok", preview: imgColumn1 },
-  { name: "eRoom Suite", preview: imgColumn },
-  { name: "Grand Hyatt", preview: imgColumn1 },
-  { name: "Club Metropolitan", preview: imgColumn },
-  { name: "Hesperia World America", preview: imgColumn1 },
+  { name: "Hesperia", preview: imgHesperiaHotels },
+  { name: "Navicu.com", preview: imgNavicu },
+  { name: "Club Metropolitan", preview: imgClubMetropolitan },
+  { name: "Las Rosas", preview: imgHesperiaWorldAmerica },
+  { name: "Sosnet", preview: imgSosnetFeed },
+  { name: "Expo ISP", preview: imgHesperiaProductions },
 ];
 
 function SectionProyects() {
@@ -500,13 +571,12 @@ function SectionProyects() {
   };
 
   const clientBullets: Record<number, string[]> = {
-    0: ["10 años de gestión digital", "+175.000 Followers en Instagram", "+6.000 Leads mensuales"],
-    1: ["Incremento del 38% en ventas online", "Rediseño de identidad visual completa", "+12.000 visitas únicas al mes"],
-    2: ["Campaña 360° en 3 mercados", "52% de incremento en reservas", "ROI publicitario de 4.2x"],
-    3: ["Integración con canal de reservas propio", "+200 propiedades gestionadas", "Reducción del 30% en coste por adquisición"],
-    4: ["Estrategia de lujo para 5 países LATAM", "+85.000 impresiones mensuales en paid", "NPS aumentado de 62 a 88 puntos"],
-    5: ["Campaña de membresías con +3.200 nuevos socios", "Producción audiovisual de 12 piezas/mes", "Engagement rate del 8.4% en RRSS"],
-    6: ["Presencia en 8 mercados internacionales", "Gestión de +1M$ en Paid Media anual", "Incremento del 67% en ocupación directa"],
+    0: ["Presencia en 8 mercados internacionales", "Gestión de +1M$ en Paid Media anual", "Incremento del 67% en ocupación directa"],
+    1: ["10 años de gestión digital", "+175.000 Followers en Instagram", "+6.000 Leads mensuales"],
+    2: ["Campaña de membresías con +3.200 nuevos socios", "Producción audiovisual de 12 piezas/mes", "Engagement rate del 8.4% en RRSS"],
+    3: ["Identidad visual y branding exclusivo", "Diseño y desarrollo de experiencia web", "Posicionamiento de marca destacado"],
+    4: ["Estrategia digital y redes sociales", "Diseño de interfaz y contenidos", "+15.000 interacciones al mes"],
+    5: ["Estrategia de marca y presencia en eventos", "Campañas Paid Media especializadas", "Generación de leads cualificados"],
   };
 
   return (
@@ -526,12 +596,13 @@ function SectionProyects() {
             Conoce nuestra experiencia a través de nuestros clientes
           </p>
         </div>
-        <div className="contenido-proyectos flex gap-5 items-start justify-end pb-10 w-full flex-wrap lg:flex-nowrap relative">
+        <div className="contenido-proyectos flex gap-5 items-end justify-end pb-10 w-full flex-wrap lg:flex-nowrap relative">
           {!isMobile && (
             <div className="lista-proyectos hidden lg:flex flex-col items-end flex-1 max-w-[1043px] gap-[2px]">
               {clientList.map((client, i) => (
-                <div
+                <Link
                   key={client.name}
+                  to="/proyectos"
                   className={`item-proyecto item-proyecto-${i + 1} flex items-end justify-end w-full`}
                   onMouseEnter={() => handleClientEnter(i)}
                   onMouseLeave={handleClientLeave}
@@ -555,7 +626,7 @@ function SectionProyects() {
                       style={{ width: activeClient === i ? 32 : 0 }}
                     />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
@@ -604,7 +675,7 @@ function SectionProyects() {
                 >
                   <div className="flex flex-col gap-0 items-end pointer-events-auto w-full max-w-[280px]">
                     {clientList.map((client, i) => (
-                      <div key={client.name} className="item-proyecto-mobile flex items-center justify-end w-full">
+                      <Link key={client.name} to="/proyectos" className="item-proyecto-mobile flex items-center justify-end w-full">
                         <p
                           className="font-semibold text-right transition-all duration-300 whitespace-nowrap"
                           style={{
@@ -622,7 +693,7 @@ function SectionProyects() {
                             style={{ width: activeClient === i ? 24 : 0 }}
                           />
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -640,7 +711,8 @@ function SectionProyects() {
             </div>
           </Link>
         </div>
-        <div
+        <Link
+          to="/proyectos"
           className="cta-ver-proyectos flex items-center justify-between overflow-hidden relative w-full text-foreground hover:text-background transition-colors duration-300"
           style={{ cursor: "pointer", borderRadius: isMobile ? 0 : 8, padding: "clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px)", border: "1px solid var(--border-medium)" }}
           onMouseEnter={() => setCtaHovered(true)}
@@ -673,7 +745,7 @@ function SectionProyects() {
               <path d="M106.691 62.7614L49.3143 120.139L39.8862 110.711L97.2635 53.3333H46.6917V40H120.025V113.333H106.691V62.7614Z" fill="currentColor" />
             </svg>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

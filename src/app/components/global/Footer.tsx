@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 // ─── Footer ────────────────────────────────────────────────────────────────────
 
 export function Footer() {
@@ -29,15 +31,15 @@ export function Footer() {
                     <a href="mailto:info@jacidi.com" className="texto-email-footer font-semibold text-[#909090] hover:text-accent-orange text-[24px] tracking-[-0.03em] whitespace-nowrap transition-colors duration-300">info@jacidi.com</a>
                   </div>
                   <div className="redes-sociales flex gap-[18px] items-start font-normal text-foreground text-[16px] tracking-[-0.0125em] whitespace-nowrap">
-                    <span className="link-instagram">Instagram</span>
-                    <span className="link-linkedin">LinkedIn</span>
+                    <a href="https://www.instagram.com/jacidi_/" target="_blank" rel="noopener noreferrer" className="link-instagram hover:text-accent-orange transition-colors duration-300">Instagram</a>
+                    <a href="https://www.linkedin.com/company/jacidi" target="_blank" rel="noopener noreferrer" className="link-linkedin hover:text-accent-orange transition-colors duration-300">LinkedIn</a>
                   </div>
                 </div>
               </div>
             </div>
             <div className="footer-bottom flex items-center justify-between w-full font-normal text-muted-text text-[16px] tracking-[-0.0125em] whitespace-nowrap">
               <span className="copyright-footer">Jacidi, 2026</span>
-              <span className="politica-cookies">Política de cookies</span>
+              <Link to="/politica-cookies" className="politica-cookies hover:text-accent-orange transition-colors duration-300">Política de cookies</Link>
             </div>
           </div>
         </div>

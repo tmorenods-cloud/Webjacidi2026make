@@ -125,12 +125,17 @@ function NosotrosAboutSection() {
             <p className="texto-about-nosotros font-normal text-foreground text-[22px] tracking-[-0.0125em] leading-[1.5]">
               Con años de trayectoria impulsando marcas competitivas, en Jacidi no solo pensamos, ¡ejecutamos! Entendemos que el objetivo de cada marca es alcanzar la máxima rentabilidad, por lo que integramos nuestra experiencia técnica con una visión comercial para apoyar cualquier objetivo que te plantees.
             </p>
-            <p
+            <a
+              href="#contacto"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="cta-lets-talk-nosotros font-semibold text-foreground underline decoration-solid cursor-pointer"
               style={{ fontSize: 32, letterSpacing: "-0.03em" }}
             >
               Let's talk
-            </p>
+            </a>
           </div>
         </div>
       </div>

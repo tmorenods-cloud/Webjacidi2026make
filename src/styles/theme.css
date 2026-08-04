@@ -67,7 +67,7 @@
   --muted-text: #a1a19e;
   --border-light: rgba(255, 255, 255, 0.15);
   --border-medium: rgba(255, 255, 255, 0.20);
-  --surface-light: rgba(255, 255, 255, 0.06);
+  --surface-light: rgba(255, 255, 255, 0.04);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: rgba(255, 255, 255, 0.15);

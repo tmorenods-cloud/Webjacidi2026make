@@ -5,6 +5,7 @@ import { NosotrosPage } from "./components/NosotrosPage";
 import { ProyectosPage } from "./pages/ProyectosPage";
 import { DesignSystemPage } from "./pages/DesignSystemPage";
 import { CaseStudyPage } from "./pages/CaseStudyPage";
+import { PoliticaCookiesPage } from "./pages/PoliticaCookiesPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "proyectos", Component: ProyectosPage },
       { path: "proyectos/:slug", Component: CaseStudyPage },
       { path: "design-system", Component: DesignSystemPage },
+      { path: "politica-cookies", Component: PoliticaCookiesPage },
     ],
   },
 ]);
